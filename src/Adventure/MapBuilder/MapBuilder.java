@@ -1,5 +1,6 @@
 package Adventure.MapBuilder;
 
+import Adventure.MapInitialization.UpdateRoomDescriptions;
 import Adventure.Room.Room;
 
 import java.util.Random;
@@ -7,6 +8,8 @@ import java.util.Random;
 public class MapBuilder {
     private RoomBuilder _roomBuilder = new RoomBuilder();
     private RoomConnector _roomConnector = new RoomConnector();
+    UpdateRoomDescriptions updateDescriptions = new UpdateRoomDescriptions();
+
 
     private Rooms buildRooms(){
         var rooms = new Rooms();
@@ -48,9 +51,15 @@ public class MapBuilder {
         return rooms;
     }
 
+    public void initializeMap(Rooms room) {
+        updateDescriptions.update(room.room1);
+        updateDescriptions.updateSpecial(room.room5);
+    }
+
     public Room build(){
         var rooms = buildRooms();
         buildMap(rooms);
+        initializeMap(rooms);
         return rooms.room1;
     };
 }

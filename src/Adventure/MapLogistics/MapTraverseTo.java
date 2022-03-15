@@ -12,7 +12,7 @@ public class MapTraverseTo {
         if(!canTraverse)
             throw new IllegalStateException();
         else
-            return currentRoom.north;
+            return currentRoom.getNorth();
     }
 
     private Room tryGoEast(Room currentRoom)
@@ -21,7 +21,7 @@ public class MapTraverseTo {
         if(!canTraverse)
             throw new IllegalStateException();
         else
-            return currentRoom.east;
+            return currentRoom.getEast();
     }
 
     private Room tryGoSouth(Room currentRoom)
@@ -30,7 +30,7 @@ public class MapTraverseTo {
         if(!canTraverse)
             throw new IllegalStateException();
         else
-            return currentRoom.south;
+            return currentRoom.getSouth();
     }
 
     private Room tryGoWest(Room currentRoom)
@@ -39,7 +39,7 @@ public class MapTraverseTo {
         if(!canTraverse)
             throw new IllegalStateException();
         else
-            return currentRoom.west;
+            return currentRoom.getWest();
     }
 
     public Room traverseTo(String orientation, Room currentRoom)

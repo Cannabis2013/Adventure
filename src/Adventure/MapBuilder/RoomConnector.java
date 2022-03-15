@@ -4,22 +4,22 @@ import Adventure.Room.Room;
 
 public class RoomConnector {
     public void connectRoomNorth(Room southOf, Room northOf) {
-        southOf.north = northOf;
-        northOf.south = southOf;
+        southOf.setNorth(northOf);
+        northOf.setSouth(southOf);
     }
 
     public void connectRoomEast(Room westOf, Room eastOf) {
-        westOf.east = eastOf;
-        eastOf.west = westOf;
+        westOf.setEast(eastOf);
+        eastOf.setWest(westOf);
     }
 
     public void connectRoomSouth(Room northOf, Room southOf) {
-        northOf.south = southOf;
-        southOf.north = northOf;
+        northOf.setSouth(southOf);
+        southOf.setNorth(northOf);
     }
 
     public void connectRoomWest(Room eastOf, Room westOf) {
-        eastOf.west = westOf;
-        westOf.east = eastOf;
+        eastOf.setWest(westOf);
+        westOf.setEast(eastOf);
     }
 }

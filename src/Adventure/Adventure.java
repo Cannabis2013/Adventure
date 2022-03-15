@@ -2,7 +2,6 @@ package Adventure;
 
 import Adventure.HelpScreen.HelpStringBuilder;
 import Adventure.MapBuilder.MapBuilder;
-import Adventure.MapLogistics.MapCanTraverseTo;
 import Adventure.MapLogistics.MapTraverseTo;
 import Adventure.Printer.Printer;
 import Adventure.Room.Room;
@@ -24,7 +23,7 @@ public class Adventure {
     }
 
     private void printDescription(){
-        printer.printLine(currentRoom.description);
+        printer.printLine(currentRoom.getDescription());
     }
 
     private void printBadCommand(){
@@ -34,6 +33,7 @@ public class Adventure {
     private void handleGoCommand(String orientation){
         try {
             currentRoom = traverseTo.traverseTo(orientation,currentRoom);
+            printer.printLine(currentRoom.getDescription());
         } catch (IllegalArgumentException e){
             printBadCommand();
         } catch (IllegalStateException e){
