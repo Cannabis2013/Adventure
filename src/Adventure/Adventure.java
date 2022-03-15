@@ -1,5 +1,6 @@
 package Adventure;
 
+import Adventure.HelpScreen.HelpStringBuilder;
 import Adventure.MapBuilder.MapBuilder;
 import Adventure.MapLogistics.MapCanTraverseTo;
 import Adventure.MapLogistics.MapTraverseTo;
@@ -13,15 +14,17 @@ public class Adventure {
     Scanner inputReader = new Scanner(System.in);
     MapBuilder mapBuilder = new MapBuilder();
     MapTraverseTo traverseTo = new MapTraverseTo();
+    HelpStringBuilder helpStringBuilder = new HelpStringBuilder();
     Room currentRoom;
 
     private void printHelp()
     {
-        // TODO: Implement help printer class
+        String helpStr = helpStringBuilder.build();
+        printer.printLine(helpStr);
     }
 
     private void printDescription(){
-        // Print currentroom description
+        printer.printLine(currentRoom.description);
     }
 
     private void printBadCommand(){
