@@ -77,14 +77,18 @@ public class Adventure {
         return command;
     }
 
+    private void haltUntilPressed(){
+        printer.print("Press any key to continue");
+        inputReader.nextLine();
+    }
+
     public Adventure(){
         currentRoom = mapBuilder.build();
     }
 
     public void run(){
         printIntro();
-        printer.print("Press any key to continue");
-        inputReader.nextLine();
+        haltUntilPressed();
         printHelp();
         while (true)
         {
