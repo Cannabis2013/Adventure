@@ -1,6 +1,7 @@
 package Adventure;
 
 import Adventure.HelpScreen.HelpStringBuilder;
+import Adventure.InputLine.InputLineStringBuilder;
 import Adventure.MapBuilder.MapBuilder;
 import Adventure.MapLogistics.MapTraverseTo;
 import Adventure.Printer.Printer;
@@ -13,6 +14,7 @@ public class Adventure {
     Scanner inputReader = new Scanner(System.in);
     MapBuilder mapBuilder = new MapBuilder();
     MapTraverseTo traverseTo = new MapTraverseTo();
+    InputLineStringBuilder inputLineStringBuilder = new InputLineStringBuilder();
     HelpStringBuilder helpStringBuilder = new HelpStringBuilder();
     Room currentRoom;
 
@@ -52,8 +54,14 @@ public class Adventure {
             case "go south" -> handleGoCommand("south");
             case "go west" -> handleGoCommand("west");
             default -> printBadCommand();
-
         }
+    }
+
+    private String readCommand(){
+        var inputLine = inputLineStringBuilder.build();
+        printer.print(inputLine);
+        String command = inputReader.nextLine();
+        return command;
     }
 
     public Adventure(){
@@ -64,7 +72,7 @@ public class Adventure {
         boolean isRunning = true;
         while (isRunning)
         {
-            String command = inputReader.nextLine();
+            var command = readCommand();
             interpretCommand(command);
         }
     }

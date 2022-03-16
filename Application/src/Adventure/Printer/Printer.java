@@ -5,4 +5,8 @@ public class Printer {
     {
         System.out.println(str);
     }
+
+    public void print(String str){
+        System.out.print(str);
+    }
 }
