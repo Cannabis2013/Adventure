@@ -1,0 +1,3 @@
+[submodule "ConsoleFormatterLib"]
+	path = ConsoleFormatterLib
+	url = git@github.com:Cannabis2013/ConsoleCSIFormatterLib.git
