@@ -1,13 +1,14 @@
-package Adventure.MapLogistics;
+package ApplicationBuilder.MapLogistics;
 
-import Adventure.Room.Room;
+import Application.MapLogistics.IMapTraverser;
+import ApplicationBuilder.BuildMap.BuildRooms.Room;
 
-public class MapTraverseTo {
-    MapCanTraverseTo canTraverse = new MapCanTraverseTo();
+public class MapTraverseTo implements IMapTraverser {
+    boolean canTraverse(Room room) {return room != null;}
 
     private Room tryGoNorth(Room currentRoom)
     {
-        boolean canTraverse = this.canTraverse.canTraverseNorth(currentRoom);
+        boolean canTraverse = canTraverse(currentRoom.getNorth());
         if(!canTraverse)
             throw new IllegalStateException();
         else
@@ -16,7 +17,7 @@ public class MapTraverseTo {
 
     private Room tryGoEast(Room currentRoom)
     {
-        boolean canTraverse = this.canTraverse.canTraverseEast(currentRoom);
+        boolean canTraverse = canTraverse(currentRoom.getEast());
         if(!canTraverse)
             throw new IllegalStateException();
         else
@@ -25,7 +26,7 @@ public class MapTraverseTo {
 
     private Room tryGoSouth(Room currentRoom)
     {
-        boolean canTraverse = this.canTraverse.canTraverseSouth(currentRoom);
+        boolean canTraverse = canTraverse(currentRoom.getSouth());
         if(!canTraverse)
             throw new IllegalStateException();
         else
@@ -34,7 +35,7 @@ public class MapTraverseTo {
 
     private Room tryGoWest(Room currentRoom)
     {
-        boolean canTraverse = this.canTraverse.canTraverseWest(currentRoom);
+        boolean canTraverse = canTraverse(currentRoom.getWest());
         if(!canTraverse)
             throw new IllegalStateException();
         else

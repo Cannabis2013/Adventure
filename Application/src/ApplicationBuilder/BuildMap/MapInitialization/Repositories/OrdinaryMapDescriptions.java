@@ -1,12 +1,14 @@
-package Adventure.MapInitialization;
+package ApplicationBuilder.BuildMap.MapInitialization.Repositories;
+
+import Application.BuildMap.RoomDescriptions.IDescriptionsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapDescriptionRepository {
+public class OrdinaryMapDescriptions implements IDescriptionsRepository {
     List<String> descriptions = new ArrayList<>();
 
-    public MapDescriptionRepository() {
+    public OrdinaryMapDescriptions() {
         descriptions.add("""
                 The room is decorated with pictures of what looks like old nazi NSDAP party members. 
                 
@@ -39,7 +41,7 @@ public class MapDescriptionRepository {
         descriptions.add("Upon entering the room you notice the lights are flickering and immediately spot a dwarf at the other side playing with the light-switch.");
     }
 
-    public List<String> getDescriptions() {
+    public List<String> descriptions() {
         return descriptions;
     }
 }

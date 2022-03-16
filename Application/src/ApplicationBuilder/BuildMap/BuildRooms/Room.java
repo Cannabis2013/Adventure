@@ -1,4 +1,4 @@
-package Adventure.Room;
+package ApplicationBuilder.BuildMap.BuildRooms;
 
 public class Room {
     private String name;
