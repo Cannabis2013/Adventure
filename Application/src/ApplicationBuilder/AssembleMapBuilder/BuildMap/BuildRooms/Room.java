@@ -1,4 +1,4 @@
-package ApplicationBuilder.BuildMap.BuildRooms;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms;
 
 public class Room {
     private String name;

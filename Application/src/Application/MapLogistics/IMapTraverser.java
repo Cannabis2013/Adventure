@@ -1,6 +1,6 @@
 package Application.MapLogistics;
 
-import ApplicationBuilder.BuildMap.BuildRooms.Room;
+import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
 
 public interface IMapTraverser {
     Room traverse(String orientation, Room currentRoom);

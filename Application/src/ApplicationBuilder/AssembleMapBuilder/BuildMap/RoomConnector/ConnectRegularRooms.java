@@ -1,6 +1,6 @@
-package ApplicationBuilder.BuildMap.RoomConnector;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.RoomConnector;
 
-import ApplicationBuilder.BuildMap.BuildRooms.Rooms;
+import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Rooms;
 
 public class ConnectRegularRooms extends AbstractConnectRooms {
 

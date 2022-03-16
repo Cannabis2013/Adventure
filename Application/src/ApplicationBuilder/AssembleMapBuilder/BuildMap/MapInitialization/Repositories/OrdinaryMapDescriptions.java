@@ -1,4 +1,4 @@
-package ApplicationBuilder.BuildMap.MapInitialization.Repositories;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories;
 
 import Application.BuildMap.RoomDescriptions.IDescriptionsRepository;
 
@@ -37,8 +37,15 @@ public class OrdinaryMapDescriptions implements IDescriptionsRepository {
         descriptions.add("Upon entering the room you hear womanly screams behind an assumed locked door");
         descriptions.add("Whilst inspecting the room you find body-limbs and a bloody knife");
         descriptions.add("In this room you spot an old nazi mp-44 assault riffle");
-        descriptions.add("Whilst inspecting, you find a laptop with IntelliJ open. The code is really bad.");
-        descriptions.add("Upon entering the room you notice the lights are flickering and immediately spot a dwarf at the other side playing with the light-switch.");
+        descriptions.add("""
+                On your right, there is a wooden table with some furniture around.
+                You notice a Lenovo Thinkpad X1 Carbon placed on the table with IntelliJ open. The code seems really bad.
+                """);
+        descriptions.add("""
+                A book shelf on the right full of books, and to the left, a kitchen with oven, cutlery and pans. 
+                Nothing wierd about that, except that the lights are flickering. To your surprise, you spot a dwarf 
+                at the end of the room playing with the light-switch.
+                """);
     }
 
     public List<String> descriptions() {

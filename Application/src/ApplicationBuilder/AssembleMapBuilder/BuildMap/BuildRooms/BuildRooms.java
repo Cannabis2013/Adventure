@@ -1,4 +1,4 @@
-package ApplicationBuilder.BuildMap.BuildRooms;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms;
 
 import Application.BuildMap.BuildRooms.IBuildRooms;
 

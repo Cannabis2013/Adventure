@@ -2,7 +2,7 @@ package ApplicationBuilder.Application;
 
 import Application.BuildMap.IBuildMap;
 import Application.MapLogistics.IMapTraverser;
-import ApplicationBuilder.BuildMap.BuildRooms.Room;
+import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
 import Application.IApplication;
 
 public abstract class AbstractApplication implements IApplication {

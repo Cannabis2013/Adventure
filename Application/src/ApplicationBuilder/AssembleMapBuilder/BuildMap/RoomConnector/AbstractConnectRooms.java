@@ -1,7 +1,7 @@
-package ApplicationBuilder.BuildMap.RoomConnector;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.RoomConnector;
 
 import Application.BuildMap.ConnectRooms.IConnectRooms;
-import ApplicationBuilder.BuildMap.BuildRooms.Room;
+import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
 
 public abstract class AbstractConnectRooms implements IConnectRooms {
     protected void connectRoomNorth(Room southOf, Room northOf) {

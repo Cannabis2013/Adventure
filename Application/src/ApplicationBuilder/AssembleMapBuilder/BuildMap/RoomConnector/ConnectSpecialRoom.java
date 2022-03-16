@@ -1,6 +1,7 @@
-package ApplicationBuilder.BuildMap.RoomConnector;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.RoomConnector;
 
-import ApplicationBuilder.BuildMap.BuildRooms.Rooms;
+import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Rooms;
+
 import java.util.Random;
 
 public class ConnectSpecialRoom extends AbstractConnectRooms {

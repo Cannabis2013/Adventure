@@ -1,4 +1,4 @@
-package ApplicationBuilder.BuildMap.MapInitialization.Repositories;
+package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories;
 
 import Application.BuildMap.RoomDescriptions.IDescriptionsRepository;
 

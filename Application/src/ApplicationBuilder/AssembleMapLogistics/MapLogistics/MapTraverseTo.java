@@ -1,7 +1,7 @@
-package ApplicationBuilder.MapLogistics;
+package ApplicationBuilder.AssembleMapLogistics.MapLogistics;
 
 import Application.MapLogistics.IMapTraverser;
-import ApplicationBuilder.BuildMap.BuildRooms.Room;
+import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
 
 public class MapTraverseTo implements IMapTraverser {
     boolean canTraverse(Room room) {return room != null;}
