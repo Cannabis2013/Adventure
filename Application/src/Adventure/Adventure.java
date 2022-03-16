@@ -1,11 +1,14 @@
 package Adventure;
 
-import Adventure.HelpScreen.HelpStringBuilder;
-import Adventure.InputLine.InputLineStringBuilder;
+import Adventure.StringBuilders.BadCommand.BuildBadCmdMessage;
+import Adventure.StringBuilders.Descriptions.BuildDescriptMessage;
+import Adventure.StringBuilders.Help.BuildHelpMessage;
+import Adventure.StringBuilders.CommandLine.BuildCommandMessage;
 import Adventure.MapBuilder.MapBuilder;
 import Adventure.MapLogistics.MapTraverseTo;
 import Adventure.Printer.Printer;
 import Adventure.Room.Room;
+import Adventure.StringBuilders.Intro.BuildIntroMessage;
 
 import java.util.Scanner;
 
@@ -14,34 +17,44 @@ public class Adventure {
     Scanner inputReader = new Scanner(System.in);
     MapBuilder mapBuilder = new MapBuilder();
     MapTraverseTo traverseTo = new MapTraverseTo();
-    InputLineStringBuilder inputLineStringBuilder = new InputLineStringBuilder();
-    HelpStringBuilder helpStringBuilder = new HelpStringBuilder();
+    BuildCommandMessage buildCommandLineMsg = new BuildCommandMessage();
+    BuildHelpMessage buildHelpMsg = new BuildHelpMessage();
+    BuildDescriptMessage buildDescriptionMsg = new BuildDescriptMessage();
+    BuildIntroMessage buildIntroMsg = new BuildIntroMessage();
+    BuildBadCmdMessage buildBadCmdMsg = new BuildBadCmdMessage();
     Room currentRoom;
+
+    private void printIntro(){
+        String msg = buildIntroMsg.build();
+        printer.printLine(msg);
+    }
 
     private void printHelp()
     {
-        String helpStr = helpStringBuilder.build();
+        String helpStr = buildHelpMsg.build();
         printer.printLine(helpStr);
     }
 
     private void printDescription(){
-        printer.printLine(currentRoom.getDescription());
+        var description = currentRoom.getDescription();
+        var str = buildDescriptionMsg.build(description);
+        printer.printLine(str);
     }
 
     private void printBadCommand(){
-        printer.printLine("Bad command. Please try again");
+        var badCmdMsg = buildBadCmdMsg.build();
+        printer.printLine(badCmdMsg);
     }
 
     private void handleGoCommand(String orientation){
         try {
-            currentRoom = traverseTo.traverseTo(orientation,currentRoom);
-            printer.printLine(currentRoom.getDescription());
+            currentRoom = traverseTo.traverse(orientation,currentRoom);
+            printDescription();
         } catch (IllegalArgumentException e){
             printBadCommand();
         } catch (IllegalStateException e){
             printer.printLine("you can not go that way");
         }
-
     }
 
     private void interpretCommand(String command){
@@ -58,7 +71,7 @@ public class Adventure {
     }
 
     private String readCommand(){
-        var inputLine = inputLineStringBuilder.build();
+        var inputLine = buildCommandLineMsg.build();
         printer.print(inputLine);
         String command = inputReader.nextLine();
         return command;
@@ -69,8 +82,11 @@ public class Adventure {
     }
 
     public void run(){
-        boolean isRunning = true;
-        while (isRunning)
+        printIntro();
+        printer.print("Press any key to continue");
+        inputReader.nextLine();
+        printHelp();
+        while (true)
         {
             var command = readCommand();
             interpretCommand(command);

@@ -1,6 +1,5 @@
 package Adventure.MapLogistics;
 
-import Adventure.Printer.Printer;
 import Adventure.Room.Room;
 
 public class MapTraverseTo {
@@ -42,7 +41,7 @@ public class MapTraverseTo {
             return currentRoom.getWest();
     }
 
-    public Room traverseTo(String orientation, Room currentRoom)
+    public Room traverse(String orientation, Room currentRoom)
     {
         switch (orientation){
             case "north" -> {return tryGoNorth(currentRoom);}

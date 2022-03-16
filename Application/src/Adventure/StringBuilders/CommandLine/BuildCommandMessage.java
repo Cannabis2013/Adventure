@@ -1,10 +1,10 @@
-package Adventure.InputLine;
+package Adventure.StringBuilders.CommandLine;
 
 import ConsolePrintFormatter.FilledTextBox.BuildFilledBox;
 
 import java.awt.*;
 
-public class InputLineStringBuilder {
+public class BuildCommandMessage {
     public String build(){
         var builder = new BuildFilledBox("Command->");
         builder.setBackroundColor(new Color(35, 138, 79));

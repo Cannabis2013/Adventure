@@ -1,7 +1,5 @@
 package Adventure.Room;
 
-import java.util.UUID;
-
 public class Room {
     private String name;
     private String description;
