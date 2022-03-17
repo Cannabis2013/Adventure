@@ -30,6 +30,7 @@ public class Room {
 
     public void setNorth(Room north) {
         this.north = north;
+        north.south = this;
     }
 
     public Room getEast() {
@@ -38,6 +39,7 @@ public class Room {
 
     public void setEast(Room east) {
         this.east = east;
+        east.west = this;
     }
 
     public Room getSouth() {
@@ -46,6 +48,7 @@ public class Room {
 
     public void setSouth(Room south) {
         this.south = south;
+        south.north = this;
     }
 
     public Room getWest() {
@@ -54,5 +57,6 @@ public class Room {
 
     public void setWest(Room west) {
         this.west = west;
+        west.east = this;
     }
 }

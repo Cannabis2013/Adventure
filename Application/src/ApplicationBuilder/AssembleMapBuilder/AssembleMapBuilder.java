@@ -6,8 +6,6 @@ import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.BuildRooms;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories.OrdinaryMapDescriptions;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories.SpecialMapDescriptions;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.UpdateRoomDescriptions;
-import ApplicationBuilder.AssembleMapBuilder.BuildMap.RoomConnector.ConnectRegularRooms;
-import ApplicationBuilder.AssembleMapBuilder.BuildMap.RoomConnector.ConnectSpecialRoom;
 
 public class AssembleMapBuilder {
 
@@ -26,8 +24,6 @@ public class AssembleMapBuilder {
     public BuildMap assemble(){
         var builder = new BuildMap();
         builder.setRoomBuilder(new BuildRooms());
-        builder.setConnectRegularRooms(new ConnectRegularRooms());
-        builder.setConnectSpecialRooms(new ConnectSpecialRoom());
         builder.setUpdateRoomDescriptions(assembleOrdinaryDescriptor());
         builder.setUpdateSpecialRoomDescriptions(assembleSpecialDescriptor());
         return builder;
