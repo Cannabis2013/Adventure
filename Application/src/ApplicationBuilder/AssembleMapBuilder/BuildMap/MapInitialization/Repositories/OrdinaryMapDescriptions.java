@@ -12,7 +12,7 @@ public class OrdinaryMapDescriptions implements IDescriptionsRepository {
         descriptions.add("""
                 The room is decorated with pictures of what looks like old nazi NSDAP party members. 
                 
-                You know, nazi pigs like Goebbels, Himmler, Borgman, and Rasmus Paludan.
+                You know, nazi pigs like Goebbels, Himmler, Borgman, and Paludan.
                 
                 YOu notice a locker with a combinatorial lock. Maybe try 123. These pigs weren't to clever at all.
                 """);
