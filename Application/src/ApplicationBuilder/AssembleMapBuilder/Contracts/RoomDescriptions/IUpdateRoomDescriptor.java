@@ -1,4 +1,4 @@
-package Application.BuildMap.RoomDescriptions;
+package ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions;
 
 public interface IUpdateRoomDescriptor<T> {
     void updateRecursive(T t);

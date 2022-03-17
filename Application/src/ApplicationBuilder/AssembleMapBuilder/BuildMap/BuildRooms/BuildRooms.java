@@ -1,6 +1,6 @@
 package ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms;
 
-import Application.BuildMap.BuildRooms.IBuildRooms;
+import ApplicationBuilder.AssembleMapBuilder.Contracts.BuildRooms.IBuildRooms;
 
 public class BuildRooms implements IBuildRooms<Rooms> {
     static int _num = 1;

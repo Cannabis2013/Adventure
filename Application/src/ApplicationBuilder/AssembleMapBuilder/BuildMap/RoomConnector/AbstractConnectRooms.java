@@ -1,6 +1,6 @@
 package ApplicationBuilder.AssembleMapBuilder.BuildMap.RoomConnector;
 
-import Application.BuildMap.ConnectRooms.IConnectRooms;
+import ApplicationBuilder.AssembleMapBuilder.Contracts.ConnectRooms.IConnectRooms;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
 
 public abstract class AbstractConnectRooms implements IConnectRooms {

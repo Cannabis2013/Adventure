@@ -1,4 +1,4 @@
-package Application.BuildMap.RoomDescriptions;
+package ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package ApplicationBuilder.AssembleMapBuilder;
 
-import Application.BuildMap.RoomDescriptions.IUpdateRoomDescriptor;
+import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IUpdateRoomDescriptor;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildMap;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.BuildRooms;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories.OrdinaryMapDescriptions;

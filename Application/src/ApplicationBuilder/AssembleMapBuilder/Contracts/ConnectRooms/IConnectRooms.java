@@ -1,4 +1,4 @@
-package Application.BuildMap.ConnectRooms;
+package ApplicationBuilder.AssembleMapBuilder.Contracts.ConnectRooms;
 
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Rooms;
 

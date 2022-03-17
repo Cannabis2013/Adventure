@@ -1,6 +1,6 @@
 package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories;
 
-import Application.BuildMap.RoomDescriptions.IDescriptionsRepository;
+import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IDescriptionsRepository;
 
 import java.util.ArrayList;
 import java.util.List;

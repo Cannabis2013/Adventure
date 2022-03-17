@@ -1,7 +1,7 @@
 package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization;
 
-import Application.BuildMap.RoomDescriptions.IDescriptionsRepository;
-import Application.BuildMap.RoomDescriptions.IUpdateRoomDescriptor;
+import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IDescriptionsRepository;
+import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IUpdateRoomDescriptor;
 import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
 import java.util.ArrayList;
 import java.util.List;

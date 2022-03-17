@@ -30,7 +30,7 @@ public class BuildIntroMessage {
     private String formatMessage(String msg){
         var csiBuilder = new BuildFilledBox(msg);
         csiBuilder.setBackroundColor(new Color(106, 17, 17));
-        csiBuilder.setTextColor(new Color(0, 0, 0));
+        csiBuilder.setTextColor(new Color(255, 255, 255));
         csiBuilder.setMargins(0,2);
         csiBuilder.setPadding(2,1);
         return csiBuilder.build().toString();
