@@ -1,12 +1,18 @@
-package ApplicationBuilder.AssembleMapBuilder.BuildMap;
+package GameEngine.BuildMap;
 
-import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
-import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Rooms;
-import ApplicationBuilder.AssembleMapBuilder.Contracts.BuildMap.AbstractBuildMap;
+import GameEngine.BuildMap.BuildRooms.BuildRooms;
+import GameEngine.BuildMap.BuildRooms.Room;
+import GameEngine.BuildMap.BuildRooms.Rooms;
+import GameEngine.BuildMap.MapInitializations.UpdateRoomDescriptions;
+import GameEngine.BuildMap.MapInitializations.UpdateSpecialRoomDescriptions;
 
 import java.util.Random;
 
-public class BuildMap extends AbstractBuildMap {
+public class BuildMap {
+
+    protected BuildRooms _roomBuilder = new BuildRooms();
+    protected UpdateRoomDescriptions _updateRoomDescriptions = new UpdateRoomDescriptions();
+    protected UpdateSpecialRoomDescriptions _updateSpecialRoomDescriptions = new UpdateSpecialRoomDescriptions();
 
     private void initializeMap(Rooms room) {
         _updateRoomDescriptions.updateRecursive(room.room1);
@@ -38,7 +44,6 @@ public class BuildMap extends AbstractBuildMap {
         rooms.room4.setNorth(rooms.room1);
     }
 
-    @Override
     public Room build(){
         var rooms = _roomBuilder.buildRooms();
         connectRooms(rooms);

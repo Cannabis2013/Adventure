@@ -1,12 +1,10 @@
-package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories;
-
-import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IDescriptionsRepository;
+package GameEngine.BuildMap.MapInitializations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialMapDescriptions implements IDescriptionsRepository {
-    private List<String> specialDescriptions = new ArrayList<>();
+public class SpecialMapDescriptions {
+    private final List<String> specialDescriptions = new ArrayList<>();
 
     public SpecialMapDescriptions() {
         specialDescriptions.add("You are overwhelmed by the shine of all the gold present in this room.");
@@ -34,7 +32,6 @@ public class SpecialMapDescriptions implements IDescriptionsRepository {
                 """);
     }
 
-    @Override
     public List<String> descriptions() {
         return specialDescriptions;
     }

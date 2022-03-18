@@ -1,9 +1,8 @@
-package ApplicationBuilder.AssembleMapLogistics.MapLogistics;
+package GameEngine.MapLogistics;
 
-import Application.MapLogistics.IMapTraverser;
-import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
+import GameEngine.BuildMap.BuildRooms.Room;
 
-public class MapTraverseTo implements IMapTraverser {
+public class MapTraverseTo {
     boolean canTraverse(Room room) {return room != null;}
 
     private Room tryGoNorth(Room currentRoom)
@@ -49,7 +48,7 @@ public class MapTraverseTo implements IMapTraverser {
             case "east" -> {return tryGoEast(currentRoom);}
             case "south" -> {return tryGoSouth(currentRoom);}
             case "west" -> {return tryGoWest(currentRoom);}
-            default -> {throw new IllegalArgumentException();}
+            default -> throw new IllegalArgumentException();
         }
     }
 }

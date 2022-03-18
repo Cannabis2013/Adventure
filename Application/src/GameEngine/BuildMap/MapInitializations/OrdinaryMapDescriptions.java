@@ -1,11 +1,9 @@
-package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization.Repositories;
-
-import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IDescriptionsRepository;
+package GameEngine.BuildMap.MapInitializations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdinaryMapDescriptions implements IDescriptionsRepository {
+public class OrdinaryMapDescriptions{
     List<String> descriptions = new ArrayList<>();
 
     public OrdinaryMapDescriptions() {

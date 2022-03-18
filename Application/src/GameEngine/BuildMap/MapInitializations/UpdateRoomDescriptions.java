@@ -1,17 +1,13 @@
-package ApplicationBuilder.AssembleMapBuilder.BuildMap.MapInitialization;
+package GameEngine.BuildMap.MapInitializations;
 
-import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IDescriptionsRepository;
-import ApplicationBuilder.AssembleMapBuilder.Contracts.RoomDescriptions.IUpdateRoomDescriptor;
-import ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms.Room;
+import GameEngine.BuildMap.BuildRooms.Room;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class UpdateRoomDescriptions implements IUpdateRoomDescriptor<Room> {
+public class UpdateRoomDescriptions{
 
-    private IDescriptionsRepository _repository;
-
-    public void setRepository(IDescriptionsRepository repository) {_repository = repository;}
+    private OrdinaryMapDescriptions _repository = new OrdinaryMapDescriptions();
 
     private String getRandomDescription(List<String> descriptions) {
         int randValue = getRandomIndex(descriptions.size());
@@ -40,14 +36,12 @@ public class UpdateRoomDescriptions implements IUpdateRoomDescriptor<Room> {
         return descr;
     }
 
-    @Override
     public void updateRecursive(Room room) {
         var repo = _repository.descriptions();
         List<String> list = new ArrayList<>(repo);
         updateRoom(list,room);
     }
 
-    @Override
     public void update(Room room) {
         var repo = _repository.descriptions();
         var descriptions = new ArrayList<>(repo);

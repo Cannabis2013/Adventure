@@ -1,8 +1,6 @@
-package ApplicationBuilder.AssembleMapBuilder.BuildMap.BuildRooms;
+package GameEngine.BuildMap.BuildRooms;
 
-import ApplicationBuilder.AssembleMapBuilder.Contracts.BuildRooms.IBuildRooms;
-
-public class BuildRooms implements IBuildRooms<Rooms> {
+public class BuildRooms{
     static int _num = 1;
     String genString(){
         return String.format("room %d",_num++);
@@ -14,7 +12,6 @@ public class BuildRooms implements IBuildRooms<Rooms> {
         return room;
     }
 
-    @Override
     public Rooms buildRooms(){
         var rooms = new Rooms();
         rooms.room1 = build();
