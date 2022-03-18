@@ -1,5 +1,10 @@
 package GameEngine.BuildMap.BuildRooms;
 
+import GameEngine.Item.Item;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
 public class Room {
     private String name;
     private String description;
@@ -7,6 +12,22 @@ public class Room {
     private Room east = null;
     private Room south = null;
     private Room west = null;
+
+    private ArrayList<Item> items = new ArrayList<>();
+
+    public void storeItem(Item item){
+        items.add(item);
+    }
+
+    public Item takeItem(String itemTitle){
+        Optional<Item> optional = items.stream().filter(i ->
+                        i.getShortTitle() == itemTitle || i.getTitle() == itemTitle)
+                .findFirst();
+        if(optional.isEmpty())
+            throw new IllegalArgumentException();
+        items.remove(optional.get());
+        return optional.get();
+    }
 
     public String getName() {
         return name;
@@ -58,5 +79,12 @@ public class Room {
     public void setWest(Room west) {
         this.west = west;
         west.east = this;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        items.forEach(i-> sb.append(i.getTitle() + "\n"));
+        return sb.toString();
     }
 }
