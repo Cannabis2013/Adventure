@@ -21,4 +21,9 @@ public class Item {
     public String toString() {
         return  title;
     }
+
+    public Item(String shortTitle, String title){
+        this.shortTitle = shortTitle;
+        this.title = title;
+    }
 }

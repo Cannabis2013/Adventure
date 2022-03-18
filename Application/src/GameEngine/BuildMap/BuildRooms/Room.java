@@ -15,13 +15,14 @@ public class Room {
 
     private ArrayList<Item> items = new ArrayList<>();
 
-    public void storeItem(Item item){
+    public void addItem(Item item){
         items.add(item);
     }
 
     public Item takeItem(String itemTitle){
         Optional<Item> optional = items.stream().filter(i ->
-                        i.getShortTitle() == itemTitle || i.getTitle() == itemTitle)
+                        i.getShortTitle().equalsIgnoreCase(itemTitle)  ||
+                                i.getTitle().equalsIgnoreCase(itemTitle))
                 .findFirst();
         if(optional.isEmpty())
             throw new IllegalArgumentException();

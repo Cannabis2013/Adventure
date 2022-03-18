@@ -1,5 +1,7 @@
 package GameEngine.BuildMap.BuildRooms;
 
+import GameEngine.Item.Item;
+
 public class BuildRooms{
     static int _num = 1;
     String genString(){
@@ -15,6 +17,7 @@ public class BuildRooms{
     public Rooms buildRooms(){
         var rooms = new Rooms();
         rooms.room1 = build();
+        rooms.room1.addItem(new Item("phone", "Nokia 3310"));
         rooms.room2 = build();
         rooms.room3 = build();
         rooms.room4 = build();

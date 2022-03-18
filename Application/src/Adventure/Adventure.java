@@ -2,13 +2,14 @@ package Adventure;
 
 import Adventure.Printer.Printer;
 import Adventure.StringBuilders.BadCommand.BuildBadCmdMessage;
-import Adventure.StringBuilders.BadDirection.BuildBadWayMessage;
+import Adventure.StringBuilders.BadDirection.BuildBadDirectionMessage;
+import Adventure.StringBuilders.BadItem.BuildItemNotInInventoryMsg;
+import Adventure.StringBuilders.BadItem.BuildItemNotInRoomMsg;
 import Adventure.StringBuilders.CommandLine.BuildCommandMessage;
 import Adventure.StringBuilders.Descriptions.BuildDescriptMessage;
 import Adventure.StringBuilders.Help.BuildHelpMessage;
 import Adventure.StringBuilders.Intro.BuildIntroMessage;
 import GameEngine.GameEngine;
-
 import java.util.Scanner;
 
 public class Adventure{
@@ -29,6 +30,7 @@ public class Adventure{
 
     protected void printDescription(){
         var description = gameEngine.roomDescription();
+        description += "\n\n" + gameEngine.getRoomItemsAsString();
         var msg = new BuildDescriptMessage().build(description);
         printer.printLine(msg);
     }
@@ -43,9 +45,19 @@ public class Adventure{
         printer.printLine(badMsg);
     }
 
-    protected void printBadDirection(){
-        var msgBuilder = new BuildBadWayMessage();
+    private void printBadDirection(){
+        var msgBuilder = new BuildBadDirectionMessage();
         printer.printLine(msgBuilder.build());
+    }
+
+    private void printItemNotInRoom(String badItemTitle){
+        var msgBuilder = new BuildItemNotInRoomMsg();
+        printer.printLine(msgBuilder.build(badItemTitle));
+    }
+
+    private void printItemNotInInventory(String badItemTitle){
+        var msgBuilder = new BuildItemNotInInventoryMsg();
+        printer.printLine(msgBuilder.build(badItemTitle));
     }
 
     protected String readCommand(){
@@ -59,10 +71,9 @@ public class Adventure{
         inputReader.nextLine();
     }
 
-    private void handleGoCommand(String orientation){
+    private void handleGoCommand(String command){
         try {
-            gameEngine.traverseTo(orientation);
-            printDescription();
+            gameEngine.traverseTo(command.substring(4));
         } catch (IllegalArgumentException e){
             printBadCommand();
         } catch (IllegalStateException e){
@@ -70,17 +81,42 @@ public class Adventure{
         }
     }
 
-    private void interpretCommand(String command){
+    private void handleTakeCommand(String command){
+        String reduced = command.substring(5);
+        try {
+            gameEngine.takeItem(reduced);
+        } catch (IllegalArgumentException e) {
+            printItemNotInRoom(reduced);
+        }
+    }
+    private void handleDropCommand(String command){
+        String reduced = command.substring(5);
+        try {
+            gameEngine.dropItem(reduced);
+        } catch (IllegalArgumentException e) {
+            printItemNotInInventory(reduced);
+        }
+    }
+
+    private void handleGeneralCommands(String command){
         switch (command){
             case "exit" -> System.exit(0);
             case "help" -> printHelp();
             case "look" -> printDescription();
-            case "go north" -> handleGoCommand("north");
-            case "go east" -> handleGoCommand("east");
-            case "go south" -> handleGoCommand("south");
-            case "go west" -> handleGoCommand("west");
+            case "inventory" -> printer.printLine(gameEngine.getInventoryAsString());
             default -> printBadCommand();
         }
+    }
+
+    private void interpretCommand(String command){
+        if(command.startsWith("go"))
+            handleGoCommand(command);
+        else if(command.startsWith("take"))
+            handleTakeCommand(command);
+        else if(command.startsWith("drop"))
+            handleDropCommand(command);
+        else
+            handleGeneralCommands(command);
     }
 
     public void run(){
@@ -92,6 +128,7 @@ public class Adventure{
         {
             var command = readCommand();
             interpretCommand(command);
+            printDescription();
         }
     }
 }

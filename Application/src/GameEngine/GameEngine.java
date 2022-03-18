@@ -2,6 +2,7 @@ package GameEngine;
 
 import GameEngine.BuildMap.BuildRooms.Room;
 import GameEngine.BuildMap.BuildMap;
+import GameEngine.Item.Item;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.Player.Player;
 
@@ -23,5 +24,23 @@ public class GameEngine {
 
     public String roomDescription() {
         return player.getCurrentRoom().getDescription();
+    }
+
+    public void takeItem(String itemTitle) throws IllegalArgumentException{
+        Item item = player.getCurrentRoom().takeItem(itemTitle);
+        player.pickItem(item);
+    }
+
+    public void dropItem(String itemTitle) throws IllegalArgumentException{
+        Item itemToDrop = player.dropItem(itemTitle);
+        player.getCurrentRoom().addItem(itemToDrop);
+    }
+
+    public String getRoomItemsAsString(){
+        return player.getCurrentRoom().toString();
+    }
+
+    public String getInventoryAsString(){
+        return player.toString();
     }
 }

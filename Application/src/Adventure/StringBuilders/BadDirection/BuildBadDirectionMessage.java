@@ -4,7 +4,7 @@ import ConsolePrintFormatter.FilledTextBox.BuildFilledBox;
 
 import java.awt.*;
 
-public class BuildBadWayMessage {
+public class BuildBadDirectionMessage {
     private String assembleMsg(){
         var msg = "you can not go that way";
         return msg;

@@ -20,7 +20,8 @@ public class Player {
 
     public Item dropItem(String itemTitle){
         Optional<Item> optional = inventory.stream().filter(i ->
-                        i.getShortTitle() == itemTitle || i.getTitle() == itemTitle)
+                        i.getShortTitle().equalsIgnoreCase(itemTitle) ||
+                                i.getTitle().equalsIgnoreCase(itemTitle))
                 .findFirst();
         if(optional.isEmpty())
             throw new IllegalArgumentException();
@@ -34,5 +35,12 @@ public class Player {
 
     public void setCurrentRoom(Room room) {
         currentRoom = room;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        inventory.forEach(i-> sb.append(i.getTitle() + "\n"));
+        return sb.toString();
     }
 }
