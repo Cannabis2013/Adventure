@@ -1,83 +1,27 @@
 package Adventure;
 
-import Adventure.Printer.Printer;
-import Adventure.StringBuilders.BadCommand.BuildBadCmdMessage;
-import Adventure.StringBuilders.BadDirection.BuildBadDirectionMessage;
-import Adventure.StringBuilders.BadItem.BuildItemNotInInventoryMsg;
-import Adventure.StringBuilders.BadItem.BuildItemNotInRoomMsg;
-import Adventure.StringBuilders.CommandLine.BuildCommandMessage;
-import Adventure.StringBuilders.Descriptions.BuildDescriptMessage;
-import Adventure.StringBuilders.Help.BuildHelpMessage;
-import Adventure.StringBuilders.Intro.BuildIntroMessage;
+import Adventure.Printer.PrintMessages;
 import GameEngine.GameEngine;
 import java.util.Scanner;
 
 public class Adventure{
-
-    protected Printer printer = new Printer();
-    protected Scanner inputReader = new Scanner(System.in);
-    protected GameEngine gameEngine = new GameEngine();
-    protected void printIntro(){
-        var msgBuilder = new BuildIntroMessage();
-        printer.printLine(msgBuilder.build());
-    }
-
-    protected void printHelp()
-    {
-        var helpMsg = new BuildHelpMessage().build();
-        printer.printLine(helpMsg);
-    }
-
-    protected void printDescription(){
-        var description = gameEngine.roomDescription();
-        description += "\n\n" + gameEngine.getRoomItemsAsString();
-        var msg = new BuildDescriptMessage().build(description);
-        printer.printLine(msg);
-    }
-
-    protected void printCommandLine(){
-        var msg = new BuildCommandMessage().build();
-        printer.print(msg);
-    }
-
-    protected void printBadCommand(){
-        var badMsg = new BuildBadCmdMessage().build();
-        printer.printLine(badMsg);
-    }
-
-    private void printBadDirection(){
-        var msgBuilder = new BuildBadDirectionMessage();
-        printer.printLine(msgBuilder.build());
-    }
-
-    private void printItemNotInRoom(String badItemTitle){
-        var msgBuilder = new BuildItemNotInRoomMsg();
-        printer.printLine(msgBuilder.build(badItemTitle));
-    }
-
-    private void printItemNotInInventory(String badItemTitle){
-        var msgBuilder = new BuildItemNotInInventoryMsg();
-        printer.printLine(msgBuilder.build(badItemTitle));
-    }
+    private PrintMessages printMessage = new PrintMessages();
+    private Scanner inputReader = new Scanner(System.in);
+    private GameEngine gameEngine = new GameEngine();
 
     protected String readCommand(){
-        printCommandLine();
         String command = inputReader.nextLine();
         return command;
     }
 
-    protected void haltUntilPressed(){
-        printer.print("Press any key to continue");
-        inputReader.nextLine();
-    }
-
     private void handleGoCommand(String command){
         try {
-            gameEngine.traverseTo(command.substring(4));
+            gameEngine.traverseTo(command.substring(3));
+            printMessage.printRoomInfo(gameEngine.roomDescription(),gameEngine.roomItems());
         } catch (IllegalArgumentException e){
-            printBadCommand();
+            printMessage.printBadCommand();
         } catch (IllegalStateException e){
-            printBadDirection();
+            printMessage.printBadDirection();
         }
     }
 
@@ -86,7 +30,7 @@ public class Adventure{
         try {
             gameEngine.takeItem(reduced);
         } catch (IllegalArgumentException e) {
-            printItemNotInRoom(reduced);
+            printMessage.printItemNotInRoom(reduced);
         }
     }
     private void handleDropCommand(String command){
@@ -94,17 +38,17 @@ public class Adventure{
         try {
             gameEngine.dropItem(reduced);
         } catch (IllegalArgumentException e) {
-            printItemNotInInventory(reduced);
+            printMessage.printItemNotInInventory(reduced);
         }
     }
 
     private void handleGeneralCommands(String command){
         switch (command){
             case "exit" -> System.exit(0);
-            case "help" -> printHelp();
-            case "look" -> printDescription();
-            case "inventory" -> printer.printLine(gameEngine.getInventoryAsString());
-            default -> printBadCommand();
+            case "help" -> printMessage.printHelp();
+            case "look" -> printMessage.printRoomInfo(gameEngine.roomDescription(),gameEngine.roomItems());
+            case "inventory" -> printMessage.printInventory(gameEngine.inventory());
+            default -> printMessage.printBadCommand();
         }
     }
 
@@ -121,14 +65,15 @@ public class Adventure{
 
     public void run(){
         gameEngine.init();
-        printIntro();
-        haltUntilPressed();
-        printHelp();
+        printMessage.printIntro();
+        printMessage.printPressButtonCommand();
+        inputReader.nextLine();
+        printMessage.printHelp();
         while (true)
         {
+            printMessage.printCommandLine();
             var command = readCommand();
             interpretCommand(command);
-            printDescription();
         }
     }
 }

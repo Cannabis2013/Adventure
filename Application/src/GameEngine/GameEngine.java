@@ -1,6 +1,6 @@
 package GameEngine;
 
-import GameEngine.BuildMap.BuildRooms.Room;
+import GameEngine.BuildMap.Room;
 import GameEngine.BuildMap.BuildMap;
 import GameEngine.Item.Item;
 import GameEngine.MapLogistics.MapTraverseTo;
@@ -8,7 +8,6 @@ import GameEngine.Player.Player;
 
 public class GameEngine {
     private Player player = new Player();
-
     private BuildMap _buildMap = new BuildMap();
     private MapTraverseTo _traverseTo = new MapTraverseTo();
 
@@ -36,11 +35,11 @@ public class GameEngine {
         player.getCurrentRoom().addItem(itemToDrop);
     }
 
-    public String getRoomItemsAsString(){
-        return player.getCurrentRoom().toString();
+    public String roomItems(){
+        return player.getCurrentRoom().itemsAsString();
     }
 
-    public String getInventoryAsString(){
+    public String inventory(){
         return player.toString();
     }
 }

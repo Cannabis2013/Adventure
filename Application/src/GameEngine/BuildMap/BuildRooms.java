@@ -1,4 +1,4 @@
-package GameEngine.BuildMap.BuildRooms;
+package GameEngine.BuildMap;
 
 import GameEngine.Item.Item;
 

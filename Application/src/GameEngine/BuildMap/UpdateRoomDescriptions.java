@@ -1,13 +1,12 @@
-package GameEngine.BuildMap.MapInitializations;
-
-import GameEngine.BuildMap.BuildRooms.Room;
+package GameEngine.BuildMap;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class UpdateSpecialRoomDescriptions {
-    private SpecialMapDescriptions _repository = new SpecialMapDescriptions();
+public class UpdateRoomDescriptions{
+
+    private OrdinaryMapDescriptions _repository = new OrdinaryMapDescriptions();
 
     private String getRandomDescription(List<String> descriptions) {
         int randValue = getRandomIndex(descriptions.size());

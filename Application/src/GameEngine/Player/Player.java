@@ -1,6 +1,6 @@
 package GameEngine.Player;
 
-import GameEngine.BuildMap.BuildRooms.Room;
+import GameEngine.BuildMap.Room;
 import GameEngine.Item.Item;
 import java.util.ArrayList;
 import java.util.List;

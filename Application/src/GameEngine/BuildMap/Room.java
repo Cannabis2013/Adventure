@@ -1,4 +1,4 @@
-package GameEngine.BuildMap.BuildRooms;
+package GameEngine.BuildMap;
 
 import GameEngine.Item.Item;
 
@@ -82,8 +82,9 @@ public class Room {
         west.east = this;
     }
 
-    @Override
-    public String toString() {
+    public String itemsAsString() {
+        if(items.isEmpty())
+            return "There seems to be no items of value in this room";
         StringBuilder sb = new StringBuilder();
         items.forEach(i-> sb.append(i.getTitle() + "\n"));
         return sb.toString();

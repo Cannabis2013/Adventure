@@ -1,44 +1,43 @@
 package GameEngine.MapLogistics;
 
-import GameEngine.BuildMap.BuildRooms.Room;
+import GameEngine.BuildMap.Room;
 
 public class MapTraverseTo {
-    boolean canTraverse(Room room) {return room != null;}
 
     private Room tryGoNorth(Room currentRoom)
     {
-        boolean canTraverse = canTraverse(currentRoom.getNorth());
-        if(!canTraverse)
-            throw new IllegalStateException();
-        else
+        if(currentRoom.getNorth() != null)
             return currentRoom.getNorth();
+        else
+            throw new IllegalStateException();
+
     }
 
     private Room tryGoEast(Room currentRoom)
     {
-        boolean canTraverse = canTraverse(currentRoom.getEast());
-        if(!canTraverse)
-            throw new IllegalStateException();
-        else
+        if(currentRoom.getEast() != null)
             return currentRoom.getEast();
+        else
+            throw new IllegalStateException();
+
     }
 
     private Room tryGoSouth(Room currentRoom)
     {
-        boolean canTraverse = canTraverse(currentRoom.getSouth());
-        if(!canTraverse)
-            throw new IllegalStateException();
-        else
+        if(currentRoom.getSouth() != null)
             return currentRoom.getSouth();
+        else
+            throw new IllegalStateException();
+
     }
 
     private Room tryGoWest(Room currentRoom)
     {
-        boolean canTraverse = canTraverse(currentRoom.getWest());
-        if(!canTraverse)
-            throw new IllegalStateException();
-        else
+        if(currentRoom.getWest() != null)
             return currentRoom.getWest();
+        else
+            throw new IllegalStateException();
+
     }
 
     public Room traverse(String orientation, Room currentRoom)

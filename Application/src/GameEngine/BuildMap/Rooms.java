@@ -1,4 +1,4 @@
-package GameEngine.BuildMap.BuildRooms;
+package GameEngine.BuildMap;
 
 public class Rooms {
     public Room room2;
