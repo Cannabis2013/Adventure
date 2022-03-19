@@ -1,4 +1,7 @@
-package GameEngine.BuildMap;
+package GameEngine.BuildMap.Connect;
+
+import GameEngine.BuildMap.Rooms.DoorIsLockedException;
+import GameEngine.BuildMap.Rooms.Room;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -66,7 +69,7 @@ public class ConnectSquared {
         }
     }
 
-    private void promoteMedian(ArrayList<Room> rooms){
+    private void promoteMedian(ArrayList<Room> rooms) throws DoorIsLockedException {
         var median = (rooms.size() / 2);
         var room = rooms.get(median);
         room.promote();
@@ -78,6 +81,10 @@ public class ConnectSquared {
         if(!isSquare(rooms.size()))
             throw new IllegalArgumentException();
         connectNormals(rooms,0,0,0);
-        promoteMedian(rooms);
+        try {
+            promoteMedian(rooms);
+        } catch (DoorIsLockedException e) {
+            e.printStackTrace();
+        }
     }
 }

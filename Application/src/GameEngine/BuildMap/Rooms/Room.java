@@ -1,15 +1,11 @@
-package GameEngine.BuildMap;
+package GameEngine.BuildMap.Rooms;
 
-import GameEngine.Item.Item;
-
+import GameEngine.BuildMap.MapItems.Item;
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class Room {
-    enum Type {
-        Normal,
-        Special
-    }
+    public enum Type {Normal,Special}
     private Type type;
 
     public Type getType() {
@@ -20,13 +16,8 @@ public class Room {
         type = Type.Special;
     }
 
-    private String name;
-    private String description;
-    private Room north = null;
-    private Room east = null;
-    private Room south = null;
-    private Room west = null;
-
+    private String name, description;
+    private Door north, east,south,west;
     private ArrayList<Item> items = new ArrayList<>();
 
     public void addItem(Item item){
@@ -60,40 +51,44 @@ public class Room {
         this.description = description;
     }
 
-    public Room getNorth() {
+    public Door getNorth() {
         return north;
     }
 
-    public void setNorth(Room north) {
-        this.north = north;
-        north.south = this;
+    public void setNorth(Room room) {
+        var door = new Door(this,room);
+        this.north = door;
+        room.south = door;
     }
 
-    public Room getEast() {
+    public Door getEast() {
         return east;
     }
 
-    public void setEast(Room east) {
-        this.east = east;
-        east.west = this;
+    public void setEast(Room room) {
+        var door = new Door(this,room);
+        this.east = door;
+        room.west = door;
     }
 
-    public Room getSouth() {
+    public Door getSouth() {
         return south;
     }
 
-    public void setSouth(Room south) {
-        this.south = south;
-        south.north = this;
+    public void setSouth(Room room) {
+        var door = new Door(this,room);
+        this.south = door;
+        room.north = door;
     }
 
-    public Room getWest() {
+    public Door getWest() {
         return west;
     }
 
-    public void setWest(Room west) {
-        this.west = west;
-        west.east = this;
+    public void setWest(Room room) {
+        var door = new Door(this,room);
+        this.west = door;
+        room.east = door;
     }
 
     public Room(String name, Type type){
@@ -109,15 +104,15 @@ public class Room {
         return sb.toString();
     }
 
-    public void disconnect(){
+    public void disconnect() throws DoorIsLockedException {
         if(this.north != null)
-            north.south = null;
+            north.getOther(this).south = null;
         if(east != null)
-            east.west = null;
+            east.getOther(this).west = null;
         if(south != null)
-            south.north = null;
+            south.getOther(this).north = null;
         if(west != null)
-            west.east = null;
+            west.getOther(this).east = null;
         north = null;
         east = null;
         south = null;

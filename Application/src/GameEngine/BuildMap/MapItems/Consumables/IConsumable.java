@@ -1,4 +1,4 @@
-package GameEngine.Item;
+package GameEngine.BuildMap.MapItems.Consumables;
 
 import GameEngine.Player.Player;
 

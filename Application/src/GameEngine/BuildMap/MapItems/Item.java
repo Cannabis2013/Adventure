@@ -1,9 +1,9 @@
-package GameEngine.Item;
+package GameEngine.BuildMap.MapItems;
 
 public class Item {
     enum Type {
-        Food,
-        Weapon
+        Consumable,
+        Usable
     }
 
     private String shortTitle;

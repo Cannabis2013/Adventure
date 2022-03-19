@@ -1,8 +1,9 @@
 package GameEngine;
 
-import GameEngine.BuildMap.Room;
+import GameEngine.BuildMap.Rooms.DoorIsLockedException;
+import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.BuildMap.BuildMap;
-import GameEngine.Item.Item;
+import GameEngine.BuildMap.MapItems.Item;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.Player.Player;
 
@@ -11,12 +12,12 @@ public class GameEngine {
     private BuildMap _buildMap = new BuildMap();
     private MapTraverseTo _traverseTo = new MapTraverseTo();
 
-    public void init(){
+    public GameEngine(){
         Room startRoom = _buildMap.build();
         player.setCurrentRoom(startRoom);
     }
 
-    public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException {
+    public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException {
         Room newRoom = _traverseTo.traverse(orientation,player.getCurrentRoom());
         player.setCurrentRoom(newRoom);
     }

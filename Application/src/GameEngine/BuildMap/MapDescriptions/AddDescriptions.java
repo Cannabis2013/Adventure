@@ -1,4 +1,6 @@
-package GameEngine.BuildMap;
+package GameEngine.BuildMap.MapDescriptions;
+
+import GameEngine.BuildMap.Rooms.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;

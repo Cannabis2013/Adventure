@@ -1,4 +1,4 @@
-package Adventure.Printer;
+package Adventure.ScreenMessages;
 
 public class MessageBuilder {
     public String buildHelpMsg(){
@@ -56,11 +56,6 @@ public class MessageBuilder {
 
     public String buildRoomDescription(String description){
         return description + "\n\n";
-    }
-
-    public String buildItemList(String items){
-        var header = "You notice the following items:\n\n";
-        return header + items;
     }
 
     public String buildBadCommand(){

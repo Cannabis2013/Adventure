@@ -1,13 +1,14 @@
 package GameEngine.Player;
 
-import GameEngine.BuildMap.Room;
-import GameEngine.Item.Item;
+import GameEngine.BuildMap.Rooms.Room;
+import GameEngine.BuildMap.MapItems.Item;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Player {
     private Room currentRoom;
+    private int health;
     private List<Item> inventory = new ArrayList<>();
 
     public List<Item> getInventory() {
@@ -42,5 +43,13 @@ public class Player {
         StringBuilder sb = new StringBuilder();
         inventory.forEach(i-> sb.append(i.getTitle() + "\n"));
         return sb.toString();
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

@@ -1,4 +1,4 @@
-package Adventure.Printer;
+package Adventure.ScreenMessages;
 
 public class PrintMessages {
     MessageBuilder builder = new MessageBuilder();
@@ -26,8 +26,7 @@ public class PrintMessages {
 
     public void printRoomInfo(String description, String items){
         var msg = builder.buildRoomDescription(description);
-        msg  += builder.buildItemList(items);
-        var formattedMsg = formatter.formatRoomInfo(msg);
+        var formattedMsg = formatter.formatRoomInfo(msg + items);
         printer.printLine(formattedMsg);
     }
 
@@ -38,31 +37,36 @@ public class PrintMessages {
 
     public void printBadCommand(){
         var msg = builder.buildBadCommand();
-        var formattedMsg = formatter.formatBadCommand(msg);
+        var formattedMsg = formatter.formatActionDenied(msg);
         printer.printLine(formattedMsg);
     }
 
     public void printBadDirection(){
 
         var msg = builder.buildBadDirection();
-        var formattedMsg = formatter.formatBadDirection(msg);
+        var formattedMsg = formatter.formatActionDenied(msg);
         printer.printLine(formattedMsg);
     }
 
     public void printItemNotInRoom(String badItemTitle){
         var msg = builder.buildBadRoomPick(badItemTitle);
-        var formattedMsg = formatter.formatBadRoomPick(msg);
+        var formattedMsg = formatter.formatActionDenied(msg);
         printer.printLine(msg);
     }
 
     public void printItemNotInInventory(String badItemTitle){
         var msg = builder.buildBadInventoryPick(badItemTitle);
-        var formattedMsg = formatter.formatBadInventoryPick(msg);
+        var formattedMsg = formatter.formatActionDenied(msg);
         printer.printLine(formattedMsg);
     }
 
     public void printInventory(String inventory){
         printer.printLine(inventory);
+    }
+
+    public void printLockedDoorMsg(String str){
+        var formatted = formatter.formatActionDenied(str);
+        printer.printLine(formatted);
     }
 
 }

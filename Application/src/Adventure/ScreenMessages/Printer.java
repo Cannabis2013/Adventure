@@ -1,4 +1,4 @@
-package Adventure.Printer;
+package Adventure.ScreenMessages;
 
 public class Printer {
     public void printLine(String str)

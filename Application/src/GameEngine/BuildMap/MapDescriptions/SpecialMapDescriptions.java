@@ -1,4 +1,4 @@
-package GameEngine.BuildMap;
+package GameEngine.BuildMap.MapDescriptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class SpecialMapDescriptions {
         specialDescriptions.add("You are to fight the boss *Peter - The lord of bad practices*");
         specialDescriptions.add("You enter a room with a stair that leads up to heaven - at least that is what you hope for.");
         specialDescriptions.add("""
-                Ohh shit. There is definetily something wrong here.
+                Ohh shit. There is definitely something wrong here.
                 
                 It seems that you have finally made it - to hell.
                 

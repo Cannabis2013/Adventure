@@ -1,4 +1,4 @@
-package GameEngine.BuildMap;
+package GameEngine.BuildMap.Rooms;
 
 import java.util.ArrayList;
 

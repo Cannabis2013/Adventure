@@ -1,47 +1,42 @@
 package GameEngine.MapLogistics;
 
-import GameEngine.BuildMap.Room;
+import GameEngine.BuildMap.Rooms.DoorIsLockedException;
+import GameEngine.BuildMap.Rooms.Room;
 
 public class MapTraverseTo {
 
-    private Room tryGoNorth(Room currentRoom)
-    {
+    private Room tryGoNorth(Room currentRoom) throws DoorIsLockedException {
         if(currentRoom.getNorth() != null)
-            return currentRoom.getNorth();
+            return currentRoom.getNorth().getOther(currentRoom);
         else
             throw new IllegalStateException();
-
     }
 
-    private Room tryGoEast(Room currentRoom)
-    {
+    private Room tryGoEast(Room currentRoom) throws DoorIsLockedException {
         if(currentRoom.getEast() != null)
-            return currentRoom.getEast();
+            return currentRoom.getEast().getOther(currentRoom);
         else
             throw new IllegalStateException();
 
     }
 
-    private Room tryGoSouth(Room currentRoom)
-    {
+    private Room tryGoSouth(Room currentRoom) throws DoorIsLockedException {
         if(currentRoom.getSouth() != null)
-            return currentRoom.getSouth();
+            return currentRoom.getSouth().getOther(currentRoom);
         else
             throw new IllegalStateException();
 
     }
 
-    private Room tryGoWest(Room currentRoom)
-    {
+    private Room tryGoWest(Room currentRoom) throws DoorIsLockedException {
         if(currentRoom.getWest() != null)
-            return currentRoom.getWest();
+            return currentRoom.getWest().getOther(currentRoom);
         else
             throw new IllegalStateException();
 
     }
 
-    public Room traverse(String orientation, Room currentRoom)
-    {
+    public Room traverse(String orientation, Room currentRoom) throws DoorIsLockedException {
         switch (orientation){
             case "north" -> {return tryGoNorth(currentRoom);}
             case "east" -> {return tryGoEast(currentRoom);}
