@@ -1,7 +1,7 @@
 package GameEngine.Player;
 
 import GameEngine.BuildMap.Rooms.Room;
-import GameEngine.BuildMap.MapItems.Item;
+import GameEngine.InitializeMap.MapItems.Item;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

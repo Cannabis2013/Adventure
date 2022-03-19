@@ -24,6 +24,7 @@ public class Adventure{
         pressButton();
         printMessage.printHelp();
         pressButton();
+        interpreter.interpret("look",printMessage);
         while (true)
         {
             printMessage.printCommandLine();

@@ -3,18 +3,21 @@ package GameEngine;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.BuildMap.BuildMap;
-import GameEngine.BuildMap.MapItems.Item;
+import GameEngine.InitializeMap.InitializeMap;
+import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.Player.Player;
 
 public class GameEngine {
     private Player player = new Player();
     private BuildMap _buildMap = new BuildMap();
+    private InitializeMap _initializeMap = new InitializeMap();
     private MapTraverseTo _traverseTo = new MapTraverseTo();
 
     public GameEngine(){
-        Room startRoom = _buildMap.build();
-        player.setCurrentRoom(startRoom);
+        var map = _buildMap.build();
+        _initializeMap.initialize(map.getRooms());
+        player.setCurrentRoom(map.getStartMap());
     }
 
     public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException {

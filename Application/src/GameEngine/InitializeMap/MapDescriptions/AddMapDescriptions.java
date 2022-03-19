@@ -1,11 +1,12 @@
-package GameEngine.BuildMap.MapDescriptions;
+package GameEngine.InitializeMap.MapDescriptions;
 
 import GameEngine.BuildMap.Rooms.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-public class AddDescriptions {
+public class AddMapDescriptions {
     private final ArrayList<String> _normalDescriptions;
     private final ArrayList<String> _specialDescriptions;
     private ArrayList<Integer> _normalIndexes;
@@ -49,11 +50,11 @@ public class AddDescriptions {
         room.setDescription(description);
     }
 
-    public void add(ArrayList<Room> rooms){
+    public void add(List<Room> rooms){
         rooms.forEach(r -> _add(r));
     }
 
-    public AddDescriptions(){
+    public AddMapDescriptions(){
         var normalRepo = new NormalMapDescriptions();
         var specialRepo = new SpecialMapDescriptions();
 

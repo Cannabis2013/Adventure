@@ -1,4 +1,4 @@
-package GameEngine.BuildMap.MapItems;
+package GameEngine.InitializeMap.MapItems;
 
 public class Item {
     enum Type {

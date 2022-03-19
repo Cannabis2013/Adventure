@@ -1,4 +1,4 @@
-package GameEngine.BuildMap.MapDescriptions;
+package GameEngine.InitializeMap.MapDescriptions;
 
 import java.util.ArrayList;
 import java.util.List;

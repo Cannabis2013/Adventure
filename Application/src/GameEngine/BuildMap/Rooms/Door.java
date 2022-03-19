@@ -30,8 +30,10 @@ public class Door {
         this.locked = true;
     }
 
-    public void unlock(int lockID){
+    public void unlock(int lockID) throws WrongKeyException {
         if(this.lockID == lockID)
             locked = false;
+        else
+            throw new WrongKeyException();
     }
 }
