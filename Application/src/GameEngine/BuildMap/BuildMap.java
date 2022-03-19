@@ -1,48 +1,14 @@
 package GameEngine.BuildMap;
 
-import java.util.Random;
-
 public class BuildMap {
-
-    protected BuildRooms _roomBuilder = new BuildRooms();
-    protected UpdateRoomDescriptions _updateRoomDescriptions = new UpdateRoomDescriptions();
-    protected UpdateSpecialRoomDescriptions _updateSpecialRoomDescriptions = new UpdateSpecialRoomDescriptions();
-
-    private void initializeMap(Rooms room) {
-        _updateRoomDescriptions.updateRecursive(room.room1);
-        _updateSpecialRoomDescriptions.update(room.room5);
-    }
-
-    public void connectSpecial(Rooms rooms)
-    {
-        var room5 = rooms.room5;
-        var rand = new Random();
-
-        var num = rand.nextInt(4) + 1;
-        switch (num){
-            case 1 -> room5.setNorth(rooms.room2);
-            case 2 -> room5.setEast(rooms.room6);
-            case 3 -> rooms.room5.setSouth(rooms.room8);
-            case 4 -> rooms.room5.setWest(rooms.room4);
-        }
-    }
-
-    private void connectRooms(Rooms rooms){
-        rooms.room1.setEast(rooms.room2);
-        rooms.room2.setEast(rooms.room3);
-        rooms.room3.setSouth(rooms.room6);
-        rooms.room6.setSouth(rooms.room9);
-        rooms.room9.setWest(rooms.room8);
-        rooms.room8.setWest(rooms.room7);
-        rooms.room7.setNorth(rooms.room4);
-        rooms.room4.setNorth(rooms.room1);
-    }
+    private BuildRooms _buildRooms = new BuildRooms();
+    private UpdateSpecialRoomDescriptions _updateSpecialRoomDescriptions = new UpdateSpecialRoomDescriptions();
+    SpecialEncircledQuadratic _connectRooms = new SpecialEncircledQuadratic();
 
     public Room build(){
-        var rooms = _roomBuilder.buildRooms();
-        connectRooms(rooms);
-        connectSpecial(rooms);
-        initializeMap(rooms);
-        return rooms.room1;
+        var normalRooms = _buildRooms.buildNormals(8);
+        var specialRooms = _buildRooms.buildSpecials(1);
+        var firstRoom = _connectRooms.connect(normalRooms,specialRooms);
+        return firstRoom;
     }
 }

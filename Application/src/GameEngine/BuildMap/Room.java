@@ -6,6 +6,16 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Room {
+    enum Type {
+        Normal,
+        Special
+    }
+    private Type type;
+
+    public Type getType() {
+        return type;
+    }
+
     private String name;
     private String description;
     private Room north = null;
@@ -80,6 +90,11 @@ public class Room {
     public void setWest(Room west) {
         this.west = west;
         west.east = this;
+    }
+
+    public Room(String name, Type type){
+        this.name = name;
+        this.type = type;
     }
 
     public String itemsAsString() {

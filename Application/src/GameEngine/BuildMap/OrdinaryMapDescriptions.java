@@ -46,7 +46,11 @@ public class OrdinaryMapDescriptions{
                 """);
     }
 
-    public List<String> descriptions() {
-        return descriptions;
+    public String description(int index){
+        return descriptions.get(index);
+    }
+
+    public int count(){
+        return descriptions.size();
     }
 }
