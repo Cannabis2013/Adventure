@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class AddDescriptions {
-
     private final ArrayList<String> _normalDescriptions;
     private final ArrayList<String> _specialDescriptions;
     private ArrayList<Integer> _normalIndexes;
@@ -23,15 +22,19 @@ public class AddDescriptions {
 
     private int getNormalIndex(){
         var count = _normalDescriptions.size();
-        if(_normalIndex >= count)
+        if(_normalIndex >= count){
             genRandIndexes(count);
+            _normalIndex = 0;
+        }
         return _normalIndexes.get(_normalIndex++);
     }
 
     private int getSpecialIndex(){
         var count = _specialDescriptions.size();
-        if(_specialIndex >= count)
+        if(_specialIndex >= count){
             genRandIndexes(count);
+            _specialIndex = 0;
+        }
         return _specialIndexes.get(_specialIndex++);
     }
 

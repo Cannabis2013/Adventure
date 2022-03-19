@@ -13,7 +13,7 @@ public class BuildRooms{
         return room;
     }
 
-    public ArrayList<Room> buildNormals(int count){
+    public ArrayList<Room> build(int count){
         var rooms = new ArrayList<Room>();
         for (var i = 0;i < count;i++)
             rooms.add(normal());

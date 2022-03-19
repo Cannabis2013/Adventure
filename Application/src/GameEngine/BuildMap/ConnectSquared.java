@@ -19,15 +19,14 @@ public class ConnectSquared {
         return  (int) Math.sqrt(rooms.size() + 1);
     }
 
-
-    private void tryConnectWest(ArrayList<Room> rooms, int index, Room room, int x, int y){
+    private void tryConnectWest(ArrayList<Room> rooms, int index, Room room, int x){
         if(x > 0){
             var eastOf = rooms.get(index - 1);
             room.setWest(eastOf);
         }
     }
 
-    private void tryConnectNorth(ArrayList<Room> rooms,int index, Room room, int x, int y){
+    private void tryConnectNorth(ArrayList<Room> rooms,int index, Room room,int y){
         if(y >0)
         {
             var indexOfNorthRoom = index - bound(rooms);
@@ -45,8 +44,8 @@ public class ConnectSquared {
         if(index >= rooms.size())
             return;
         var room = rooms.get(index);
-        tryConnectWest(rooms,index,room,x,y);
-        tryConnectNorth(rooms,index,room,x,y);
+        tryConnectWest(rooms,index,room,x);
+        tryConnectNorth(rooms,index,room,y);
         connectNormals(rooms,++index,++x,y);
     }
 
