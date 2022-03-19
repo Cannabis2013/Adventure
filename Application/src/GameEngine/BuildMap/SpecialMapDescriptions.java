@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpecialMapDescriptions {
-    private final List<String> specialDescriptions = new ArrayList<>();
+    private final ArrayList<String> specialDescriptions = new ArrayList<>();
 
     public SpecialMapDescriptions() {
         specialDescriptions.add("You are overwhelmed by the shine of all the gold present in this room.");
@@ -32,7 +32,11 @@ public class SpecialMapDescriptions {
                 """);
     }
 
-    public List<String> descriptions() {
+    public int count(){
+        return specialDescriptions.size();
+    }
+
+    public ArrayList<String> descriptions() {
         return specialDescriptions;
     }
 

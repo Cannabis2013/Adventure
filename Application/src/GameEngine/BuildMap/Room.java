@@ -16,6 +16,10 @@ public class Room {
         return type;
     }
 
+    public void promote(){
+        type = Type.Special;
+    }
+
     private String name;
     private String description;
     private Room north = null;
@@ -103,5 +107,20 @@ public class Room {
         StringBuilder sb = new StringBuilder();
         items.forEach(i-> sb.append(i.getTitle() + "\n"));
         return sb.toString();
+    }
+
+    public void disconnect(){
+        if(this.north != null)
+            north.south = null;
+        if(east != null)
+            east.west = null;
+        if(south != null)
+            south.north = null;
+        if(west != null)
+            west.east = null;
+        north = null;
+        east = null;
+        south = null;
+        west = null;
     }
 }

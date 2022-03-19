@@ -63,12 +63,17 @@ public class Adventure{
             handleGeneralCommands(command);
     }
 
+    private void pressButton(){
+        printMessage.printPressButtonCommand();
+        inputReader.nextLine();
+    }
+
     public void run(){
         gameEngine.init();
         printMessage.printIntro();
-        printMessage.printPressButtonCommand();
-        inputReader.nextLine();
+        pressButton();
         printMessage.printHelp();
+        pressButton();
         while (true)
         {
             printMessage.printCommandLine();
