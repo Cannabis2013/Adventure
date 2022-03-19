@@ -14,7 +14,7 @@ public class PrintMessages {
     public void printPressButtonCommand(){
         var msg = builder.buildPressKeyMsg();
         var formattedMsg = formatter.formatPressButton(msg);
-        printer.print(formattedMsg);
+        printer.printLine(formattedMsg);
     }
 
     public void printHelp()

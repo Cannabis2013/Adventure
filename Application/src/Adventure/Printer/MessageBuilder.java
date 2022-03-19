@@ -39,8 +39,7 @@ public class MessageBuilder {
                     Console formatting: Martin Hansen
                     Ideas: Martin, Stefan
                     
-                Copyright: Nope, but we sure damn gets pissed if someone dares to steal our product.
-                """;
+                Copyright: Nope, but we sure damn gets pissed if someone dares to steal our product.""";
     }
 
     public String buildPressKeyMsg(){
