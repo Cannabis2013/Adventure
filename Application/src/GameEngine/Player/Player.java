@@ -2,6 +2,7 @@ package GameEngine.Player;
 
 import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.InitializeMap.MapItems.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,15 @@ public class Player {
 
     public List<Item> getInventory() {
         return inventory;
+    }
+
+    public Item getItemFromInventory(String title) throws ItemNotInInventoryException {
+        var item = inventory.stream()
+                .filter(i -> i.getShortTitle().equals(title) || i.getTitle().equals(title))
+                .findFirst();
+        if(item.isEmpty())
+            throw new ItemNotInInventoryException();
+        return item.get();
     }
 
     public void pickItem(Item item){

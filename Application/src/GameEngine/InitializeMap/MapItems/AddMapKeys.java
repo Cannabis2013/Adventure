@@ -33,7 +33,7 @@ public class AddMapKeys {
 
     public void add(List<Room> rooms, List<Key> keys){
         var normals = rooms.stream()
-                .filter(r -> r.getType() == Room.Type.Normal).toList();
+                .filter(r -> r.getRoomType() == Room.RoomType.Normal).toList();
         addKeys(normals,keys);
     }
 }

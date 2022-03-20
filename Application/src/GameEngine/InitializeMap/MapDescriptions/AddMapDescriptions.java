@@ -43,9 +43,9 @@ public class AddMapDescriptions {
 
     private void _add(Room room){
         var description = "No description available";
-        if(room.getType() == Room.Type.Normal)
+        if(room.getRoomType() == Room.RoomType.Normal)
             description = _normalDescriptions.get(getNormalIndex());
-        else if(room.getType() == Room.Type.Special)
+        else if(room.getRoomType() == Room.RoomType.Special)
             description = _specialDescriptions.get(getSpecialIndex());
         room.setDescription(description);
     }

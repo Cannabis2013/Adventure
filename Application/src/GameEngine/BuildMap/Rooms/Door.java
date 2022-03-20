@@ -1,6 +1,8 @@
 package GameEngine.BuildMap.Rooms;
 
-public class Door {
+import GameEngine.BuildMap.MapObjects.MapObject;
+
+public class Door extends MapObject {
     private int lockID;
     private boolean locked = false;
 
@@ -28,12 +30,11 @@ public class Door {
 
     public void lock(int lockID) {
         this.locked = true;
+        this.lockID = lockID;
     }
 
-    public void unlock(int lockID) throws WrongKeyException {
+    public void unlock(int lockID) {
         if(this.lockID == lockID)
             locked = false;
-        else
-            throw new WrongKeyException();
     }
 }

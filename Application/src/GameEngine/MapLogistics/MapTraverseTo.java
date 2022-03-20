@@ -38,10 +38,10 @@ public class MapTraverseTo {
 
     public Room traverse(String orientation, Room currentRoom) throws DoorIsLockedException {
         switch (orientation){
-            case "north" -> {return tryGoNorth(currentRoom);}
-            case "east" -> {return tryGoEast(currentRoom);}
-            case "south" -> {return tryGoSouth(currentRoom);}
-            case "west" -> {return tryGoWest(currentRoom);}
+            case "north", "n" -> {return tryGoNorth(currentRoom);}
+            case "east", "e" -> {return tryGoEast(currentRoom);}
+            case "south", "s" -> {return tryGoSouth(currentRoom);}
+            case "west", "w" -> {return tryGoWest(currentRoom);}
             default -> throw new IllegalArgumentException();
         }
     }

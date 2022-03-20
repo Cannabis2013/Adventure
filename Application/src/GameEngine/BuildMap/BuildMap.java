@@ -13,7 +13,7 @@ public class BuildMap {
 
     private Room startMap(List<Room> rooms){
         var normals = rooms.stream()
-                .filter(r -> r.getType() == Room.Type.Normal)
+                .filter(r -> r.getRoomType() == Room.RoomType.Normal)
                 .toList();
         var rand = new Random();
         var randIndex = rand.nextInt(normals.size());

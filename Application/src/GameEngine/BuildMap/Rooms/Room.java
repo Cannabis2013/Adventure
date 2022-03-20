@@ -1,22 +1,22 @@
 package GameEngine.BuildMap.Rooms;
 
+import GameEngine.BuildMap.MapObjects.MapObject;
 import GameEngine.InitializeMap.MapItems.Item;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Room {
-    public enum Type {Normal,Special}
-    private Type type;
+public class Room extends MapObject {
+    public enum RoomType {Normal,Special}
+    private RoomType roomType;
 
-    public Type getType() {
-        return type;
+    public RoomType getRoomType() {
+        return roomType;
     }
 
     public void promote(){
-        type = Type.Special;
+        roomType = RoomType.Special;
     }
 
-    private String name, description;
     private Door north, east,south,west;
     private ArrayList<Item> items = new ArrayList<>();
 
@@ -33,22 +33,6 @@ public class Room {
             throw new IllegalArgumentException();
         items.remove(optional.get());
         return optional.get();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Door getNorth() {
@@ -91,9 +75,9 @@ public class Room {
         room.east = door;
     }
 
-    public Room(String name, Type type){
+    public Room(String name, RoomType type){
         this.name = name;
-        this.type = type;
+        this.roomType = type;
     }
 
     public String itemsAsString() {

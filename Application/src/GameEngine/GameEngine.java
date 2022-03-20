@@ -3,16 +3,21 @@ package GameEngine;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.BuildMap.BuildMap;
+import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.InitializeMap.InitializeMap;
 import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.MapLogistics.MapTraverseTo;
+import GameEngine.Player.ItemNotInInventoryException;
 import GameEngine.Player.Player;
+import GameEngine.Restrictions.DoorNotFoundException;
+import GameEngine.Restrictions.UnlockDoor;
 
 public class GameEngine {
     private Player player = new Player();
     private BuildMap _buildMap = new BuildMap();
     private InitializeMap _initializeMap = new InitializeMap();
     private MapTraverseTo _traverseTo = new MapTraverseTo();
+    private UnlockDoor _unlockDoor = new UnlockDoor();
 
     public GameEngine(){
         var map = _buildMap.build();
@@ -45,5 +50,10 @@ public class GameEngine {
 
     public String inventory(){
         return player.toString();
+    }
+
+    public void unlock(String doorOrientation, String key) throws WrongKeyException, ItemNotInInventoryException, DoorNotFoundException {
+        var item = player.getItemFromInventory(key);
+        _unlockDoor.tryUnlock(doorOrientation,player.getCurrentRoom(),item);
     }
 }

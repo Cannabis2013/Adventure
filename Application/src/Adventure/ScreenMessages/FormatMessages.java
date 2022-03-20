@@ -13,7 +13,7 @@ public class FormatMessages {
         return csiBuilder.build().toString();
     }
 
-    public String formatActionDenied(String msg){
+    public String formatNegativeResponse(String msg){
         var csiBuilder = new BuildFilledBox(msg);
         csiBuilder.setBackroundColor(new Color(255, 0, 0));
         csiBuilder.setMargins(0,1);

@@ -41,28 +41,16 @@ public class MessageBuilder {
                     
                 Copyright: Nope, but we sure damn gets pissed if someone dares to steal our product.""";
     }
+    public String buildPressKeyMsg(){return "Press any key to continue";}
+    public String buildBadInventoryPick(String itemTitle){return String.format("You don't have anything like %s in your inventory",itemTitle);}
+    public String buildBadRoomPick(String itemTitle){return String.format("There is nothing like %s to take around here",itemTitle);}
+    public String buildRoomDescription(String description){return description + "\n\n";}
+    public String buildBadCommand(){return "!!!! Bad command. Please try again. !!!!";}
 
-    public String buildPressKeyMsg(){
-        return "Press any key to continue";
-    }
-
-    public String buildBadInventoryPick(String itemTitle){
-        return String.format("You don't have anything like %s in your inventory",itemTitle);
-    }
-
-    public String buildBadRoomPick(String itemTitle){
-        return String.format("There is nothing like %s to take around here",itemTitle);
-    }
-
-    public String buildRoomDescription(String description){
-        return description + "\n\n";
-    }
-
-    public String buildBadCommand(){
-        return "!!!!Bad command. Please try again.!!!!";
-    }
-
-    public String buildBadDirection(){
-        return "you can not go that way";
-    }
+    public String buildBadDirection(){return "you can not go that way";}
+    public String buildLocked() {return "Door is locked";}
+    public String buildWrongKey() {return "Wrong key";}
+    public String buildItemNotInInventory() {return "You don't posses that item";}
+    public String buildDoorNotFound() {return "there is no door at that orientation";}
+    public String buildDoorUnlocked() {return "Door is open";}
 }

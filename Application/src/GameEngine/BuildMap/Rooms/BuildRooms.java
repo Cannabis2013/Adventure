@@ -9,7 +9,7 @@ public class BuildRooms{
     }
 
     private Room normal() {
-        var room = new Room(genString(), Room.Type.Normal);
+        var room = new Room(genString(), Room.RoomType.Normal);
         return room;
     }
 

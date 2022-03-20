@@ -1,13 +1,31 @@
 package Adventure;
 
-import Adventure.CommandInterpreter.CommandInterpreter;
+import Adventure.CommandInterpreter.*;
 import Adventure.ScreenMessages.PrintMessages;
+import GameEngine.GameEngine;
 import java.util.Scanner;
 
 public class Adventure{
-    private PrintMessages printMessage = new PrintMessages();
+    private PrintMessages printer = new PrintMessages();
     private Scanner inputReader = new Scanner(System.in);
-    private CommandInterpreter interpreter = new CommandInterpreter();
+    private GameEngine engine = new GameEngine();
+    private HandleGoCommand _handleGo = new HandleGoCommand();
+    private HandleGeneralCommand _handleGeneral = new HandleGeneralCommand();
+    private HandleInteractionCommands _handleInteraction = new HandleInteractionCommands();
+    private HandleUnlockCommand _handleUnlock = new HandleUnlockCommand();
+
+    public void interpretCommand(String command){
+        if(command.startsWith("go"))
+            _handleGo.handle(command, printer, engine);
+        else if(command.startsWith("take"))
+            _handleInteraction.handleTakeCommand(command, printer, engine);
+        else if(command.startsWith("drop"))
+            _handleInteraction.handleDrop(command, printer, engine);
+        else if(command.startsWith("unlock"))
+            _handleUnlock.handle(command, printer, engine);
+        else
+            _handleGeneral.handle(command, printer, engine);
+    }
 
     protected String readCommand(){
         String command = inputReader.nextLine();
@@ -15,21 +33,21 @@ public class Adventure{
     }
 
     private void pressButton(){
-        printMessage.printPressButtonCommand();
+        printer.printPressButtonCommand();
         inputReader.nextLine();
     }
 
     public void run(){
-        printMessage.printIntro();
+        printer.printIntro();
         pressButton();
-        printMessage.printHelp();
+        printer.printHelp();
         pressButton();
-        interpreter.interpret("look",printMessage);
+        interpretCommand("look");
         while (true)
         {
-            printMessage.printCommandLine();
+            printer.printCommandLine();
             var command = readCommand();
-            interpreter.interpret(command,printMessage);
+            interpretCommand(command);
         }
     }
 }
