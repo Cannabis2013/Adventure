@@ -27,7 +27,7 @@ public class Player {
         return item;
     }
 
-    public void pickItem(String itemTitle) throws ItemNotFoundException {
+    public void takeItem(String itemTitle) throws ItemNotFoundException {
         var item = currentRoom.takeItem(itemTitle);
         inventory.add(item);
     }

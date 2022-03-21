@@ -28,7 +28,7 @@ public class GameEngine {
     }
 
     public void takeItem(String itemTitle) throws ItemNotFoundException {
-        player.getCurrentRoom().takeItem(itemTitle);
+        player.takeItem(itemTitle);
     }
 
     public void dropItem(String itemTitle) throws ItemNotFoundException {

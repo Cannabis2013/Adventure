@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c45e99-768a-409d-9dc5-7e7f65dc3d96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/GameEngine/Utils/GetItemFromList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameEngine/Utils/ItemNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Adventure/CommandInterpreter/CommandNotValidException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Adventure/CommandInterpreter/HandleInteractionCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Adventure/CommandInterpreter/HandleInteractionCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Adventure/CommandInterpreter/HandleUnlockCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Adventure/CommandInterpreter/HandleUnlockCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/BuildMap/Rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/BuildMap/Rooms/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/Player/ItemNotInInventoryException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/Player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/Player/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,9 +101,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../ConsoleFormatterLib/src/ConsolePrintFormatter/Utils/LineTools/StringSplitter.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="21" />
+          <url>file://$PROJECT_DIR$/src/Adventure/ScreenMessages/PrintMessages.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

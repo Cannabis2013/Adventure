@@ -14,7 +14,7 @@ public class HandleUnlockCommand {
         }
     }
 
-    private  void unlockDoor(String orientation, String key, PrintMessages printer, GameEngine engine){
+    private void unlockDoor(String orientation, String key, PrintMessages printer, GameEngine engine){
         try {
             engine.unlock(orientation,key);
             printer.printDoorUnlocked();
@@ -29,7 +29,15 @@ public class HandleUnlockCommand {
         }
     }
 
+    private boolean isValidFormat(String command){
+        return command.matches("unlock [A-z]+ [A-z]+]");
+    }
+
     public void handle(String cmd, PrintMessages printer, GameEngine engine){
+        if(!isValidFormat(cmd)){
+            printer.printBadCommand();
+            return;
+        }
         var reducedCmd = cmd.substring(7);
         var orientation = reducedCmd.substring(0,reducedCmd.indexOf(" "));
         var key = reducedCmd.substring(reducedCmd.indexOf(" ") + 1);
