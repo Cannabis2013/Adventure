@@ -12,7 +12,7 @@ public class PrintMessages {
     }
 
     public void printPressButtonCommand(){
-        var msg = builder.buildPressKeyMsg();
+        var msg = "Press any key to continue";
         var formattedMsg = formatter.formatPressButton(msg);
         printer.printLine(formattedMsg);
     }
@@ -25,7 +25,7 @@ public class PrintMessages {
     }
 
     public void printRoomInfo(String description, String items){
-        var msg = builder.buildRoomDescription(description);
+        var msg = description + "\n\n";
         var formattedMsg = formatter.formatRoomInfo(msg + items);
         printer.printLine(formattedMsg);
     }
@@ -36,26 +36,26 @@ public class PrintMessages {
     }
 
     public void printBadCommand(){
-        var msg = builder.buildBadCommand();
+        var msg = "!!!! Bad command. Please try again. !!!!";
         var formattedMsg = formatter.formatNegativeResponse(msg);
         printer.printLine(formattedMsg);
     }
 
     public void printBadDirection(){
 
-        var msg = builder.buildBadDirection();
+        var msg = "you can not go that way";
         var formattedMsg = formatter.formatNegativeResponse(msg);
         printer.printLine(formattedMsg);
     }
 
-    public void printItemNotInRoom(String badItemTitle){
-        var msg = builder.buildBadRoomPick(badItemTitle);
+    public void printItemNotInRoom(String itemTitle){
+        var msg = String.format("There is nothing like %s to take around here",itemTitle);
         var formattedMsg = formatter.formatNegativeResponse(msg);
         printer.printLine(msg);
     }
 
-    public void printItemNotInInventory(String badItemTitle){
-        var msg = builder.buildBadInventoryPick(badItemTitle);
+    public void printItemNotInInventory(String itemTitle){
+        var msg = String.format("You don't have anything like %s in your inventory",itemTitle);
         var formattedMsg = formatter.formatNegativeResponse(msg);
         printer.printLine(formattedMsg);
     }
@@ -65,31 +65,30 @@ public class PrintMessages {
     }
 
     public void printLockedDoorMsg(){
-        var msg = builder.buildLocked();
-        var formatted = formatter.formatNegativeResponse(msg);
-        printer.printLine(formatted);
-    }
-
-    public void printWrongKey(){
-        var msg = builder.buildWrongKey();
+        var msg = "Door is locked";
         var formatted = formatter.formatNegativeResponse(msg);
         printer.printLine(formatted);
     }
 
     public void printItemNotInInventory(){
-        var msg = builder.buildItemNotInInventory();
+        var msg = "You don't posses that item";
         var formatted = formatter.formatNegativeResponse(msg);
         printer.printLine(formatted);
     }
 
     public void printDoorNotFound(){
-        var msg = builder.buildDoorNotFound();
+        var msg = "there is no door at that orientation";
         var formatted = formatter.formatNegativeResponse(msg);
         printer.printLine(formatted);
     }
 
     public void printDoorUnlocked(){
-        var msg = builder.buildDoorUnlocked();
+        var msg = "Door is open";
+        var formatted = formatter.formatNegativeResponse(msg);
+        printer.printLine(formatted);
+    }
+
+    public void printNegativeResponse(String msg){
         var formatted = formatter.formatNegativeResponse(msg);
         printer.printLine(formatted);
     }

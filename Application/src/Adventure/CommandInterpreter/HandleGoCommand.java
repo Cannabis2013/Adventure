@@ -3,6 +3,8 @@ package Adventure.CommandInterpreter;
 import Adventure.ScreenMessages.PrintMessages;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.GameEngine;
+import GameEngine.MapLogistics.BadDirectionException;
+import GameEngine.MapLogistics.NoDoorAtOrientationException;
 
 public class HandleGoCommand {
     private boolean validateOrientation(String command){
@@ -12,13 +14,13 @@ public class HandleGoCommand {
         }
     }
 
-    private void callEngine(String orientation, PrintMessages printMessage, GameEngine engine){
+    private void travelTo(String orientation, PrintMessages printMessage, GameEngine engine){
         try {
             engine.traverseTo(orientation);
             printMessage.printRoomInfo(engine.roomDescription(),engine.roomItems());
         } catch (IllegalArgumentException e){
             printMessage.printBadCommand();
-        } catch (IllegalStateException e){
+        } catch (BadDirectionException | NoDoorAtOrientationException e){
             printMessage.printBadDirection();
         } catch (DoorIsLockedException e){
             printMessage.printLockedDoorMsg();
@@ -26,11 +28,14 @@ public class HandleGoCommand {
     }
 
     public void handle(String command, PrintMessages printMessage, GameEngine engine){
+        if(!command.matches("go [A-z]+")){
+            printMessage.printBadCommand();
+            return;
+        }
         var orientation = command.substring(3);
         if(!validateOrientation(orientation))
             printMessage.printBadCommand();
         else
-            callEngine(orientation,printMessage,engine);
-
+            travelTo(orientation,printMessage,engine);
     }
 }

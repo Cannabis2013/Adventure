@@ -4,11 +4,12 @@ import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.MapTraverseTo;
+import GameEngine.MapLogistics.NoDoorAtOrientationException;
 import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,15 +18,6 @@ public class Player {
     private GetItemFromList _getItem = new GetItemFromList();
     private Room currentRoom;
     private List<Item> inventory = new ArrayList<>();
-
-    public List<Item> getInventory() {
-        return inventory;
-    }
-
-    public Item getItemFromInventory(String title) throws ItemNotFoundException {
-        var item = _getItem.findByTitle(inventory,title);
-        return item;
-    }
 
     public void takeItem(String itemTitle) throws ItemNotFoundException {
         var item = currentRoom.takeItem(itemTitle);
@@ -46,14 +38,13 @@ public class Player {
         currentRoom = room;
     }
 
-    @Override
-    public String toString() {
+    public String getInventoryAsString() {
         StringBuilder sb = new StringBuilder();
         inventory.forEach(i-> sb.append(i.getTitle() + "\n"));
         return sb.toString();
     }
 
-    public void goInDirection(String orientation) throws DoorIsLockedException {
+    public void goInDirection(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         currentRoom = _traverseTo.traverse(orientation,currentRoom);
     }
 

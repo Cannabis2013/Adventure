@@ -2,6 +2,8 @@ package GameEngine;
 
 import GameEngine.BuildMap.BuildMap;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
+import GameEngine.MapLogistics.BadDirectionException;
+import GameEngine.MapLogistics.NoDoorAtOrientationException;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.InitializeMap.InitializeMap;
@@ -19,7 +21,7 @@ public class GameEngine {
         player.setCurrentRoom(map.getStartMap());
     }
 
-    public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException {
+    public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         player.goInDirection(orientation);
     }
 
@@ -40,7 +42,7 @@ public class GameEngine {
     }
 
     public String inventory(){
-        return player.toString();
+        return player.getInventoryAsString();
     }
 
     public void unlock(String doorOrientation, String key) throws WrongKeyException, ItemNotFoundException, DoorNotFoundException {

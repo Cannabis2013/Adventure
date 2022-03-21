@@ -5,44 +5,44 @@ import GameEngine.BuildMap.Rooms.Room;
 
 public class MapTraverseTo {
 
-    private Room tryGoNorth(Room currentRoom) throws DoorIsLockedException {
+    private Room tryGoNorth(Room currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getNorth() != null)
             return currentRoom.getNorth().getOther(currentRoom);
         else
-            throw new IllegalStateException();
+            throw new NoDoorAtOrientationException();
     }
 
-    private Room tryGoEast(Room currentRoom) throws DoorIsLockedException {
+    private Room tryGoEast(Room currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getEast() != null)
             return currentRoom.getEast().getOther(currentRoom);
         else
-            throw new IllegalStateException();
+            throw new NoDoorAtOrientationException();
 
     }
 
-    private Room tryGoSouth(Room currentRoom) throws DoorIsLockedException {
+    private Room tryGoSouth(Room currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getSouth() != null)
             return currentRoom.getSouth().getOther(currentRoom);
         else
-            throw new IllegalStateException();
+            throw new NoDoorAtOrientationException();
 
     }
 
-    private Room tryGoWest(Room currentRoom) throws DoorIsLockedException {
+    private Room tryGoWest(Room currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getWest() != null)
             return currentRoom.getWest().getOther(currentRoom);
         else
-            throw new IllegalStateException();
+            throw new NoDoorAtOrientationException();
 
     }
 
-    public Room traverse(String orientation, Room currentRoom) throws DoorIsLockedException {
+    public Room traverse(String orientation, Room currentRoom) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         switch (orientation){
             case "north", "n" -> {return tryGoNorth(currentRoom);}
             case "east", "e" -> {return tryGoEast(currentRoom);}
             case "south", "s" -> {return tryGoSouth(currentRoom);}
             case "west", "w" -> {return tryGoWest(currentRoom);}
-            default -> throw new IllegalArgumentException();
+            default -> throw new BadDirectionException();
         }
     }
 }

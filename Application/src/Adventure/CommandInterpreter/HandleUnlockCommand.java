@@ -21,7 +21,7 @@ public class HandleUnlockCommand {
         } catch (IllegalArgumentException e){
             printer.printBadCommand();
         } catch (WrongKeyException e){
-            printer.printWrongKey();
+            printer.printNegativeResponse("Wrong key");
         } catch (ItemNotFoundException e) {
             printer.printItemNotInInventory();
         } catch (DoorNotFoundException e) {
