@@ -30,7 +30,7 @@ public class HandleUnlockCommand {
     }
 
     private boolean isValidFormat(String command){
-        return command.matches("unlock [A-z]+ [A-z]+]");
+        return command.matches("unlock [A-z]+ [A-z]+");
     }
 
     public void handle(String cmd, PrintMessages printer, GameEngine engine){
