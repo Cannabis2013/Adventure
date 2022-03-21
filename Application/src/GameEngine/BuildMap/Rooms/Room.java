@@ -2,12 +2,21 @@ package GameEngine.BuildMap.Rooms;
 
 import GameEngine.BuildMap.MapObjects.MapObject;
 import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.Restrictions.DoorNotFoundException;
+import GameEngine.Restrictions.UnlockDoor;
+import GameEngine.Utils.GetItemFromList;
+import GameEngine.Utils.ItemNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class Room extends MapObject {
     public enum RoomType {Normal,Special}
     private RoomType roomType;
+
+    private GetItemFromList _getItem = new GetItemFromList();
+
+    private UnlockDoor _unlockDoor = new UnlockDoor();
 
     public RoomType getRoomType() {
         return roomType;
@@ -24,15 +33,10 @@ public class Room extends MapObject {
         items.add(item);
     }
 
-    public Item takeItem(String itemTitle){
-        Optional<Item> optional = items.stream().filter(i ->
-                        i.getShortTitle().equalsIgnoreCase(itemTitle)  ||
-                                i.getTitle().equalsIgnoreCase(itemTitle))
-                .findFirst();
-        if(optional.isEmpty())
-            throw new IllegalArgumentException();
-        items.remove(optional.get());
-        return optional.get();
+    public Item takeItem(String itemTitle) throws ItemNotFoundException {
+        var item = _getItem.findByTitle(items,itemTitle);
+        items.remove(item);
+        return item;
     }
 
     public Door getNorth() {
@@ -78,6 +82,10 @@ public class Room extends MapObject {
     public Room(String name, RoomType type){
         this.name = name;
         this.roomType = type;
+    }
+
+    public void tryUnlockDoor(String doorOrientation, Item item) throws WrongKeyException, DoorNotFoundException {
+        _unlockDoor.tryUnlock(doorOrientation,this,item);
     }
 
     public String itemsAsString() {

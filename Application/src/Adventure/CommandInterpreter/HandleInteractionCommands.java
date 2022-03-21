@@ -1,6 +1,7 @@
 package Adventure.CommandInterpreter;
 
 import Adventure.ScreenMessages.PrintMessages;
+import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.GameEngine;
 
 public class HandleInteractionCommands {
@@ -8,7 +9,7 @@ public class HandleInteractionCommands {
         String reduced = command.substring(5);
         try {
             gameEngine.takeItem(reduced);
-        } catch (IllegalArgumentException e) {
+        } catch (ItemNotFoundException e) {
             printMessage.printItemNotInRoom(reduced);
         }
     }
@@ -16,7 +17,7 @@ public class HandleInteractionCommands {
         String reduced = command.substring(5);
         try {
             gameEngine.dropItem(reduced);
-        } catch (IllegalArgumentException e) {
+        } catch (ItemNotFoundException e) {
             printMessage.printItemNotInInventory(reduced);
         }
     }

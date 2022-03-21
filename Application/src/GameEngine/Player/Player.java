@@ -1,43 +1,41 @@
 package GameEngine.Player;
 
+import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
+import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.MapLogistics.MapTraverseTo;
+import GameEngine.Restrictions.DoorNotFoundException;
+import GameEngine.Utils.GetItemFromList;
+import GameEngine.Utils.ItemNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Player {
+    private MapTraverseTo _traverseTo = new MapTraverseTo();
+    private GetItemFromList _getItem = new GetItemFromList();
     private Room currentRoom;
-    private int health;
     private List<Item> inventory = new ArrayList<>();
 
     public List<Item> getInventory() {
         return inventory;
     }
 
-    public Item getItemFromInventory(String title) throws ItemNotInInventoryException {
-        var item = inventory.stream()
-                .filter(i -> i.getShortTitle().equals(title) || i.getTitle().equals(title))
-                .findFirst();
-        if(item.isEmpty())
-            throw new ItemNotInInventoryException();
-        return item.get();
+    public Item getItemFromInventory(String title) throws ItemNotFoundException {
+        var item = _getItem.findByTitle(inventory,title);
+        return item;
     }
 
-    public void pickItem(Item item){
+    public void pickItem(String itemTitle) throws ItemNotFoundException {
+        var item = currentRoom.takeItem(itemTitle);
         inventory.add(item);
     }
 
-    public Item dropItem(String itemTitle){
-        Optional<Item> optional = inventory.stream().filter(i ->
-                        i.getShortTitle().equalsIgnoreCase(itemTitle) ||
-                                i.getTitle().equalsIgnoreCase(itemTitle))
-                .findFirst();
-        if(optional.isEmpty())
-            throw new IllegalArgumentException();
-        inventory.remove(optional.get());
-        return optional.get();
+    public void dropItem(String itemTitle) throws ItemNotFoundException {
+        var item = _getItem.findByTitle(inventory,itemTitle);
+        inventory.remove(item);
+        currentRoom.addItem(item);
     }
 
     public Room getCurrentRoom() {
@@ -55,11 +53,12 @@ public class Player {
         return sb.toString();
     }
 
-    public int getHealth() {
-        return health;
+    public void goInDirection(String orientation) throws DoorIsLockedException {
+        currentRoom = _traverseTo.traverse(orientation,currentRoom);
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void tryUnlockDoor(String doorOrientation, String key) throws WrongKeyException, DoorNotFoundException, ItemNotFoundException {
+        var item = _getItem.findByTitle(inventory,key);
+        currentRoom.tryUnlockDoor(doorOrientation,item);
     }
 }
