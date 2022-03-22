@@ -1,4 +1,4 @@
-package Adventure.CommandInterpreter;
+package Adventure.CommandInterpreter.Unlock;
 
 import Adventure.ScreenMessages.PrintMessages;
 import GameEngine.BuildMap.Rooms.WrongKeyException;
@@ -7,6 +7,8 @@ import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleUnlockCommand {
+    private PrintUnlockMessages _printer = new PrintUnlockMessages();
+
     private boolean isOrientationValid(String command){
         switch (command){
             case "north","east", "south", "west", "n", "e", "s", "w" : return true;
@@ -14,18 +16,18 @@ public class HandleUnlockCommand {
         }
     }
 
-    private void unlockDoor(String orientation, String key, PrintMessages printer, GameEngine engine){
+    private void unlockDoor(String orientation, String key, GameEngine engine){
         try {
             engine.unlock(orientation,key);
-            printer.printDoorUnlocked();
+            _printer.printDoorUnlocked();
         } catch (IllegalArgumentException e){
-            printer.printBadCommand();
+            _printer.printBadCommand();
         } catch (WrongKeyException e){
-            printer.printNegativeResponse("Wrong key");
+            _printer.printWrongKey();
         } catch (ItemNotFoundException e) {
-            printer.printItemNotInInventory();
+            _printer.printKeyNotFound();
         } catch (DoorNotFoundException e) {
-            printer.printDoorNotFound();
+            _printer.printDoorNotFound();
         }
     }
 
@@ -33,17 +35,17 @@ public class HandleUnlockCommand {
         return command.matches("unlock [A-z]+ [A-z]+");
     }
 
-    public void handle(String cmd, PrintMessages printer, GameEngine engine){
+    public void handle(String cmd, GameEngine engine){
         if(!isValidFormat(cmd)){
-            printer.printBadCommand();
+            _printer.printBadCommand();
             return;
         }
         var reducedCmd = cmd.substring(7);
         var orientation = reducedCmd.substring(0,reducedCmd.indexOf(" "));
         var key = reducedCmd.substring(reducedCmd.indexOf(" ") + 1);
         if(isOrientationValid(orientation))
-            unlockDoor(orientation,key,printer,engine);
+            unlockDoor(orientation,key,engine);
         else
-            printer.printBadCommand();
+            _printer.printBadCommand();
     }
 }

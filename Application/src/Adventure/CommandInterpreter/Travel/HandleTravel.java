@@ -1,4 +1,4 @@
-package Adventure.CommandInterpreter;
+package Adventure.CommandInterpreter.Travel;
 
 import Adventure.ScreenMessages.PrintMessages;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
@@ -6,7 +6,9 @@ import GameEngine.GameEngine;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
 
-public class HandleGoCommand {
+public class HandleTravel {
+    private PrintTravelMessages _printer = new PrintTravelMessages();
+
     private boolean validateOrientation(String command){
         switch (command){
             case "north","east", "south", "west", "n", "e", "s", "w" : return true;
@@ -14,28 +16,30 @@ public class HandleGoCommand {
         }
     }
 
-    private void travelTo(String orientation, PrintMessages printMessage, GameEngine engine){
+    private void travelTo(String orientation, GameEngine engine){
         try {
             engine.traverseTo(orientation);
-            printMessage.printRoomInfo(engine.roomDescription(),engine.roomItems());
+            var description = engine.roomDescription();
+            var items = engine.roomItems();
+            _printer.printRoomInfo(description,items);
         } catch (IllegalArgumentException e){
-            printMessage.printBadCommand();
+            _printer.printBadCommand();
         } catch (BadDirectionException | NoDoorAtOrientationException e){
-            printMessage.printBadDirection();
+            _printer.printBadOrientation();
         } catch (DoorIsLockedException e){
-            printMessage.printLockedDoorMsg();
+            _printer.printLockedDoor();
         }
     }
 
-    public void handle(String command, PrintMessages printMessage, GameEngine engine){
+    public void handle(String command, GameEngine engine){
         if(!command.matches("go [A-z]+")){
-            printMessage.printBadCommand();
+            _printer.printBadCommand();
             return;
         }
         var orientation = command.substring(3);
         if(!validateOrientation(orientation))
-            printMessage.printBadCommand();
+            _printer.printBadCommand();
         else
-            travelTo(orientation,printMessage,engine);
+            travelTo(orientation,engine);
     }
 }
