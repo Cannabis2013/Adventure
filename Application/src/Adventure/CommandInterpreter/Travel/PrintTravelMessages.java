@@ -11,12 +11,6 @@ public class PrintTravelMessages {
         System.out.println(formatted);
     }
 
-    public void printRoomInfo(String description, String items){
-        var msg = description + "\n\n";
-        var formattedMsg = _formatter.formatRoomInfo(msg + items);
-        System.out.println(formattedMsg);
-    }
-
     public void printBadOrientation(){
 
         var msg = "you can not go that way";

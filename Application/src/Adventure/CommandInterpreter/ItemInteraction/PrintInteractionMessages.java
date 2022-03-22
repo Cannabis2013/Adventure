@@ -16,4 +16,16 @@ public class PrintInteractionMessages {
         var formatted = formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
+
+    public void printItemTaken(String itemTitle){
+        var msg = String.format("You have taken %s.",itemTitle);
+        var formatted = formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printItemDropped(String itemTitle){
+        var msg = String.format("You dropped %s.",itemTitle);
+        var formatted = formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
 }

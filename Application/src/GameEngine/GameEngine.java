@@ -29,12 +29,12 @@ public class GameEngine {
         return player.getCurrentRoom().getDescription();
     }
 
-    public void takeItem(String itemTitle) throws ItemNotFoundException {
-        player.takeItem(itemTitle);
+    public String takeItem(String itemTitle) throws ItemNotFoundException {
+        return player.takeItem(itemTitle);
     }
 
-    public void dropItem(String itemTitle) throws ItemNotFoundException {
-        player.dropItem(itemTitle);
+    public String dropItem(String itemTitle) throws ItemNotFoundException {
+        return player.dropItem(itemTitle);
     }
 
     public String roomItems(){

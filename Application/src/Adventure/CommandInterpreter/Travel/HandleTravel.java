@@ -1,6 +1,6 @@
 package Adventure.CommandInterpreter.Travel;
 
-import Adventure.ScreenMessages.PrintMessages;
+import Adventure.ScreenMessages.PrintRoomDetails;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.GameEngine;
 import GameEngine.MapLogistics.BadDirectionException;
@@ -8,6 +8,7 @@ import GameEngine.MapLogistics.NoDoorAtOrientationException;
 
 public class HandleTravel {
     private PrintTravelMessages _printer = new PrintTravelMessages();
+    private PrintRoomDetails _printRoomDetails = new PrintRoomDetails();
 
     private boolean validateOrientation(String command){
         switch (command){
@@ -16,12 +17,22 @@ public class HandleTravel {
         }
     }
 
+    private String translate(String input){
+        switch (input){
+            case "north", "n" -> {return "north";}
+            case "east", "e" -> {return "east";}
+            case "south", "s" -> {return "south";}
+            case "west", "w" -> {return "west";}
+            default -> {return "";}
+        }
+    }
+
     private void travelTo(String orientation, GameEngine engine){
         try {
-            engine.traverseTo(orientation);
+            engine.traverseTo(translate(orientation));
             var description = engine.roomDescription();
             var items = engine.roomItems();
-            _printer.printRoomInfo(description,items);
+            _printRoomDetails.print(description,items);
         } catch (IllegalArgumentException e){
             _printer.printBadCommand();
         } catch (BadDirectionException | NoDoorAtOrientationException e){

@@ -24,7 +24,7 @@ public class PrintMessages {
 
     public void printIntro(){
         var msg = buildIntroMsg();
-        var formatted = formatter.formatIntro(msg);
+        var formatted = formatter.formatWhiteOnDarkRed(msg);
         System.out.println(formatted);
     }
 
@@ -35,7 +35,7 @@ public class PrintMessages {
     }
 
     public void printCommandLine(){
-        var msg = formatter.formatCommandLine("Command->");
+        var msg = formatter.formatWhiteOnLightGreen("Command->");
         System.out.print(msg);
     }
 }

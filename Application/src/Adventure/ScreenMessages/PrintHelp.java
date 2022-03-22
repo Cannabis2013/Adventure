@@ -29,7 +29,7 @@ public class PrintHelp {
     public void print()
     {
         var msg = buildHelpMsg();
-        var formatted = _formatter.formatHelp(msg);
+        var formatted = _formatter.formatWhiteOnRedLoose(msg);
         System.out.println(formatted);
     }
 }

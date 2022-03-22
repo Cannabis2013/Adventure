@@ -10,14 +10,14 @@ import GameEngine.GameEngine;
 import java.util.Scanner;
 
 public class Adventure{
-    private PrintMessages printer = new PrintMessages();
-    private Scanner inputReader = new Scanner(System.in);
-    private GameEngine engine = new GameEngine();
-    private HandleTravel _handleGo = new HandleTravel();
-    private HandleGeneralCommand _handleGeneral = new HandleGeneralCommand();
-    private HandleInteractionCommands _handleInteraction = new HandleInteractionCommands();
-    private HandleUnlockCommand _handleUnlock = new HandleUnlockCommand();
-    private PrintHelp _printHelp = new PrintHelp();
+    private final PrintMessages printer = new PrintMessages();
+    private final Scanner inputReader = new Scanner(System.in);
+    private final GameEngine engine = new GameEngine();
+    private final HandleTravel _handleGo = new HandleTravel();
+    private final HandleGeneralCommand _handleGeneral = new HandleGeneralCommand();
+    private final HandleInteractionCommands _handleInteraction = new HandleInteractionCommands();
+    private final HandleUnlockCommand _handleUnlock = new HandleUnlockCommand();
+    private final PrintHelp _printHelp = new PrintHelp();
 
     public void interpretCommand(String command){
         if(command.startsWith("go"))

@@ -90,7 +90,7 @@ public class Room extends MapObject {
 
     public String itemsAsString() {
         if(items.isEmpty())
-            return "There seems to be no items of value in this room";
+            return "";
         StringBuilder sb = new StringBuilder();
         items.forEach(i-> sb.append(i.getTitle() + "\n"));
         return sb.toString();

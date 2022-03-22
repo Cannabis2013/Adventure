@@ -20,14 +20,14 @@ public class FormatMessages {
         return csiBuilder.build().toString();
     }
 
-    public String formatCommandLine(String msg){
+    public String formatWhiteOnLightGreen(String msg){
         var builder = new BuildFilledBox( msg);
         builder.setBackroundColor(new Color(35, 138, 79));
         builder.setMargins(0,0);
         return builder.build().toString();
     }
 
-    public String formatIntro(String msg){
+    public String formatWhiteOnDarkRed(String msg){
         var csiBuilder = new BuildFilledBox(msg);
         csiBuilder.setBackroundColor(new Color(106, 17, 17));
         csiBuilder.setTextColor(new Color(255, 255, 255));
@@ -36,7 +36,7 @@ public class FormatMessages {
         return csiBuilder.build().toString();
     }
 
-    public String formatHelp(String msg){
+    public String formatWhiteOnRedLoose(String msg){
         var builder = new BuildFilledBox(msg);
         builder.setBackroundColor(new Color(255, 4, 4));
         builder.setTextColor(new Color(255,255,255));
@@ -45,7 +45,16 @@ public class FormatMessages {
         return builder.build().toString();
     }
 
-    public String formatRoomInfo(String description){
+    public String formatWhiteOnRedTight(String msg){
+        var builder = new BuildFilledBox(msg);
+        builder.setBackroundColor(new Color(255, 4, 4));
+        builder.setTextColor(new Color(255,255,255));
+        builder.setPadding(0,0);
+        builder.setMargins(0,1);
+        return builder.build().toString();
+    }
+
+    public String formatWhiteOnBrown(String description){
         var builder = new BuildFilledBox(description);
         builder.setBackroundColor(new Color(92, 37, 1));
         builder.setTextColor(new Color(255, 255, 255));
@@ -54,4 +63,19 @@ public class FormatMessages {
         return builder.build().toString();
     }
 
+    public String formatWhiteOnGreenLoose(String items){
+        var builder = new BuildFilledBox(items);
+        builder.setBackroundColor(new Color(30, 54, 8));
+        builder.setPadding(4,2);
+        builder.setMargins(0,1);
+        return builder.build().toString();
+    }
+
+    public String formatWhiteOnGreenTight(String items){
+        var builder = new BuildFilledBox(items);
+        builder.setBackroundColor(new Color(30, 54, 8));
+        builder.setPadding(0,0);
+        builder.setMargins(0,1);
+        return builder.build().toString();
+    }
 }

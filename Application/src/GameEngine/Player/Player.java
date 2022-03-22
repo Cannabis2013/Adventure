@@ -19,15 +19,17 @@ public class Player {
     private Room currentRoom;
     private List<Item> inventory = new ArrayList<>();
 
-    public void takeItem(String itemTitle) throws ItemNotFoundException {
+    public String takeItem(String itemTitle) throws ItemNotFoundException {
         var item = currentRoom.takeItem(itemTitle);
         inventory.add(item);
+        return item.getTitle();
     }
 
-    public void dropItem(String itemTitle) throws ItemNotFoundException {
+    public String dropItem(String itemTitle) throws ItemNotFoundException {
         var item = _getItem.findByTitle(inventory,itemTitle);
         inventory.remove(item);
         currentRoom.addItem(item);
+        return item.getTitle();
     }
 
     public Room getCurrentRoom() {

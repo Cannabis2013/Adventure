@@ -10,7 +10,8 @@ public class HandleInteractionCommands {
     public void handleTakeCommand(String command, GameEngine gameEngine){
         String args = command.substring(5);
         try {
-            gameEngine.takeItem(args);
+            var itemTitle = gameEngine.takeItem(args);
+            _printer.printItemTaken(itemTitle);
         } catch (ItemNotFoundException e) {
             _printer.printItemNotInRoom(args);
         }
@@ -18,7 +19,8 @@ public class HandleInteractionCommands {
     public void handleDrop(String command,  GameEngine gameEngine){
         String args = command.substring(5);
         try {
-            gameEngine.dropItem(args);
+            var itemTitle = gameEngine.dropItem(args);
+            _printer.printItemDropped(itemTitle);
         } catch (ItemNotFoundException e) {
             _printer.printItemNotInInventory(args);
         }
