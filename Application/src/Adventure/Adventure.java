@@ -26,6 +26,8 @@ public class Adventure{
             _handleInteraction.handleTakeCommand(command, engine);
         else if(command.startsWith("drop"))
             _handleInteraction.handleDrop(command, engine);
+        else if (command.startsWith("eat"))
+            _handleInteraction.handleEat(command, engine);
         else if(command.startsWith("unlock"))
             _handleUnlock.handle(command, engine);
         else

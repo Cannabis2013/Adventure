@@ -25,4 +25,14 @@ public class HandleInteractionCommands {
             _printer.printItemNotInInventory(args);
         }
     }
+
+    public void handleEat(String command, GameEngine gameEngine) {
+        String args = command.substring(4);
+        try {
+            String itemTitle = gameEngine.eatItem(args);
+            _printer.printItemEaten(itemTitle);
+        } catch (ItemNotFoundException e) {
+            _printer.printItemNotConsumable(args);
+        }
+    }
 }

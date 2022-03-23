@@ -3,6 +3,7 @@ package GameEngine.Player;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.BuildMap.Rooms.WrongKeyException;
+import GameEngine.InitializeMap.MapItems.Food;
 import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.MapTraverseTo;
@@ -31,6 +32,17 @@ public class Player {
         inventory.remove(item);
         currentRoom.addItem(item);
         return item.getTitle();
+    }
+
+    public String consumeItem(String itemTitle) throws ItemNotFoundException {
+        Item item = _getItem.findByTitle(inventory, itemTitle);
+        if (item.getType() == Item.Type.Consumable) {
+            Food food = (Food) item;
+            addHealth(food.getHp_change());
+            inventory.remove(item);
+            return item.getTitle() + " " + food.getHp_change() + "hp";
+        }
+        throw new ItemNotFoundException();
     }
 
     public Room getCurrentRoom() {

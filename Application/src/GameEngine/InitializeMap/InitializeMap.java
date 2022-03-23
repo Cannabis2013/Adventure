@@ -2,6 +2,7 @@ package GameEngine.InitializeMap;
 
 import GameEngine.InitializeMap.MapDescriptions.AddMapDescriptions;
 import GameEngine.InitializeMap.MapItems.AddMapKeys;
+import GameEngine.InitializeMap.MapItems.Food;
 import GameEngine.InitializeMap.MapRestrictions.MapAccessRestrictions;
 import GameEngine.BuildMap.Rooms.Room;
 import java.util.List;
@@ -15,5 +16,7 @@ public class InitializeMap {
         _addDescriptions.add(rooms);
         var keys = _restrictMap.restrict(rooms);
         _addKeys.add(rooms,keys);
+        Food food = new Food("Pork", "Glaced Pork", -30);
+        rooms.get(0).addItem(food);
     }
 }

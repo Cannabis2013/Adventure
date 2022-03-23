@@ -37,6 +37,10 @@ public class GameEngine {
         return player.dropItem(itemTitle);
     }
 
+    public String eatItem(String itemTitle) throws ItemNotFoundException {
+        return player.consumeItem(itemTitle);
+    }
+
     public String roomItems(){
         return player.getCurrentRoom().itemsAsString();
     }

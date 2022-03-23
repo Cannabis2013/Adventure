@@ -17,6 +17,12 @@ public class PrintInteractionMessages {
         System.out.println(formatted);
     }
 
+    public void printItemNotConsumable(String itemTitle) {
+        String msg = String.format("%s is not a consumable item", itemTitle);
+        String formatted = formatter.formatNegativeResponse(msg);
+        System.out.println(formatted);
+    }
+
     public void printItemTaken(String itemTitle){
         var msg = String.format("You have taken %s.",itemTitle);
         var formatted = formatter.formatWhiteOnRedTight(msg);
@@ -25,6 +31,12 @@ public class PrintInteractionMessages {
 
     public void printItemDropped(String itemTitle){
         var msg = String.format("You dropped %s.",itemTitle);
+        var formatted = formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printItemEaten(String itemTitle) {
+        var msg = String.format("You ate %s",itemTitle);
         var formatted = formatter.formatWhiteOnRedTight(msg);
         System.out.println(formatted);
     }
