@@ -45,6 +45,10 @@ public class GameEngine {
         return player.getInventoryAsString();
     }
 
+    public int health() {
+        return player.getHealth();
+    }
+
     public void unlock(String doorOrientation, String key) throws WrongKeyException, ItemNotFoundException, DoorNotFoundException {
         player.tryUnlockDoor(doorOrientation,key);
     }

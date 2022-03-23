@@ -16,6 +16,7 @@ public class HandleGeneralCommand {
             case "help" -> _printHelp.print();
             case "look" -> _printRoomDetails.print(gameEngine.roomDescription(),gameEngine.roomItems());
             case "inventory" -> _printer.printInventory(gameEngine.inventory());
+            case "health" -> _printer.printHealth(gameEngine.health());
             default -> _printer.printBadCommand();
         }
     }

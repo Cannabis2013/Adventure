@@ -18,6 +18,7 @@ public class Player {
     private GetItemFromList _getItem = new GetItemFromList();
     private Room currentRoom;
     private List<Item> inventory = new ArrayList<>();
+    private int health = 50;
 
     public String takeItem(String itemTitle) throws ItemNotFoundException {
         var item = currentRoom.takeItem(itemTitle);
@@ -53,5 +54,17 @@ public class Player {
     public void tryUnlockDoor(String doorOrientation, String key) throws WrongKeyException, DoorNotFoundException, ItemNotFoundException {
         var item = _getItem.findByTitle(inventory,key);
         currentRoom.tryUnlockDoor(doorOrientation,item);
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void addHealth(int num) {
+        health += num;
+    }
+
+    public void setHealth(int num) {
+        health = num;
     }
 }

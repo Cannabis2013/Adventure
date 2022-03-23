@@ -7,9 +7,10 @@ public class PrintHelp {
     private String buildHelpMsg(){
         return """
                 General:
-                    help : Print this screen
-                    exit : exit game
-                    look : Print room description
+                    help    : Print this screen
+                    exit    : exit game
+                    look    : Print room description
+                    health  : Print your current health
                 
                 Movement:
                     Directions: {North, east, south, west}
