@@ -16,7 +16,5 @@ public class InitializeMap {
         _addDescriptions.add(rooms);
         var keys = _restrictMap.restrict(rooms);
         _addKeys.add(rooms,keys);
-        Food food = new Food("Pork", "Glaced Pork", -30);
-        rooms.get(0).addItem(food);
     }
 }
