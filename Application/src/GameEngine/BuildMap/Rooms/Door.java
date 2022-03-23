@@ -1,16 +1,18 @@
 package GameEngine.BuildMap.Rooms;
 
-import GameEngine.BuildMap.MapObjects.MapObject;
+import GameEngine.MapObjects.MapObject;
 
 public class Door extends MapObject {
     private int lockID;
     private boolean locked = false;
+    private static int _doorIndex = 0;
 
     private Room room1,room2;
 
     public Door(Room room1, Room room2) {
         this.room1 = room1;
         this.room2 = room2;
+        _title = String.format("door %d",++_doorIndex);
     }
 
     public Room getOther(Room thisRoom) throws DoorIsLockedException {

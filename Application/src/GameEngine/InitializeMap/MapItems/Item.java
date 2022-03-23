@@ -1,29 +1,16 @@
 package GameEngine.InitializeMap.MapItems;
 
-public class Item {
-    enum Type {
-        Consumable,
-        Usable
-    }
+import GameEngine.MapObjects.MapObject;
 
-    private String shortTitle;
-    private String title;
+public abstract class Item extends MapObject implements IUsable<MapObject>{
+    protected String _itemType;
 
-    public String getShortTitle() {
-        return shortTitle;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String toString() {
-        return  title;
+    public String itemType() {
+        return _itemType;
     }
 
     public Item(String shortTitle, String title){
-        this.shortTitle = shortTitle;
-        this.title = title;
+        _itemType = shortTitle;
+        _title = title;
     }
 }

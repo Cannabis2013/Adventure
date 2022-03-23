@@ -1,7 +1,6 @@
 package Adventure.CommandInterpreter.General;
 
 import Adventure.ScreenMessages.PrintHelp;
-import Adventure.ScreenMessages.PrintMessages;
 import Adventure.ScreenMessages.PrintRoomDetails;
 import GameEngine.GameEngine;
 
@@ -10,12 +9,19 @@ public class HandleGeneralCommand {
     private PrintRoomDetails _printRoomDetails = new PrintRoomDetails();
     private PrintHelp _printHelp = new PrintHelp();
 
-    public void handle(String command, PrintMessages printMessage, GameEngine gameEngine){
+    private void printRoomDetails(GameEngine engine){
+        var description = engine.roomDescription();
+        var roomItems = engine.roomItems();
+        var doorTitles = engine.doorNames();
+        _printRoomDetails.print(description,roomItems,doorTitles);
+    }
+
+    public void handle(String command, GameEngine engine){
         switch (command){
             case "exit" -> System.exit(0);
             case "help" -> _printHelp.print();
-            case "look" -> _printRoomDetails.print(gameEngine.roomDescription(),gameEngine.roomItems());
-            case "inventory" -> _printer.printInventory(gameEngine.inventory());
+            case "look" -> printRoomDetails(engine);
+            case "inventory" -> _printer.printInventory(engine.inventory());
             default -> _printer.printBadCommand();
         }
     }

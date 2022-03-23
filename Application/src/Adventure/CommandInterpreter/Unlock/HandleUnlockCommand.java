@@ -1,6 +1,5 @@
 package Adventure.CommandInterpreter.Unlock;
 
-import Adventure.ScreenMessages.PrintMessages;
 import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.GameEngine;
 import GameEngine.Restrictions.DoorNotFoundException;

@@ -1,7 +1,6 @@
 package GameEngine.InitializeMap.MapDescriptions;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SpecialMapDescriptions {
     private final ArrayList<String> specialDescriptions = new ArrayList<>();

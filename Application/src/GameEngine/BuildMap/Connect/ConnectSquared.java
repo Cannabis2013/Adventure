@@ -3,7 +3,7 @@ package GameEngine.BuildMap.Connect;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ConnectSquared {
@@ -18,18 +18,18 @@ public class ConnectSquared {
         return diff == 0;
     }
 
-    private int bound(ArrayList<Room> rooms){
+    private int bound(List<Room> rooms){
         return  (int) Math.sqrt(rooms.size() + 1);
     }
 
-    private void tryConnectWest(ArrayList<Room> rooms, int index, Room room, int x){
+    private void tryConnectWest(List<Room> rooms, int index, Room room, int x){
         if(x > 0){
             var eastOf = rooms.get(index - 1);
             room.setWest(eastOf);
         }
     }
 
-    private void tryConnectNorth(ArrayList<Room> rooms,int index, Room room,int y){
+    private void tryConnectNorth(List<Room> rooms,int index, Room room,int y){
         if(y >0)
         {
             var indexOfNorthRoom = index - bound(rooms);
@@ -38,7 +38,7 @@ public class ConnectSquared {
         }
     }
 
-    private void connectNormals(ArrayList<Room> rooms,int index, int x, int y){
+    private void connectNormals(List<Room> rooms,int index, int x, int y){
         if(x >= bound(rooms))
         {
             x = 0;
@@ -52,7 +52,7 @@ public class ConnectSquared {
         connectNormals(rooms,++index,++x,y);
     }
 
-    private void randomizeConnections(Room room, ArrayList<Room> rooms){
+    private void randomizeConnections(Room room, List<Room> rooms){
         var rand = new Random();
         int median = rooms.size() / 2;
         var bound = bound(rooms);
@@ -69,7 +69,7 @@ public class ConnectSquared {
         }
     }
 
-    private void promoteMedian(ArrayList<Room> rooms) throws DoorIsLockedException {
+    private void promoteMedian(List<Room> rooms) throws DoorIsLockedException {
         var median = (rooms.size() / 2);
         var room = rooms.get(median);
         room.promote();
@@ -77,7 +77,7 @@ public class ConnectSquared {
         randomizeConnections(room,rooms);
     }
 
-    public void connect(ArrayList<Room> rooms) throws IllegalArgumentException {
+    public void connect(List<Room> rooms) throws IllegalArgumentException {
         if(!isSquare(rooms.size()))
             throw new IllegalArgumentException();
         connectNormals(rooms,0,0,0);
