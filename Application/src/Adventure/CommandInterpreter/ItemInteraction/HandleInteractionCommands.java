@@ -1,13 +1,13 @@
 package Adventure.CommandInterpreter.ItemInteraction;
 
-import Adventure.ScreenMessages.PrintMessages;
-import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.GameEngine;
+import GameEngine.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleInteractionCommands {
     private PrintInteractionMessages _printer = new PrintInteractionMessages();
 
-    public void handleTakeCommand(String command, GameEngine gameEngine){
+    public void handleTake(String command, GameEngine gameEngine){
         String args = command.substring(5);
         try {
             var itemTitle = gameEngine.takeItem(args);
@@ -31,7 +31,7 @@ public class HandleInteractionCommands {
         try {
             String itemTitle = gameEngine.eatItem(args);
             _printer.printItemEaten(itemTitle);
-        } catch (ItemNotFoundException e) {
+        } catch (ItemNotFoundException | InvalidObjectException e) {
             _printer.printItemNotConsumable(args);
         }
     }

@@ -1,6 +1,5 @@
-package GameEngine.InitializeMap.MapItems;
+package GameEngine.InitializeMap.MapRestrictions;
 
-import GameEngine.InitializeMap.MapRestrictions.Key;
 import GameEngine.BuildMap.Rooms.Room;
 
 import java.util.ArrayList;
@@ -8,7 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class AddMapKeys {
+public class AddAccessRestrictions {
+    private MapAccessRestrictions _restrictMap = new MapAccessRestrictions();
+
     private List<Integer> randomIndexes(int bound){
         var indexes = IntStream.range(0,bound - 1).boxed().toList();
         var l = new ArrayList<Integer>(indexes);
@@ -31,7 +32,8 @@ public class AddMapKeys {
         }
     }
 
-    public void add(List<Room> rooms, List<Key> keys){
+    public void add(List<Room> rooms){
+        var keys = _restrictMap.restrict(rooms);
         var normals = rooms.stream()
                 .filter(r -> r.getRoomType() == Room.RoomType.Normal).toList();
         addKeys(normals,keys);

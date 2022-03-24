@@ -1,6 +1,7 @@
 package Adventure.ScreenMessages;
 
 import ConsolePrintFormatter.FilledTextBox.BuildFilledBox;
+
 import java.awt.*;
 
 public class FormatMessages {

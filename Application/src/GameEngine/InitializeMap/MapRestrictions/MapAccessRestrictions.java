@@ -1,6 +1,7 @@
 package GameEngine.InitializeMap.MapRestrictions;
 
 import GameEngine.BuildMap.Rooms.Room;
+
 import java.util.List;
 
 public class MapAccessRestrictions {
@@ -24,6 +25,7 @@ public class MapAccessRestrictions {
                 .map(r -> {
                    var key = new Key("Red key");
                    lockRoom(r,key.getID());
+                   r.setSealed(true);
                    return key;
                 }).toList();
         return keys;
