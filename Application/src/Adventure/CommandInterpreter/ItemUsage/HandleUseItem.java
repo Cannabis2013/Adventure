@@ -18,7 +18,8 @@ public class HandleUseItem {
         matcher.find();
         var target = matcher.group(0);
         try {
-            engine.useItem(item,target);
+            var result = engine.useItem(item,target);
+            _printer.printResult(result);
         } catch (InvalidObjectException e) {
             _printer.printInvalidObject();
         } catch (ItemNotFoundException e) {
@@ -31,7 +32,8 @@ public class HandleUseItem {
     private void singleArgument(String command, GameEngine engine){
         var item = command.substring(4);
         try {
-            engine.useItem(item);
+            var result = engine.useItem(item);
+            _printer.printResult(result);
         } catch (InvalidObjectException e) {
             _printer.printInvalidObject();
         } catch (ItemNotFoundException e) {

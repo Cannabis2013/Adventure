@@ -2,20 +2,19 @@ package Adventure.CommandInterpreter.General;
 
 import Adventure.ScreenMessages.FormatMessages;
 
+import java.util.List;
+
 public class PrintGeneralMessages {
     FormatMessages _formatter = new FormatMessages();
 
-    public void printInventory(String inventory){
-        var msg = "Inventory:";
+    public void printInventory(List<String> inventory){
+        var msg = "";
         var formatted = "";
-        if(!inventory.isEmpty()){
-            msg += "\n\n" + inventory;
-            formatted = _formatter.formatWhiteOnGreenLoose(msg);
-        }
-        else{
+        if(!inventory.isEmpty())
+            msg = inventory.stream().reduce("",(str,title) -> str + title + "\n");
+        else
             msg = "No items in inventory";
-            formatted = _formatter.formatWhiteOnGreenTight(msg);
-        }
+        formatted = _formatter.formatWhiteOnGreenTight(msg);
         System.out.println(formatted);
     }
 

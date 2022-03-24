@@ -27,4 +27,9 @@ public class PrintUsageMessages {
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
+
+    public void printResult(String result){
+        var formatted = _formatter.formatWhiteOnDarkRedLoose(result);
+        System.out.println(formatted);
+    }
 }

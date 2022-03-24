@@ -1,5 +1,7 @@
 package Adventure;
 
+import Adventure.CommandInterpreter.Attack.HandleAttack;
+import Adventure.CommandInterpreter.Attack.PrintAttackMessages;
 import Adventure.CommandInterpreter.EquipWeapon.HandleEquipWeapon;
 import Adventure.CommandInterpreter.General.HandleGeneralCommand;
 import Adventure.CommandInterpreter.ItemInteraction.HandleInteractionCommands;
@@ -20,6 +22,7 @@ public class Adventure{
     private final HandleInteractionCommands _handleInteraction = new HandleInteractionCommands();
     private final HandleUseItem _handleUseItem = new HandleUseItem();
     private final HandleEquipWeapon _handleEquip = new HandleEquipWeapon();
+    private final HandleAttack _handleAttack = new HandleAttack();
     private final PrintHelp _printHelp = new PrintHelp();
 
     public void interpretCommand(String command){
@@ -35,6 +38,8 @@ public class Adventure{
             _handleUseItem.handleUse(command, _engine);
         else if(command.startsWith("equip"))
             _handleEquip.handleEquip(command,_engine);
+        else if(command.startsWith("attack"))
+            _handleAttack.handleAttack(command,_engine);
         else
             _handleGeneral.handle(command, _engine);
     }

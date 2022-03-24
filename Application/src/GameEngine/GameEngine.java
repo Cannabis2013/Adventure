@@ -3,6 +3,7 @@ package GameEngine;
 import GameEngine.BuildMap.BuildMapSquare;
 import GameEngine.BuildMap.Map.IMap;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
+import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
 import GameEngine.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
@@ -11,6 +12,8 @@ import GameEngine.Player.Player;
 import GameEngine.Utils.FindObjectByTitle;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
+
+import java.util.List;
 
 public class GameEngine {
     private Player _player = new Player("");
@@ -37,6 +40,10 @@ public class GameEngine {
         return _player.takeItem(itemTitle);
     }
 
+    public void takeAll(){
+        _player.takeAll();
+    }
+
     public String dropItem(String itemTitle) throws ItemNotFoundException {
         return _player.dropItem(itemTitle);
     }
@@ -45,11 +52,11 @@ public class GameEngine {
         return _player.consumeItem(itemTitle);
     }
 
-    public String roomItems(){
+    public List<String> roomItems(){
         return _player.getCurrentRoom().itemsAsString();
     }
 
-    public String inventory(){
+    public List<String> inventory(){
         return _player.inventoryToString();
     }
 
@@ -69,5 +76,9 @@ public class GameEngine {
 
     public String equipWeapon(String weapon) throws EquipWeaponFailedException, ItemNotFoundException {
         return _player.equip(weapon);
+    }
+
+    public String attack() throws FatalBlowException {
+        return _player.attack(null);
     }
 }

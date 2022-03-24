@@ -3,7 +3,6 @@ package GameEngine.Player;
 import GameEngine.BuildMap.Map.IMap;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
-import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
 import GameEngine.InitializeMap.LivingObjects.Human;
 import GameEngine.InitializeMap.MapItems.Consumable;
@@ -15,7 +14,6 @@ import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
 import GameEngine.MapObjects.MapObject;
-import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
 
@@ -26,7 +24,7 @@ public class Player extends Human {
     private MapTraverseTo _traverseTo = new MapTraverseTo();
     private GetItemFromList _getItem = new GetItemFromList();
     private Room currentRoom;
-    private Weapon _weapon;
+    private Weapon _weapon = new KnuckleBusterWithVolts();
     private final List<Item> _inventory = new ArrayList<>();
 
     public Player(String name) {
@@ -38,6 +36,8 @@ public class Player extends Human {
         var weapon = _getItem.findByTitle(_inventory,weaponTitle);
         if(!(weapon instanceof Weapon))
             throw new EquipWeaponFailedException();
+        if(_weapon != null)
+            _inventory.add(_weapon);
         _weapon = (Weapon) weapon;
         return weaponTitle;
     }
@@ -60,6 +60,12 @@ public class Player extends Human {
         return item.title();
     }
 
+    public void takeAll(){
+        var items = currentRoom.items();
+        _inventory.addAll(items);
+        currentRoom.items().clear();
+    }
+
     public String dropItem(String itemTitle) throws ItemNotFoundException {
         var item = _getItem.findByTitle(_inventory,itemTitle);
         _inventory.remove(item);
@@ -70,19 +76,12 @@ public class Player extends Human {
     public Room getCurrentRoom() {return currentRoom;}
     public void setCurrentRoom(Room room) {currentRoom = room;}
 
-    public String inventoryToString() {
-        StringBuilder sb = new StringBuilder();
-        _inventory.forEach(i-> sb.append(i.title() + "\n"));
-        return sb.toString();
+    public List<String> inventoryToString() {
+        return _inventory.stream().map(i -> i.presentate()).toList();
     }
 
     public void travelTo(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         currentRoom = _traverseTo.traverse(orientation,currentRoom);
-    }
-
-    public void tryUnlockDoor(String doorOrientation, String key) throws WrongKeyException, DoorNotFoundException, ItemNotFoundException {
-        var item = _getItem.findByTitle(_inventory,key);
-        currentRoom.tryUnlockDoor(doorOrientation,item);
     }
 
     @Override

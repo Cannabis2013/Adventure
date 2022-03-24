@@ -3,7 +3,6 @@ package GameEngine.BuildMap.Rooms;
 import GameEngine.BuildMap.Map.IMap;
 import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.MapObjects.MapObject;
-import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Restrictions.UnlockDoor;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
@@ -45,18 +44,11 @@ public class Room extends MapObject {
         return item;
     }
 
-    public void tryUnlockDoor(String doorOrientation, Item item) throws WrongKeyException, DoorNotFoundException {
-        _unlockDoor.tryUnlock(doorOrientation,this,item);
-    }
-
     public List<Item> items() {return _items;}
 
-    public String itemsAsString() {
-        if(_items.isEmpty())
-            return "";
-        StringBuilder sb = new StringBuilder();
-        _items.forEach(i-> sb.append(i.title() + "\n"));
-        return sb.toString();
+    public List<String> itemsAsString() {
+        var items = _items.stream().map(i -> i.presentate()).toList();
+        return items;
     }
 
     public void disconnect() throws DoorIsLockedException {

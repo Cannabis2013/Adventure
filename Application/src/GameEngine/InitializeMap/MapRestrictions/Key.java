@@ -25,6 +25,6 @@ public class Key extends Usable {
         door.unlock(ID);
         if(door.isLocked())
             return "Wrong key";
-        return "";
+        return "Door open";
     }
 }

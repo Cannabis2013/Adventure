@@ -15,6 +15,14 @@ public class TeleportDevice extends Usable {
         return "Teleported to another new place. Have fun.";
     }
 
+    @Override
+    public String presentate() {
+        if(_used)
+            return _title + "(broken)";
+        else
+            return _title;
+    }
+
     private Room getRandomRoom(List<Room> rooms){
         var rand = new Random();
         var randIndex = rand.nextInt(rooms.size());
@@ -35,15 +43,18 @@ public class TeleportDevice extends Usable {
     }
 
     public TeleportDevice() {
-        super("TeleportDevice", "Teleporter", false);
+        super("teleportDevice", "teleporter", false);
     }
 
     @Override
     public String use(MapObject obj) throws InvalidObjectException {
-        if(_used)
+        if(_used){
             return "Not working anymore";
+        }
         if(!(obj instanceof Player))
             throw new InvalidObjectException();
-        return teleport((Player) obj);
+        var msg = teleport((Player) obj);
+        _used = true;
+        return msg;
     }
 }

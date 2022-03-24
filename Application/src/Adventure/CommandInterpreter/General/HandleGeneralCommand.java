@@ -20,7 +20,7 @@ public class HandleGeneralCommand {
         switch (command){
             case "exit" -> System.exit(0);
             case "help" -> _printHelp.print();
-            case "look" -> _printRoomDetails.print(engine.roomDescription(),engine.roomItems(), engine.doorNames());
+            case "look" -> printRoomDetails(engine);
             case "inventory" -> _printer.printInventory(engine.inventory());
             case "health" -> _printer.printHealth(engine.health());
             default -> _printer.printBadCommand();

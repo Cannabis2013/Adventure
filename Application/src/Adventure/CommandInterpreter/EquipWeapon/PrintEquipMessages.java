@@ -22,4 +22,10 @@ public class PrintEquipMessages {
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
+
+    public void printItemEquipped(String itemTitle){
+        var msg = String.format("Equipped %s", itemTitle);
+        var formatted = _formatter.formatWhiteOnGreenTight(msg);
+        System.out.println(formatted);
+    }
 }

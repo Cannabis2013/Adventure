@@ -8,13 +8,14 @@ public class HandleEquipWeapon {
     PrintEquipMessages _printer = new PrintEquipMessages();
 
     private void handle(String command, GameEngine engine){
-        var arg = command.substring(6);
+        var itemName = command.substring(6);
         try {
-            engine.equipWeapon(arg);
+            engine.equipWeapon(itemName);
+            _printer.printItemEquipped(itemName);
         } catch (EquipWeaponFailedException e) {
             _printer.printWeaponEquipFailed();
         } catch (ItemNotFoundException e) {
-            _printer.printItemNotInInventory(arg);
+            _printer.printItemNotInInventory(itemName);
         }
     }
 

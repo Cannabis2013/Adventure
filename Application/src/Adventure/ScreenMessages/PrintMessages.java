@@ -24,7 +24,7 @@ public class PrintMessages {
 
     public void printIntro(){
         var msg = buildIntroMsg();
-        var formatted = formatter.formatWhiteOnDarkRed(msg);
+        var formatted = formatter.formatWhiteOnDarkRedLoose(msg);
         System.out.println(formatted);
     }
 
