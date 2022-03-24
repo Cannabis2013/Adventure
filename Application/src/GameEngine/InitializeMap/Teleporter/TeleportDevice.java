@@ -9,7 +9,7 @@ import GameEngine.Player.Player;
 import java.util.List;
 import java.util.Random;
 
-public class TeleportDevice extends Item implements IUsable<MapObject> {
+public class TeleportDevice extends Item implements IUsable {
     private String buildMessage(){
         return "Teleported to another new place. Have fun.";
     }

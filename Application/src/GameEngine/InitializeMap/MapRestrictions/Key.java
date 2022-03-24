@@ -7,7 +7,7 @@ import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.MapObjects.MapObject;
 
 
-public class Key extends Item implements IUsable<MapObject> {
+public class Key extends Item implements IUsable {
     private static int ID = 0;
     public Key(String title) {
         super("key", title);

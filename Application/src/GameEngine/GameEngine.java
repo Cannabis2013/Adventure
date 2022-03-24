@@ -59,7 +59,7 @@ public class GameEngine {
     }
 
     public String inventory(){
-        return _player.getInventoryAsString();
+        return _player.inventoryToString();
     }
 
     public int health() {
