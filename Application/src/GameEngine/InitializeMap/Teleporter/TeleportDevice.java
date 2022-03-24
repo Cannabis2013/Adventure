@@ -1,15 +1,16 @@
 package GameEngine.InitializeMap.Teleporter;
 
 import GameEngine.BuildMap.Rooms.Room;
-import GameEngine.InitializeMap.MapItems.IUsable;
 import GameEngine.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.InitializeMap.MapItems.Usable;
 import GameEngine.MapObjects.MapObject;
 import GameEngine.Player.Player;
 import java.util.List;
 import java.util.Random;
 
-public class TeleportDevice extends Item implements IUsable {
+public class TeleportDevice extends Usable {
+    private boolean _used = false;
+
     private String buildMessage(){
         return "Teleported to another new place. Have fun.";
     }
@@ -29,15 +30,18 @@ public class TeleportDevice extends Item implements IUsable {
                 .takeWhile(r ->r != currentRoom);
         var randomRoom = getRandomRoom(normals.toList());
         obj.setCurrentRoom(randomRoom);
+        _used = true;
         return buildMessage();
     }
 
     public TeleportDevice() {
-        super("TeleportDevice", "Teleporter");
+        super("TeleportDevice", "Teleporter", false);
     }
 
     @Override
     public String use(MapObject obj) throws InvalidObjectException {
+        if(_used)
+            return "Not working anymore";
         if(!(obj instanceof Player))
             throw new InvalidObjectException();
         return teleport((Player) obj);

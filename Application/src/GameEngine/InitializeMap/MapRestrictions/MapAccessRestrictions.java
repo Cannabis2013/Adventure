@@ -1,6 +1,7 @@
 package GameEngine.InitializeMap.MapRestrictions;
 
 import GameEngine.BuildMap.Rooms.Room;
+import GameEngine.InitializeMap.MapItems.Item;
 
 import java.util.List;
 
@@ -34,7 +35,8 @@ public class MapAccessRestrictions {
 
     public List<Key> restrict(List<Room> rooms){
         var specials = rooms.stream()
-                .filter(r -> r.getRoomType() == Room.RoomType.Special).toList();
+                .filter(r -> r.getRoomType() == Room.RoomType.Special)
+                .toList();
         var keys = lockSpecialRooms(specials);
         return keys;
     }

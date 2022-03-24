@@ -1,20 +1,25 @@
 package GameEngine.InitializeMap.Teleporter;
 
 import GameEngine.BuildMap.Rooms.Room;
+import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.InitializeMap.MapItems.RandomRoomsPopulator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class AddTeleportDevice {
-    private int randomIndex(int bound){
-        var rand = new Random();
-        return rand.nextInt(bound);
+public class AddTeleportDevice extends RandomRoomsPopulator {
+    private List<Item> buildTeleporters(int count){
+        var teleporters = new ArrayList<Item>();
+        for (var i = 0;i <count;i++)
+            teleporters.add(new TeleportDevice());
+        return teleporters;
     }
 
     public void add(List<Room> rooms){
         var normals = rooms.stream()
                 .filter(r -> r.getRoomType() == Room.RoomType.Normal
                 && !r.isSealed()).toList();
-        var randIndex = randomIndex(normals.size());
-        normals.get(randIndex).addItem(new TeleportDevice());
+        var teleporters = buildTeleporters(2);
+        teleporters.add(new TeleportDevice());
+        addItems(normals,teleporters);
     }
 }

@@ -3,15 +3,11 @@ package GameEngine;
 import GameEngine.BuildMap.BuildMapSquare;
 import GameEngine.BuildMap.Map.IMap;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
-import GameEngine.BuildMap.Rooms.WrongKeyException;
-import GameEngine.InitializeMap.InitializeMap;
 import GameEngine.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
-import GameEngine.MapObjects.GetMapObjects;
 import GameEngine.Player.EquipWeaponFailedException;
 import GameEngine.Player.Player;
-import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Utils.FindObjectByTitle;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
@@ -21,14 +17,8 @@ public class GameEngine {
     private IMap _map;
 
     public GameEngine(){
-        var buildMap = new BuildMapSquare();
-        var map = buildMap.build();
-        var initMap = new InitializeMap();
-        initMap.initialize(map.rooms());
-        _player.setCurrentRoom(map.initialRoom());
-        var getObjects = new GetMapObjects();
-        map.setObjects(getObjects.assemble(map));
-        _map = map;
+        _map = new BuildMapSquare().build();
+        _player.setCurrentRoom(_map.initialRoom());
     }
 
     public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {

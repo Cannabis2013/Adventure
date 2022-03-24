@@ -7,7 +7,7 @@ import GameEngine.BuildMap.Rooms.WrongKeyException;
 import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
 import GameEngine.InitializeMap.LivingObjects.Human;
 import GameEngine.InitializeMap.MapItems.Consumable;
-import GameEngine.InitializeMap.MapItems.IUsable;
+import GameEngine.InitializeMap.MapItems.Usable;
 import GameEngine.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.InitializeMap.Weapons.Weapon;
@@ -97,8 +97,8 @@ public class Player extends Human {
 
     public String useItem(String itemTitle, MapObject object) throws ItemNotFoundException, InvalidObjectException {
         var item = _getItem.findByTitle(_inventory,itemTitle);
-        if(item instanceof IUsable){
-            var usable = (IUsable) item;
+        if(item instanceof Usable){
+            var usable = (Usable) item;
             return usable.use(object);
         }
         throw new ItemNotFoundException();

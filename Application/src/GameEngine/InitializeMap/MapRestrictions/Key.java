@@ -1,16 +1,15 @@
 package GameEngine.InitializeMap.MapRestrictions;
 
 import GameEngine.BuildMap.Rooms.Door;
-import GameEngine.InitializeMap.MapItems.IUsable;
 import GameEngine.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.InitializeMap.MapItems.Usable;
 import GameEngine.MapObjects.MapObject;
 
 
-public class Key extends Item implements IUsable {
+public class Key extends Usable {
     private static int ID = 0;
     public Key(String title) {
-        super("key", title);
+        super("key", title, true);
         ID++;
     }
 

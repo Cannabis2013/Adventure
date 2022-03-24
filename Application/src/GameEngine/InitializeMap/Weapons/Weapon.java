@@ -11,7 +11,7 @@ public abstract class Weapon extends Item {
 
     protected int _damage = 0;
 
-    public abstract String attack(MapObject object) throws FatalBlowException;
+    public abstract String attack(MapObject targetObject) throws FatalBlowException;
 
     public int ammo(){return 0;}
 }
