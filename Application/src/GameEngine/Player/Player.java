@@ -4,10 +4,13 @@ import GameEngine.BuildMap.Map.IMap;
 import GameEngine.BuildMap.Rooms.DoorIsLockedException;
 import GameEngine.BuildMap.Rooms.Room;
 import GameEngine.BuildMap.Rooms.WrongKeyException;
+import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.InitializeMap.LivingObjects.Human;
 import GameEngine.InitializeMap.MapItems.Consumable;
 import GameEngine.InitializeMap.MapItems.IUsable;
 import GameEngine.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.InitializeMap.MapItems.Item;
+import GameEngine.InitializeMap.Weapons.Weapon;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
@@ -15,15 +18,35 @@ import GameEngine.MapObjects.MapObject;
 import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends MapObject {
+public class Player extends Human {
     private MapTraverseTo _traverseTo = new MapTraverseTo();
     private GetItemFromList _getItem = new GetItemFromList();
     private Room currentRoom;
+    private Weapon _weapon;
     private final List<Item> _inventory = new ArrayList<>();
-    private int _health = 100;
+
+    public Player(String name) {
+        super(name);
+    }
+
+    @Override
+    public String equip(String weaponTitle) throws ItemNotFoundException, EquipWeaponFailedException {
+        var weapon = _getItem.findByTitle(_inventory,weaponTitle);
+        if(!(weapon instanceof Weapon))
+            throw new EquipWeaponFailedException();
+        _weapon = (Weapon) weapon;
+        return weaponTitle;
+    }
+
+
+    @Override
+    public String attack(MapObject object) throws FatalBlowException {
+        return _weapon.attack(object);
+    }
 
     public List<Item> inventory() {return _inventory;}
 
@@ -44,13 +67,8 @@ public class Player extends MapObject {
         return item.title();
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room room) {
-        currentRoom = room;
-    }
+    public Room getCurrentRoom() {return currentRoom;}
+    public void setCurrentRoom(Room room) {currentRoom = room;}
 
     public String inventoryToString() {
         StringBuilder sb = new StringBuilder();
@@ -67,15 +85,7 @@ public class Player extends MapObject {
         currentRoom.tryUnlockDoor(doorOrientation,item);
     }
 
-    public int getHealth() {
-        return _health;
-    }
-
-    public void addHealth(int num) {
-        if(_health < 100)
-            _health += num;
-    }
-
+    @Override
     public String consumeItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException {
         Item item = _getItem.findByTitle(_inventory, itemTitle);
         if (item instanceof Consumable) {
@@ -92,5 +102,13 @@ public class Player extends MapObject {
             return usable.use(object);
         }
         throw new ItemNotFoundException();
+    }
+
+    @Override
+    public int takeHealth(int dmg) throws FatalBlowException {
+        _health -= dmg;
+        if(_health < 0)
+            throw new FatalBlowException();
+        return dmg;
     }
 }

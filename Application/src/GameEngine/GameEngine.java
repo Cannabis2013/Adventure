@@ -9,6 +9,7 @@ import GameEngine.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
 import GameEngine.MapObjects.GetMapObjects;
+import GameEngine.Player.EquipWeaponFailedException;
 import GameEngine.Player.Player;
 import GameEngine.Restrictions.DoorNotFoundException;
 import GameEngine.Utils.FindObjectByTitle;
@@ -16,7 +17,7 @@ import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
 
 public class GameEngine {
-    private Player _player = new Player();
+    private Player _player = new Player("");
     private IMap _map;
 
     public GameEngine(){
@@ -66,10 +67,6 @@ public class GameEngine {
         return _player.getHealth();
     }
 
-    public void unlock(String doorOrientation, String key) throws WrongKeyException, ItemNotFoundException, DoorNotFoundException {
-        _player.tryUnlockDoor(doorOrientation,key);
-    }
-
     public String useItem(String item, String target) throws ItemNotFoundException, ObjectNotFoundException, InvalidObjectException {
         var findObject = new FindObjectByTitle();
         var targetItem = findObject.find(_map.objects(),target);
@@ -78,5 +75,9 @@ public class GameEngine {
 
     public String useItem(String item) throws InvalidObjectException, ItemNotFoundException {
         return _player.useItem(item, _player);
+    }
+
+    public String equipWeapon(String weapon) throws EquipWeaponFailedException, ItemNotFoundException {
+        return _player.equip(weapon);
     }
 }

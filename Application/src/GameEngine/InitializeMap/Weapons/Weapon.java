@@ -1,5 +1,6 @@
-package GameEngine.InitializeMap.Weapon;
+package GameEngine.InitializeMap.Weapons;
 
+import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
 import GameEngine.InitializeMap.MapItems.Item;
 import GameEngine.MapObjects.MapObject;
 
@@ -8,7 +9,9 @@ public abstract class Weapon extends Item {
         super(shortTitle, title);
     }
 
-    public abstract String attack(MapObject object);
+    protected int _damage = 0;
+
+    public abstract String attack(MapObject object) throws FatalBlowException;
 
     public int ammo(){return 0;}
 }

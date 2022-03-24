@@ -1,10 +1,10 @@
 package Adventure;
 
+import Adventure.CommandInterpreter.EquipWeapon.HandleEquipWeapon;
 import Adventure.CommandInterpreter.General.HandleGeneralCommand;
 import Adventure.CommandInterpreter.ItemInteraction.HandleInteractionCommands;
 import Adventure.CommandInterpreter.ItemUsage.HandleUseItem;
 import Adventure.CommandInterpreter.Travel.HandleTravel;
-import Adventure.CommandInterpreter.Unlock.HandleUnlockCommand;
 import Adventure.ScreenMessages.PrintHelp;
 import Adventure.ScreenMessages.PrintMessages;
 import GameEngine.GameEngine;
@@ -18,8 +18,8 @@ public class Adventure{
     private final HandleTravel _handleGo = new HandleTravel();
     private final HandleGeneralCommand _handleGeneral = new HandleGeneralCommand();
     private final HandleInteractionCommands _handleInteraction = new HandleInteractionCommands();
-    private final HandleUnlockCommand _handleUnlock = new HandleUnlockCommand();
     private final HandleUseItem _handleUseItem = new HandleUseItem();
+    private final HandleEquipWeapon _handleEquip = new HandleEquipWeapon();
     private final PrintHelp _printHelp = new PrintHelp();
 
     public void interpretCommand(String command){
@@ -31,10 +31,10 @@ public class Adventure{
             _handleInteraction.handleDrop(command, _engine);
         else if (command.startsWith("eat"))
             _handleInteraction.handleEat(command, _engine);
-        else if(command.startsWith("unlock"))
-            _handleUnlock.handle(command, _engine);
         else if(command.startsWith("use"))
             _handleUseItem.handleUse(command, _engine);
+        else if(command.startsWith("equip"))
+            _handleEquip.handleEquip(command,_engine);
         else
             _handleGeneral.handle(command, _engine);
     }
