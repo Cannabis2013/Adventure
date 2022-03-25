@@ -14,10 +14,19 @@ public class Room extends MapObject {
     private List<Item> _items = new ArrayList<>();
     private RoomType _roomType;
     private IMap _parentMap;
+    private List<MapObject> _roomObjects = new ArrayList<>();
     private boolean _sealed;
 
     public boolean isSealed() {return _sealed;}
     public void setSealed(boolean sealed) {_sealed = sealed;}
+
+    public List<MapObject> roomObjects() {
+        return _roomObjects;
+    }
+
+    public void setRoomObjects(List<MapObject> roomObjects) {
+        _roomObjects = roomObjects;
+    }
 
     public enum RoomType {Normal,Special;}
 

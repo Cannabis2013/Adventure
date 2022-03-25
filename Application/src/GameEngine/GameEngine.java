@@ -65,13 +65,11 @@ public class GameEngine {
     }
 
     public String useItem(String item, String target) throws ItemNotFoundException, ObjectNotFoundException, InvalidObjectException {
-        var findObject = new FindObjectByTitle();
-        var targetItem = findObject.find(_map.objects(),target);
-        return _player.useItem(item,targetItem);
+        return _player.useItem(item,target);
     }
 
     public String useItem(String item) throws InvalidObjectException, ItemNotFoundException {
-        return _player.useItem(item, _player);
+        return _player.useItem(item);
     }
 
     public String equipWeapon(String weapon) throws EquipWeaponFailedException, ItemNotFoundException {

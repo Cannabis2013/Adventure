@@ -20,14 +20,12 @@ public class GetMapObjects {
         return doors;
     }
 
-    public List<MapObject> assemble(IMap map){
-        var objects = new ArrayList<MapObject>();
+    public void populateRoomObjects(IMap map){
         var rooms = map.rooms();
         rooms.forEach(r -> {
-            objects.add(r);
-            objects.addAll(getDoors(r));
-            r.items().forEach(i -> objects.add(i));
+            var roomObjects = r.roomObjects();
+            roomObjects.addAll(getDoors(r));
+            r.items().forEach(i -> roomObjects.add(i));
         });
-        return objects;
     }
 }

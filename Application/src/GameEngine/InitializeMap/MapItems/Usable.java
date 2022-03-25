@@ -10,5 +10,5 @@ public abstract class Usable extends Item {
 
     protected final boolean _reusable;
 
-    public abstract String use(MapObject obj) throws InvalidObjectException;
+    public abstract String useOn(MapObject obj) throws InvalidObjectException;
 }

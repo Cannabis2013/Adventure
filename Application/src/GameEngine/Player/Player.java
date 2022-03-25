@@ -14,8 +14,10 @@ import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
 import GameEngine.MapObjects.MapObject;
+import GameEngine.Utils.FindObjectByTitle;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
+import GameEngine.Utils.ObjectNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,11 +96,23 @@ public class Player extends Human {
         throw new ItemNotFoundException();
     }
 
-    public String useItem(String itemTitle, MapObject object) throws ItemNotFoundException, InvalidObjectException {
+    public String useItem(String itemTitle, String roomObject) throws ItemNotFoundException, InvalidObjectException, ObjectNotFoundException {
+        var roomObjects = currentRoom.roomObjects();
+        var findObject = new FindObjectByTitle();
+        var roomItem = findObject.find(roomObjects, roomObject);
         var item = _getItem.findByTitle(_inventory,itemTitle);
         if(item instanceof Usable){
             var usable = (Usable) item;
-            return usable.use(object);
+            return usable.useOn(roomItem);
+        }
+        throw new ItemNotFoundException();
+    }
+
+    public String useItem(String itemTitle) throws InvalidObjectException, ItemNotFoundException {
+        var item = _getItem.findByTitle(_inventory,itemTitle);
+        if(item instanceof Usable){
+            var usable = (Usable) item;
+            return usable.useOn(this);
         }
         throw new ItemNotFoundException();
     }

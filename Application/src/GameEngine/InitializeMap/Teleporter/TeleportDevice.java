@@ -47,7 +47,7 @@ public class TeleportDevice extends Usable {
     }
 
     @Override
-    public String use(MapObject obj) throws InvalidObjectException {
+    public String useOn(MapObject obj) throws InvalidObjectException {
         if(_used){
             return "Not working anymore";
         }

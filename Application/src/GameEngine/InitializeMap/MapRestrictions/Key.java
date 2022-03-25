@@ -18,7 +18,7 @@ public class Key extends Usable {
     }
 
     @Override
-    public String use(MapObject obj) throws InvalidObjectException {
+    public String useOn(MapObject obj) throws InvalidObjectException {
         if(!(obj instanceof Door))
             throw new InvalidObjectException();
         var door = (Door) obj;

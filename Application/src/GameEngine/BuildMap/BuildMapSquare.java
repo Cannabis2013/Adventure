@@ -36,7 +36,7 @@ public class BuildMapSquare {
         var initMap = new InitializeMap();
         initMap.initialize(map.rooms());
         var getObjects = new GetMapObjects();
-        map.setObjects(getObjects.assemble(map));
+        getObjects.populateRoomObjects(map);
     }
 
     public Map build(){

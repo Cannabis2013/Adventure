@@ -8,5 +8,4 @@ import java.util.List;
 public interface IMap {
     List<Room> rooms();
     Room initialRoom();
-    List<MapObject> objects();
 }
