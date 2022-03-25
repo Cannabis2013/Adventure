@@ -18,13 +18,13 @@ public class BuildSmallSquared implements IMapBuilder {
     private List<Room> buildRooms(IMap map){
         var rooms = new ArrayList<Room>();
         for (var i = 0;i < 9;i++)
-            rooms.add(new Room(Room.RoomType.Normal, map));
+            rooms.add(new Room(Room.RoomType.NORMAL_ROOM, map));
         return rooms;
     }
 
     private Room randomizeInitialRoom(List<Room> rooms){
         var normals = rooms.stream()
-                .filter(r -> r.getRoomType() == Room.RoomType.Normal)
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM)
                 .toList();
         var rand = new Random();
         var randIndex = rand.nextInt(normals.size());

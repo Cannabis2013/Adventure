@@ -13,7 +13,7 @@ public class AddAccessRestrictions extends RandomRoomsPopulator {
         var keys = _restrictMap.restrict(rooms)
                 .stream().map(k -> (Item) k).toList();
         var normals = rooms.stream()
-                .filter(r -> r.getRoomType() == Room.RoomType.Normal).toList();
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM).toList();
         addItems(normals,keys);
     }
 }

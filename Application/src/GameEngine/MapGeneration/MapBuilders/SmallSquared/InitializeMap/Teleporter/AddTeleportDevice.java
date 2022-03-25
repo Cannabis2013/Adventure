@@ -17,7 +17,7 @@ public class AddTeleportDevice extends RandomRoomsPopulator {
 
     public void add(List<Room> rooms){
         var normals = rooms.stream()
-                .filter(r -> r.getRoomType() == Room.RoomType.Normal
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM
                 && !r.isSealed()).toList();
         var teleporters = buildTeleporters(2);
         teleporters.add(new TeleportDevice());

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room extends Node {
+    public enum RoomType {NORMAL_ROOM, BOSS_ROOM, END_ROOM;}
     private List<Item> _items = new ArrayList<>();
     private RoomType _roomType;
     private IMap _parentMap;
@@ -19,12 +20,15 @@ public class Room extends Node {
     public List<String> demonsAsString() {
         return _demons.stream().map(d -> d.title()).toList();
     }
+
     public boolean isSealed() {return _sealed;}
     public void setSealed(boolean sealed) {_sealed = sealed;}
+
     public List<MapObject> roomObjects() {
         return _roomObjects;
     }
-    public enum RoomType {Normal, BossRoom;}
+
+
 
     public Room(RoomType type, IMap parentMap){
         super("room");
@@ -39,7 +43,7 @@ public class Room extends Node {
 
     public IMap map() {return _parentMap;}
 
-    public void promote(){_roomType = RoomType.BossRoom;}
+    public void promote(){_roomType = RoomType.BOSS_ROOM;}
 
     public void addItem(Item item){
         _items.add(item);}

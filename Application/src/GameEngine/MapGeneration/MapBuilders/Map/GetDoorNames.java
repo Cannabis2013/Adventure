@@ -1,18 +1,12 @@
 package GameEngine.MapGeneration.MapBuilders.Map;
 
-import GameEngine.MapGeneration.MapBuilders.Map.Door;
-import GameEngine.MapGeneration.MapBuilders.Map.Room;
-
 public class GetDoorNames {
     private String doorDetails(String orientation, Door door){
         if(door == null)
             return "";
         var msg = orientation + ": ";
         msg += door.title();
-        if(door.isLocked())
-            msg += " (locked)";
-        else
-            msg += " (not locked)";
+        msg += door.isLocked() ? " (locked)" : " (not locked)";
         msg += "\n";
         return msg;
     }

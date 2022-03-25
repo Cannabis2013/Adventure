@@ -34,7 +34,7 @@ public class TeleportDevice extends Usable {
         var currentRoom = obj.getCurrentRoom();
         var rooms = map.rooms();
         var normals = rooms.stream()
-                .filter(r -> r.getRoomType() == Room.RoomType.Normal)
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM)
                 .takeWhile(r ->r != currentRoom);
         var randomRoom = getRandomRoom(normals.toList());
         obj.setCurrentRoom(randomRoom);

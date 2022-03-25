@@ -34,7 +34,7 @@ public class MapAccessRestrictions {
 
     public List<Key> restrict(List<Room> rooms){
         var specials = rooms.stream()
-                .filter(r -> r.getRoomType() == Room.RoomType.BossRoom)
+                .filter(r -> r.getRoomType() == Room.RoomType.BOSS_ROOM)
                 .toList();
         var keys = lockSpecialRooms(specials);
         return keys;
