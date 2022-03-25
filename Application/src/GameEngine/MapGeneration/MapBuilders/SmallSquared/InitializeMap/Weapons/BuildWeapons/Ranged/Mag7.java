@@ -6,7 +6,7 @@ import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
 
 public class Mag7 extends RangeWeapon{
     public Mag7() {
-        super("shotgun", "Mag 7");
+        super("shotgun", "Mag7");
         _ammo = 7;
         _damage = 10;
     }
@@ -18,11 +18,6 @@ public class Mag7 extends RangeWeapon{
             useAmmo();
             target.takeHealth(_damage);
         }
-        return null;
-    }
-
-    @Override
-    public String presentate() {
-        return _title;
+        return "BANG!";
     }
 }

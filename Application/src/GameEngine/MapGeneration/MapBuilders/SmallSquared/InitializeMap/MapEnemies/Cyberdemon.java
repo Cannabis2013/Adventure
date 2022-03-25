@@ -5,6 +5,10 @@ import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObj
 import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
 
 public class Cyberdemon extends Demon {
+    public Cyberdemon() {
+        super("Cyberdemon");
+    }
+
     @Override
     public String attack(MapObject object) {
         return null;
@@ -13,10 +17,5 @@ public class Cyberdemon extends Demon {
     @Override
     public int takeHealth(int num) throws FatalBlowException {
         return 0;
-    }
-
-    @Override
-    public String presentate() {
-        return _title;
     }
 }

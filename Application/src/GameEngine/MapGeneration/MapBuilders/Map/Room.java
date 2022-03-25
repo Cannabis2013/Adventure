@@ -7,9 +7,7 @@ import GameEngine.Utils.ItemNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Room extends MapObject {
-    private static int _num = 0;
-    private Door north, east,south,west;
+public class Room extends Node {
     private List<Item> _items = new ArrayList<>();
     private RoomType _roomType;
     private IMap _parentMap;
@@ -19,7 +17,7 @@ public class Room extends MapObject {
 
     public List<Demon> demons() {return _demons;}
     public List<String> demonsAsString() {
-        return _demons.stream().map(d -> d.presentate()).toList();
+        return _demons.stream().map(d -> d.title()).toList();
     }
     public boolean isSealed() {return _sealed;}
     public void setSealed(boolean sealed) {_sealed = sealed;}
@@ -29,7 +27,7 @@ public class Room extends MapObject {
     public enum RoomType {Normal, BossRoom;}
 
     public Room(RoomType type, IMap parentMap){
-        _title = String.format("Room %d",_num);
+        super("room");
         _roomType = type;
         _parentMap = parentMap;
 
@@ -46,8 +44,8 @@ public class Room extends MapObject {
     public void addItem(Item item){
         _items.add(item);}
 
-    public Item takeItem(int itemID) throws ItemNotFoundException {
-        var item = _getItem.findByID(_items,itemID);
+    public Item takeItem(String itemTitle) throws ItemNotFoundException {
+        var item = _getItem.findByTitle(_items,itemTitle);
         _items.remove(item);
         return item;
     }
@@ -59,49 +57,7 @@ public class Room extends MapObject {
         return items;
     }
 
-    public void disconnect() {
-        if(this.north != null)
-            north.other(this).south = null;
-        if(east != null)
-            east.other(this).west = null;
-        if(south != null)
-            south.other(this).north = null;
-        if(west != null)
-            west.other(this).east = null;
-        north = null;
-        east = null;
-        south = null;
-        west = null;
-    }
-
     private GetItemFromList _getItem = new GetItemFromList();
 
-    public Door getNorth() {return north;}
-    public Door getEast() {return east;}
-    public Door getWest() {return west;}
-    public Door getSouth() {return south;}
 
-    public void setNorth(Room room) {
-        var door = new Door(this,room);
-        this.north = door;
-        room.south = door;
-    }
-
-    public void setEast(Room room) {
-        var door = new Door(this,room);
-        this.east = door;
-        room.west = door;
-    }
-
-    public void setSouth(Room room) {
-        var door = new Door(this,room);
-        this.south = door;
-        room.north = door;
-    }
-
-    public void setWest(Room room) {
-        var door = new Door(this,room);
-        this.west = door;
-        room.east = door;
-    }
 }

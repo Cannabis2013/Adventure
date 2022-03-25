@@ -18,9 +18,4 @@ public class KnuckleBusterWithVolts extends MeleeWeapon {
             ((Organism) targetObject).takeHealth(1);
         return "KAAPOW!!!";
     }
-
-    @Override
-    public String presentate() {
-        return String.format("%s (%d)",_title,id());
-    }
 }

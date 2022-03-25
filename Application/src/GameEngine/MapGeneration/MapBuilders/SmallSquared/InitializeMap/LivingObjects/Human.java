@@ -10,6 +10,7 @@ public abstract class Human extends Organism {
     private String name;
 
     public Human(String name) {
+        super(name);
         this.name = name;
     }
 

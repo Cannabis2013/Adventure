@@ -7,26 +7,24 @@ import GameEngine.Utils.ItemNotFoundException;
 public class HandleInteractionCommands {
     private PrintInteractionMessages _printer = new PrintInteractionMessages();
 
-    private void takeOneItem(String itemID, GameEngine engine){
-        int id = Integer.parseInt(itemID);
+    private void takeOneItem(String itemTitle, GameEngine engine){
         try {
-            var itemTitle = engine.takeItem(id);
+            engine.takeItem(itemTitle);
             _printer.printItemTaken(itemTitle);
         } catch (ItemNotFoundException e) {
-            _printer.printItemNotInRoom(itemID);
+            _printer.printItemNotInRoom(itemTitle);
         }
     }
 
     public void handleTake(String command, GameEngine engine){
-        String arg = command.substring(5);
-        if(!arg.matches("^\\d+$"))
-            _printer.printBadCommand();
-        else if(arg.equals("all"))
+        String itemTitle = command.substring(5);
+        if(itemTitle.equals("all"))
             engine.takeAll();
         else
-            takeOneItem(arg,engine);
+            takeOneItem(itemTitle,engine);
 
     }
+
     public void handleDrop(String command,  GameEngine gameEngine){
         String args = command.substring(5);
         try {

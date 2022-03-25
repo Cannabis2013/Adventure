@@ -24,7 +24,7 @@ public class PrintInteractionMessages {
     }
 
     public void printItemTaken(String itemTitle){
-        var msg = String.format("You have taken %s.",itemTitle);
+        var msg = String.format("You have taken %s",itemTitle);
         var formatted = _formatter.formatWhiteOnRedTight(msg);
         System.out.println(formatted);
     }

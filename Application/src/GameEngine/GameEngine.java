@@ -35,8 +35,8 @@ public class GameEngine {
         return _player.getCurrentRoom().doorTitles();
     }
 
-    public String takeItem(int itemID) throws ItemNotFoundException {
-        return _player.takeItem(itemID);
+    public String takeItem(String itemTitle) throws ItemNotFoundException {
+        return _player.takeItem(itemTitle);
     }
 
     public void takeAll(){

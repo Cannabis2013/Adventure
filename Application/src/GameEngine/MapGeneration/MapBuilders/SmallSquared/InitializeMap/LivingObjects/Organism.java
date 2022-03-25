@@ -5,6 +5,10 @@ import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
 public abstract class Organism extends MapObject {
     protected int _health = 100;
 
+    public Organism(String title) {
+        super(title);
+    }
+
     public int getHealth() {
         return _health;
     }

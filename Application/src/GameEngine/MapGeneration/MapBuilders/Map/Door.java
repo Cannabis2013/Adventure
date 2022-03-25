@@ -3,32 +3,31 @@ package GameEngine.MapGeneration.MapBuilders.Map;
 public class Door extends MapObject {
     private int lockID;
     private boolean locked = false;
-    private static int _doorIndex = 0;
 
-    private Room room1,room2;
+    private Node _node1, _node2;
 
-    public Door(Room room1, Room room2) {
-        this.room1 = room1;
-        this.room2 = room2;
-        _title = String.format("door %d",++_doorIndex);
+    public Door(Node node1, Node Node2) {
+        super("door");
+        this._node1 = node1;
+        this._node2 = Node2;
     }
 
-    public Room other(Room thisRoom){
-        if(room1.equals(thisRoom))
-            return room2;
-        else if(room2.equals(thisRoom))
-            return room1;
+    public Node other(Node thisNode){
+        if(_node1.equals(thisNode))
+            return _node2;
+        else if(_node2.equals(thisNode))
+            return _node1;
         else
             return null;
     }
 
-    public Room getOther(Room thisRoom) throws DoorIsLockedException {
+    public Node getOther(Node thisRoom) throws DoorIsLockedException {
         if(locked)
             throw new DoorIsLockedException();
-        if(room1.equals(thisRoom))
-            return room2;
-        else if(room2.equals(thisRoom))
-            return room1;
+        if(_node1.equals(thisRoom))
+            return _node2;
+        else if(_node2.equals(thisRoom))
+            return _node1;
         else
             throw new DoorIsLockedException();
     }

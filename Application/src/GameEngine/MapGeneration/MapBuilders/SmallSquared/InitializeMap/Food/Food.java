@@ -20,9 +20,4 @@ public class Food extends Consumable {
         player.inventory().remove(this);
         return title() + " " + hp_change + "hp";
     }
-
-    @Override
-    public String presentate() {
-        return String.format("%s (%d)",_title,id());
-    }
 }

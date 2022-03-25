@@ -18,9 +18,9 @@ public class TeleportDevice extends Usable {
     @Override
     public String presentate() {
         if(_used)
-            return String.format("%s (%d) (broken)",_title,id());
+            return String.format("%s (broken)",_title);
         else
-            return String.format("%s (%d)",_title,id());
+            return _title;
     }
 
     private Room getRandomRoom(List<Room> rooms){

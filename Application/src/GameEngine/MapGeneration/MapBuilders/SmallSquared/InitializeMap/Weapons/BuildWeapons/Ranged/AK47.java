@@ -36,9 +36,4 @@ public class AK47 extends RangeWeapon{
         else
             return "ratatata";
     }
-
-    @Override
-    public String presentate() {
-        return String.format("%s (%d)",_title,id());
-    }
 }

@@ -20,7 +20,7 @@ public class HandleEquipWeapon {
     }
 
     public void handleEquip(String command, GameEngine engine){
-        if(!command.matches("equip \\w+\\s*\\w*$"))
+        if(!command.matches("equip [A-z 0-9]+"))
             _printer.printBadCommand();
         else
             handle(command,engine);

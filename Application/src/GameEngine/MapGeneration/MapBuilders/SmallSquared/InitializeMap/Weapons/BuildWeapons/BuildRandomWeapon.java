@@ -10,29 +10,19 @@ import java.util.List;
 import java.util.Random;
 
 public class BuildRandomWeapon {
-    private List<Weapon> _weapons;
-
-    private List<Weapon> buildWeapons(){
-        var weapons = new ArrayList<Weapon>();
-        weapons.add(new Mag7());
-        weapons.add(new AK47());
-        weapons.add(new DesertEagle());
-        return weapons;
-    }
-
     private int getRandomIndex(int count){
         var random = new Random();
         var randIndex = random.nextInt(count);
         return randIndex;
     }
 
-    public BuildRandomWeapon(){
-        _weapons = buildWeapons();
-    }
-
     public Weapon build(){
-        var randIndex = getRandomIndex(_weapons.size());
-        var randomWeapon = _weapons.get(randIndex);
-        return randomWeapon;
+        var randIndex = getRandomIndex(3);
+        switch (randIndex){
+            case 0 -> {return new AK47();}
+            case 1 -> {return new DesertEagle();}
+            case 2 -> {return new Mag7();}
+            default -> {return null;}
+        }
     }
 }

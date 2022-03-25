@@ -23,8 +23,8 @@ public class MapAccessRestrictions {
 
         var keys = rooms.stream()
                 .map(r -> {
-                   var key = new Key("Red key");
-                   lockRoom(r,key.getID());
+                   var key = new Key("red key");
+                   lockRoom(r,key.id());
                    r.setSealed(true);
                    return key;
                 }).toList();

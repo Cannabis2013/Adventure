@@ -56,7 +56,7 @@ public class Player extends Human {
         return currentRoom.map();
     }
 
-    public String takeItem(int itemTitle) throws ItemNotFoundException {
+    public String takeItem(String itemTitle) throws ItemNotFoundException {
         var item = currentRoom.takeItem(itemTitle);
         _inventory.add(item);
         return item.title();
@@ -83,7 +83,7 @@ public class Player extends Human {
     }
 
     public void travelTo(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
-        currentRoom = _traverseTo.traverse(orientation,currentRoom);
+        currentRoom = (Room) _traverseTo.traverse(orientation,currentRoom);
     }
 
     @Override

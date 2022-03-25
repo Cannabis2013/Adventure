@@ -11,7 +11,7 @@ public class HandleUseItem {
 
     private void multiArguments(String command, GameEngine engine){
         var args = command.substring(4);
-        var pattern = Pattern.compile("(^\\w+)|(\\w+ \\w*$)");
+        var pattern = Pattern.compile("(^[A-z 0-9^]+(?= at))|(\\w+ \\w*$)");
         var matcher = pattern.matcher(args);
         matcher.find();
         var item = matcher.group(0);
@@ -43,11 +43,9 @@ public class HandleUseItem {
 
     public void handleUse(String command, GameEngine engine){
 
-        if(command.matches("use [A-z]* at \\w+\\s*\\w*$"))
+        if(command.matches("^use [A-z 0-9]+ at \\w+\\s*\\w+$"))
             multiArguments(command,engine);
-        else if(command.matches("use [A-z]*$"))
-            singleArgument(command,engine);
         else
-            _printer.printBadCommand();
+            singleArgument(command,engine);
     }
 }

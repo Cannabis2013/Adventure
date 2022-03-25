@@ -12,7 +12,7 @@ public class PrintAttackMessages {
     }
 
     public void printResult(String result){
-        var formatted = _formatter.formatWhiteOnDarkRedLoose(result);
+        var formatted = _formatter.formatWhiteOnRedTight(result);
         System.out.println(formatted);
     }
 }
