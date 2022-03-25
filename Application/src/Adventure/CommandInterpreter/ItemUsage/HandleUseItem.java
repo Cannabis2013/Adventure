@@ -1,7 +1,7 @@
 package Adventure.CommandInterpreter.ItemUsage;
 
 import GameEngine.GameEngine;
-import GameEngine.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
 import java.util.regex.Pattern;

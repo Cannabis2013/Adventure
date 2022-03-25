@@ -1,7 +1,7 @@
 package GameEngine.MapLogistics;
 
-import GameEngine.BuildMap.Rooms.DoorIsLockedException;
-import GameEngine.BuildMap.Rooms.Room;
+import GameEngine.MapGeneration.MapBuilders.Map.DoorIsLockedException;
+import GameEngine.MapGeneration.MapBuilders.Map.Room;
 
 public class MapTraverseTo {
 

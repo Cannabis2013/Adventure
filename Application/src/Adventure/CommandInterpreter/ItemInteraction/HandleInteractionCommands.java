@@ -1,27 +1,30 @@
 package Adventure.CommandInterpreter.ItemInteraction;
 
 import GameEngine.GameEngine;
-import GameEngine.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleInteractionCommands {
     private PrintInteractionMessages _printer = new PrintInteractionMessages();
 
-    private void takeOneItem(String itemTitle, GameEngine engine){
+    private void takeOneItem(String itemID, GameEngine engine){
+        int id = Integer.parseInt(itemID);
         try {
-            engine.takeItem(itemTitle);
+            var itemTitle = engine.takeItem(id);
             _printer.printItemTaken(itemTitle);
         } catch (ItemNotFoundException e) {
-            _printer.printItemNotInRoom(itemTitle);
+            _printer.printItemNotInRoom(itemID);
         }
     }
 
     public void handleTake(String command, GameEngine engine){
-        String itemTitle = command.substring(5);
-        if(itemTitle.equals("all"))
+        String arg = command.substring(5);
+        if(!arg.matches("^\\d+$"))
+            _printer.printBadCommand();
+        else if(arg.equals("all"))
             engine.takeAll();
         else
-            takeOneItem(itemTitle,engine);
+            takeOneItem(arg,engine);
 
     }
     public void handleDrop(String command,  GameEngine gameEngine){

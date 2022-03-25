@@ -1,6 +1,6 @@
 package GameEngine.Utils;
 
-import GameEngine.MapObjects.MapObject;
+import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
 
 import java.util.List;
 

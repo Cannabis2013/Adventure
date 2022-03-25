@@ -1,19 +1,19 @@
 package GameEngine.Player;
 
-import GameEngine.BuildMap.Map.IMap;
-import GameEngine.BuildMap.Rooms.DoorIsLockedException;
-import GameEngine.BuildMap.Rooms.Room;
-import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.InitializeMap.LivingObjects.Human;
-import GameEngine.InitializeMap.MapItems.Consumable;
-import GameEngine.InitializeMap.MapItems.Usable;
-import GameEngine.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.InitializeMap.MapItems.Item;
-import GameEngine.InitializeMap.Weapons.Weapon;
+import GameEngine.MapGeneration.MapBuilders.Map.IMap;
+import GameEngine.MapGeneration.MapBuilders.Map.DoorIsLockedException;
+import GameEngine.MapGeneration.MapBuilders.Map.Room;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.Human;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Consumable;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Usable;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Item;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.Weapons.Weapon;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.MapTraverseTo;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
-import GameEngine.MapObjects.MapObject;
+import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
 import GameEngine.Utils.FindObjectByTitle;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
@@ -56,7 +56,7 @@ public class Player extends Human {
         return currentRoom.map();
     }
 
-    public String takeItem(String itemTitle) throws ItemNotFoundException {
+    public String takeItem(int itemTitle) throws ItemNotFoundException {
         var item = currentRoom.takeItem(itemTitle);
         _inventory.add(item);
         return item.title();

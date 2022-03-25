@@ -1,15 +1,14 @@
 package GameEngine;
 
-import GameEngine.BuildMap.BuildMapSquare;
-import GameEngine.BuildMap.Map.IMap;
-import GameEngine.BuildMap.Rooms.DoorIsLockedException;
-import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.MapGenerator;
+import GameEngine.MapGeneration.MapBuilders.Map.IMap;
+import GameEngine.MapGeneration.MapBuilders.Map.DoorIsLockedException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapLogistics.BadDirectionException;
 import GameEngine.MapLogistics.NoDoorAtOrientationException;
 import GameEngine.Player.EquipWeaponFailedException;
 import GameEngine.Player.Player;
-import GameEngine.Utils.FindObjectByTitle;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
 
@@ -20,7 +19,7 @@ public class GameEngine {
     private IMap _map;
 
     public GameEngine(){
-        _map = new BuildMapSquare().build();
+        _map = new MapGenerator().build();
         _player.setCurrentRoom(_map.initialRoom());
     }
 
@@ -36,8 +35,8 @@ public class GameEngine {
         return _player.getCurrentRoom().doorTitles();
     }
 
-    public String takeItem(String itemTitle) throws ItemNotFoundException {
-        return _player.takeItem(itemTitle);
+    public String takeItem(int itemID) throws ItemNotFoundException {
+        return _player.takeItem(itemID);
     }
 
     public void takeAll(){

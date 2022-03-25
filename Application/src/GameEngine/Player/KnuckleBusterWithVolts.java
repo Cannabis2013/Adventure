@@ -1,9 +1,9 @@
 package GameEngine.Player;
 
-import GameEngine.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.InitializeMap.LivingObjects.Organism;
-import GameEngine.InitializeMap.Weapons.MeleeWeapon;
-import GameEngine.MapObjects.MapObject;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.Organism;
+import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.Weapons.MeleeWeapon;
+import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
 
 public class KnuckleBusterWithVolts extends MeleeWeapon {
     public KnuckleBusterWithVolts() {
@@ -17,5 +17,10 @@ public class KnuckleBusterWithVolts extends MeleeWeapon {
         if(targetObject instanceof Organism)
             ((Organism) targetObject).takeHealth(1);
         return "KAAPOW!!!";
+    }
+
+    @Override
+    public String presentate() {
+        return String.format("%s (%d)",_title,id());
     }
 }
