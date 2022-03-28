@@ -9,7 +9,6 @@ import java.util.List;
 
 public class AddMapDescriptions {
     private final ArrayList<String> _normalDescriptions;
-    private final SpecialMapDescriptions _specialRepo = new SpecialMapDescriptions();
     private ArrayList<Integer> _normalIndexes;
 
     private int _normalIndex = 0;
@@ -32,7 +31,7 @@ public class AddMapDescriptions {
         return _normalIndexes.get(_normalIndex++);
     }
 
-    private void setRegularRoomsDescription(List<Room> rooms){
+    private void setRoomsDescriptions(List<Room> rooms){
         rooms.forEach(r -> {
             if(r.getRoomType() == IRoom.RoomType.NORMAL_ROOM){
                 var description = "No description available";
@@ -42,16 +41,8 @@ public class AddMapDescriptions {
         });
     }
 
-    private void setBossRoomDescription(List<Room> rooms){
-        var bossRoom = rooms.stream()
-                .filter(r -> r.getRoomType() == IRoom.RoomType.BOSS_ROOM)
-                .findFirst().get();
-        bossRoom.setDescription(_specialRepo.bossRoomDescription());
-    }
-
     public void add(List<Room> rooms){
-        setRegularRoomsDescription(rooms);
-        setBossRoomDescription(rooms);
+        setRoomsDescriptions(rooms);
     }
 
     public AddMapDescriptions(){

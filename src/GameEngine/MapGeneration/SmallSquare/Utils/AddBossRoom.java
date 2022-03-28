@@ -1,13 +1,14 @@
 package GameEngine.MapGeneration.SmallSquare.Utils;
 
+import GameEngine.Contracts.IMap;
+import GameEngine.MapGeneration.SmallSquare.Models.BossRoom;
 import GameEngine.MapGeneration.SmallSquare.Models.Room;
-import GameEngine.Contracts.IRoom;
 
 import java.util.List;
 import java.util.Random;
 
-public class PromoteToBossRoom {
-    private void connect(Room room, List<Room> rooms, int bound){
+public class AddBossRoom {
+    private void connect(Room room,List<Room> rooms, int bound){
         var rand = new Random();
         int median = rooms.size() / 2;
         var northOf = rooms.get(median - bound);
@@ -23,16 +24,14 @@ public class PromoteToBossRoom {
         }
     }
 
-    public void promote(List<Room> rooms, int bound){
+    public void set(IMap map, List<Room> rooms, int bound){
         var median = (rooms.size() / 2);
-        var room = rooms.get(median);
-        var rm = rooms.stream().map(r -> {
-            if(r.id() == room.id())
-                return new Room(IRoom.RoomType.BOSS_ROOM,room.map());
-            return r;
-        });
-        room.promote();
-        room.disconnect();
-        connect(room,rooms,bound);
+        var medianRoom = rooms.get(median);
+        medianRoom.disconnect();
+        rooms.remove(median);
+        medianRoom.promote();
+        var bossRoom = new BossRoom(map);
+        connect(bossRoom,rooms,bound);
+        rooms.add(bossRoom);
     }
 }

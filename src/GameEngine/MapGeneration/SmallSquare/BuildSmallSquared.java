@@ -4,7 +4,7 @@ import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.Models.Map;
 import GameEngine.MapGeneration.SmallSquare.Models.Room;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.InitializeMap;
-import GameEngine.MapGeneration.SmallSquare.Utils.PromoteToBossRoom;
+import GameEngine.MapGeneration.SmallSquare.Utils.AddBossRoom;
 import GameEngine.Contracts.IRoom;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Random;
 public class BuildSmallSquared {
     private int _num = 1;
     private InitializeMap _initMap = new InitializeMap();
-    private PromoteToBossRoom _promoteToBoss = new PromoteToBossRoom();
+    private AddBossRoom _setBossRoom = new AddBossRoom();
 
     private List<Room> buildRooms(IMap map){
         var rooms = new ArrayList<Room>(9);
@@ -66,7 +66,7 @@ public class BuildSmallSquared {
         var map = new Map();
         var rooms = buildRooms(map);
         connectRooms(rooms,0,0,0);
-        _promoteToBoss.promote(rooms,bound(rooms));
+        _setBossRoom.set(map,rooms,bound(rooms));
         _initMap.initialize(rooms);
         map.setRooms(rooms);
         map.setInitialRoom(randomizeInitialRoom(rooms));

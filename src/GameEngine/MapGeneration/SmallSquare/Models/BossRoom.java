@@ -4,9 +4,10 @@ import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Cyberdemon;
 
 public class BossRoom extends Room{
-    public BossRoom(RoomType type, IMap parentMap) {
-        super(type, parentMap);
+    public BossRoom(IMap parentMap) {
+        super(RoomType.BOSS_ROOM, parentMap);
         demons().add(new Cyberdemon(this));
+
         setDescription("""
                 Ohh shit. There is definitely something wrong here.
                 

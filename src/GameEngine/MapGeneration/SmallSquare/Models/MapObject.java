@@ -4,7 +4,7 @@ import GameEngine.Contracts.IObjectEntity;
 
 public class MapObject implements IObjectEntity {
     private static int _objectIndex = 0;
-    private int _id;
+    protected int _id;
     @Override
     public int id() {return _id;}
 
