@@ -32,8 +32,9 @@ public class HandleTravel {
             engine.travel(translate(orientation));
             var description = engine.roomDescription();
             var doorTitles = engine.doorNames();
+            var roomEnemies = engine.roomEnemies();
             var items = engine.roomItems();
-            _printRoomDetails.print(description,items, doorTitles);
+            _printRoomDetails.print(description,roomEnemies, items,doorTitles);
         } catch (IllegalArgumentException e){
             _printer.printBadCommand();
         } catch (BadDirectionException | NoDoorAtOrientationException e){
