@@ -5,6 +5,7 @@ import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapGeneration.MapGenerator;
+import GameEngine.MapGeneration.SmallSquare.Models.DemonNotFoundException;
 import GameEngine.Player.BadDirectionException;
 import GameEngine.Player.NoDoorAtOrientationException;
 import GameEngine.Player.EquipWeaponFailedException;
@@ -76,7 +77,13 @@ public class GameEngine {
     }
 
     public String attack() throws FatalBlowException, InvalidObjectException {
-        return _player.attack(null);
+        var demon = _player.getCurrentRoom().demon();
+        return _player.attack(demon);
+    }
+
+    public String attack(String target) throws DemonNotFoundException, InvalidObjectException, FatalBlowException {
+        var demon = _player.getCurrentRoom().demon(target);
+        return _player.attack(demon);
     }
 
     public String equippedWeapon(){
@@ -85,5 +92,9 @@ public class GameEngine {
 
     public List<String> roomEnemies() {
         return _player.getCurrentRoom().demonsAsString();
+    }
+
+    public String attackSound(){
+        return _player.equipped().sound();
     }
 }

@@ -30,6 +30,9 @@ public class Player extends Human {
 
     public String weaponAsString() {return _weapon.presentate();}
 
+    public Weapon equipped(){return _weapon;}
+
+
     @Override
     public String equip(String weaponTitle) throws ItemNotFoundException, EquipWeaponFailedException {
         var weapon = _getItem.findByTitle(_inventory,weaponTitle);
@@ -44,7 +47,7 @@ public class Player extends Human {
 
     @Override
     public String attack(MapObject object) throws FatalBlowException, InvalidObjectException {
-        return _weapon.attack(object);
+        return String.format("%d",_weapon.attack(object));
     }
 
     public List<Item> inventory() {return _inventory;}

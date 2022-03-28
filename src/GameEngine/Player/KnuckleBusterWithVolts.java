@@ -3,6 +3,7 @@ package GameEngine.Player;
 import GameEngine.Contracts.IInflictable;
 import GameEngine.Contracts.IObjectEntity;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.MeleeWeapon;
 
 public class KnuckleBusterWithVolts extends MeleeWeapon {
@@ -12,11 +13,18 @@ public class KnuckleBusterWithVolts extends MeleeWeapon {
     }
 
     @Override
-    public String attack(IObjectEntity targetObject) throws FatalBlowException {
+    public int attack(IObjectEntity targetObject) throws FatalBlowException, InvalidObjectException {
         if(targetObject == null)
-            return "zzzh";
+            return 0;
         if(targetObject instanceof IInflictable)
-            ((IInflictable) targetObject).inflict(1);
-        return "KAAPOW!!!";
+            return ((IInflictable) targetObject).inflict(1);
+        else
+            throw new InvalidObjectException();
     }
+
+    @Override
+    public String sound() {
+        return "klask";
+    }
+
 }

@@ -25,6 +25,6 @@ public class Imp extends Demon {
 
     @Override
     public String attack(MapObject object) throws InvalidObjectException, FatalBlowException {
-        return _equippedWeapon.attack(object);
+        return String.format("%d",_equippedWeapon.attack(object));
     }
 }

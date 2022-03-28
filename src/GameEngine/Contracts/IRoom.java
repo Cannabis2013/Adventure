@@ -1,5 +1,6 @@
 package GameEngine.Contracts;
 
+import GameEngine.MapGeneration.SmallSquare.Models.DemonNotFoundException;
 import GameEngine.MapGeneration.SmallSquare.Models.Node;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.Demon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Item;
@@ -12,6 +13,8 @@ public interface IRoom {
 
     String description();
     void setDescription(String str);
+    public Demon demon();
+    public Demon demon(String title) throws DemonNotFoundException;
 
     boolean isSealed();
     void setSealed(boolean sealed);

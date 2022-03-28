@@ -11,8 +11,17 @@ public class PrintAttackMessages {
         System.out.println(formatted);
     }
 
-    public void printResult(String result){
-        var formatted = _formatter.formatWhiteOnRedTight(result);
+    public void printResult(String sound,String result, String target){
+        var msg = sound + "\n" + "You dealt " + result + " damage";
+        if(!target.isEmpty())
+            msg += " to " + target;
+        var formatted = _formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printDemonNotFound(){
+        var msg = "Demon not found";
+        var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
 }

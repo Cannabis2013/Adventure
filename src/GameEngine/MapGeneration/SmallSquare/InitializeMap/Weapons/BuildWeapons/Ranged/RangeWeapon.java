@@ -9,35 +9,31 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.Weapon;
 public abstract class RangeWeapon extends Weapon {
     protected int _ammo;
     protected int _rate = 1;
-    private final String _soundLoaded;
-    private final String _soundUnloaded;
 
-    public RangeWeapon(String shortTitle, String title, String soundLoaded, String soundUnloaded) {
+    public RangeWeapon(String shortTitle, String title) {
         super(shortTitle, title);
-        _soundLoaded = soundLoaded;
-        _soundUnloaded = soundUnloaded;
     }
 
     public int ammo() {return _ammo;}
     protected void useAmmo() {_ammo -= _rate;}
 
-    private String shoot(){
+    private int shoot(){
         if(ammo() <= 0)
-            return _soundUnloaded;
+            return 0;
         useAmmo();
-        return _soundLoaded;
+        return 0;
     }
 
-    private String shoot(IInflictable target) throws FatalBlowException {
+    private int shoot(IInflictable target) throws FatalBlowException {
         if(ammo() <= 0)
-            return _soundUnloaded;
+            return 0;
         useAmmo();
         target.inflict(_damage);
-        return _soundLoaded;
+        return _damage;
     }
 
     @Override
-    public String attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
+    public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
         if(target == null)
             return shoot();
         else if(!(target instanceof IInflictable))

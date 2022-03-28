@@ -12,8 +12,10 @@ public abstract class Weapon extends Item {
 
     protected int _damage = 0;
 
-    public abstract String attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException;
+    public abstract int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException;
 
     public int ammo(){return 0;}
+
+    public abstract String sound();
 
 }

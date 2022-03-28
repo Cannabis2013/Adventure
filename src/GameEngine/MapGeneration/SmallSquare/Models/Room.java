@@ -8,6 +8,7 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Item;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Room extends Node {
@@ -22,6 +23,23 @@ public class Room extends Node {
 
     public String description() {return _description;}
     public void setDescription(String description) {_description = description;}
+
+    @Override
+    public Demon demon() {
+        if(_demons.isEmpty())
+            return null;
+        Collections.shuffle(_demons);
+        return _demons.get(0);
+    }
+
+    @Override
+    public Demon demon(String title) throws DemonNotFoundException {
+        var demon =_demons.stream()
+                .filter(d -> d.title().equals(title)).findFirst();
+        if(!demon.isPresent())
+            throw new DemonNotFoundException();
+        return demon.get();
+    }
 
     @Override
     public List<Demon> demons() {return _demons;}

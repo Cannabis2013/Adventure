@@ -9,4 +9,9 @@ public class Katana extends MeleeWeapon{
         _damage = 5;
     }
 
+    @Override
+    public String sound() {
+        return "swiscch";
+    }
+
 }
