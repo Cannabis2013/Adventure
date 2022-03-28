@@ -3,18 +3,20 @@ package GameEngine.Player.Actions;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
 import GameEngine.Player.Exceptions.EquipWeaponFailedException;
+import GameEngine.Player.InventoryBag.Bag;
 import GameEngine.Utils.FindObjectFromList;
 import GameEngine.Utils.ItemNotFoundException;
 import java.util.List;
 
 public class EquipWeapon {
-    public Weapon equip(String weaponTitle ,Weapon currentEquipped,FindObjectFromList _findObject, List<Item> _inventory) throws ItemNotFoundException, EquipWeaponFailedException {
-        var weaponToEquip = _findObject.findItemByTitle(_inventory,weaponTitle);
-        if(!(weaponToEquip instanceof Weapon))
+    public Weapon equip(String weaponTitle , Weapon currentEquipped, Bag bag) throws ItemNotFoundException, EquipWeaponFailedException {
+        var weaponToEquip = bag.take(weaponTitle);
+        if(!(weaponToEquip instanceof Weapon)){
+            bag.add(weaponToEquip);
             throw new EquipWeaponFailedException();
-        _inventory.remove(weaponToEquip);
+        }
         if(currentEquipped != null)
-            _inventory.add(currentEquipped);
+            bag.add(currentEquipped);
         return (Weapon) weaponToEquip;
     }
 }

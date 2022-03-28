@@ -5,21 +5,20 @@ import GameEngine.Contracts.IMap;
 import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Melee.KnuckleBusterWithVolts;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
 import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 import GameEngine.Player.Exceptions.*;
+import GameEngine.Player.InventoryBag.Bag;
 import GameEngine.Utils.FindObjectFromList;
 import GameEngine.Utils.ItemNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends PlayerObject {
     private FindObjectFromList _findObject = new FindObjectFromList();
     private IRoom _currentRoom;
     private Weapon _weapon = new KnuckleBusterWithVolts();
-    private final List<Item> _inventory = new ArrayList<>();
+    private Bag _bag = new Bag();
 
     public String weaponAsString() {return _weapon.presentate();}
 
@@ -27,7 +26,7 @@ public class Player extends PlayerObject {
 
     @Override
     public String equip(String weaponTitle) throws EquipWeaponFailedException, ItemNotFoundException {
-        _weapon = _equipWeapon.equip(weaponTitle,_weapon,_findObject,_inventory);
+        _weapon = _equipWeapon.equip(weaponTitle,_weapon,_bag);
         return _weapon.title();
     }
 
@@ -40,19 +39,18 @@ public class Player extends PlayerObject {
 
     public String takeItem(String itemTitle) throws ItemNotFoundException {
         var item = _currentRoom.takeItem(itemTitle);
-        _inventory.add(item);
+        _bag.add(item);
         return item.title();
     }
 
     public void takeAll(){
         var items = _currentRoom.items();
-        _inventory.addAll(items);
+        _bag.add(items);
         _currentRoom.items().clear();
     }
 
     public String dropItem(String itemTitle) throws ItemNotFoundException {
-        var item = _findObject.findItemByTitle(_inventory,itemTitle);
-        _inventory.remove(item);
+        var item = _bag.take(itemTitle);
         _currentRoom.addItem(item);
         return item.title();
     }
@@ -61,7 +59,7 @@ public class Player extends PlayerObject {
     public void setCurrentRoom(IRoom room) {_currentRoom = room;}
 
     public List<String> inventoryToString() {
-        return _inventory.stream().map(i -> i.presentate()).toList();
+        return _bag.itemTitles();
     }
 
     public void travelTo(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
@@ -70,14 +68,14 @@ public class Player extends PlayerObject {
 
     @Override
     public String consumeItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException {
-        return _consumeItem.consume(itemTitle,_findObject,_inventory,this);
+        return _consumeItem.consume(itemTitle,_bag,this);
     }
 
     public String useItem(String itemTitle, String roomObject) throws UsableNotFoundException, TargetNotFoundException, InvalidObjectException {
-        return _useItem.use(itemTitle,roomObject, _currentRoom,_findObject,_inventory);
+        return _useItem.use(itemTitle,roomObject, _currentRoom,_bag);
     }
 
-    public String useItem(String itemTitle) throws InvalidObjectException, ItemNotFoundException, ItemNotUsableException {
-        return _useItem.use(itemTitle,_findObject,_inventory,this);
+    public String useItem(String itemTitle) throws InvalidObjectException, ItemNotUsableException, UsableNotFoundException {
+        return _useItem.use(itemTitle,_bag,this);
     }
 }

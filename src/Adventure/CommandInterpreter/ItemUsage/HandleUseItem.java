@@ -41,7 +41,7 @@ public class HandleUseItem {
             _printer.printInvalidObject();
         }  catch (ItemNotUsableException e) {
             _printer.printNotUsable(item);
-        } catch (ItemNotFoundException e) {
+        } catch (UsableNotFoundException e) {
             _printer.printUsableNotFound(item);
         }
     }

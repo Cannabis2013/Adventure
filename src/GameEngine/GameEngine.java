@@ -63,7 +63,7 @@ public class GameEngine {
         return _player.useItem(item,target);
     }
 
-    public String useItem(String item) throws ItemNotUsableException, InvalidObjectException, ItemNotFoundException {
+    public String useItem(String item) throws ItemNotUsableException, InvalidObjectException, UsableNotFoundException {
         return _player.useItem(item);
     }
 

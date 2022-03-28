@@ -8,6 +8,7 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables
 import GameEngine.Player.Exceptions.ItemNotUsableException;
 import GameEngine.Player.Exceptions.TargetNotFoundException;
 import GameEngine.Player.Exceptions.UsableNotFoundException;
+import GameEngine.Player.InventoryBag.Bag;
 import GameEngine.Player.PlayerObject;
 import GameEngine.Utils.FindObjectFromList;
 import GameEngine.Utils.ItemNotFoundException;
@@ -16,30 +17,36 @@ import GameEngine.Utils.ObjectNotFoundException;
 import java.util.List;
 
 public class UseItem {
-    public String use(String itemTitle, String roomObject, IRoom currentRoom,
-                      FindObjectFromList _findObject, List<Item> _inventory) throws TargetNotFoundException, UsableNotFoundException, InvalidObjectException {
-        var roomObjects = currentRoom.roomObjects();
-        IObjectEntity roomItem = null;
-        try {
-            roomItem = _findObject.findObjectByTitle(roomObjects, roomObject);
-        } catch (ObjectNotFoundException e) {
+    IObjectEntity findTarget(IRoom room, String title) throws TargetNotFoundException {
+        var obj = room.roomObjects().stream()
+                .filter(o -> o.title().equals(title))
+                .findFirst();
+        if(obj.isEmpty())
             throw new TargetNotFoundException();
-        }
-        IObjectEntity item = null;
+        return obj.get();
+    }
+
+    private Item findItemFromBag(Bag bag, String itemTitle) throws UsableNotFoundException {
         try {
-            item = _findObject.findItemByTitle(_inventory,itemTitle);
+            return bag.get(itemTitle);
         } catch (ItemNotFoundException e) {
+            e.printStackTrace();
             throw new UsableNotFoundException();
         }
+    }
+
+    public String use(String itemTitle, String targetObject, IRoom currentRoom, Bag bag) throws TargetNotFoundException, UsableNotFoundException, InvalidObjectException {
+        var roomObjects = currentRoom.roomObjects();
+        IObjectEntity roomItem = findTarget(currentRoom,targetObject);
+        var item = findItemFromBag(bag,itemTitle);
         if(item instanceof Usable){
             var usable = (Usable) item;
             return usable.useOn(roomItem);
         }
         throw new InvalidObjectException();
     }
-    public String use(String itemTitle, FindObjectFromList _findObject,
-                      List<Item> _inventory, PlayerObject player) throws ItemNotFoundException, InvalidObjectException, ItemNotUsableException {
-        var item = _findObject.findItemByTitle(_inventory,itemTitle);
+    public String use(String itemTitle, Bag bag, PlayerObject player) throws InvalidObjectException, ItemNotUsableException, UsableNotFoundException {
+        var item = findItemFromBag(bag,itemTitle);
         if(item instanceof Usable){
             var usable = (Usable) item;
             return usable.useOn(player);
