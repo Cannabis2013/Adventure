@@ -14,4 +14,9 @@ public abstract class MeleeWeapon extends Weapon {
     public String attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
         return null;
     }
+
+    @Override
+    public String presentate() {
+        return String.format("%s (Damage: %s, Damage: %s)", _title, _damage);
+    }
 }

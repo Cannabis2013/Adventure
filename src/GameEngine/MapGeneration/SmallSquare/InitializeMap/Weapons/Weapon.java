@@ -15,4 +15,5 @@ public abstract class Weapon extends Item {
     public abstract String attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException;
 
     public int ammo(){return 0;}
+
 }
