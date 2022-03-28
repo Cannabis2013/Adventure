@@ -8,4 +8,5 @@ public class Katana extends MeleeWeapon{
         super("Sword", "Katana");
         _damage = 5;
     }
+
 }

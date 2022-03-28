@@ -45,4 +45,9 @@ public abstract class RangeWeapon extends Weapon {
         var inflictableTarget = (IInflictable) target;
         return shoot(inflictableTarget);
     }
+
+    @Override
+    public String presentate() {
+        return String.format("%s (Damage: %s, Ammo: %s, Rate: %s)", _title, _damage, _ammo, _rate);
+    }
 }
