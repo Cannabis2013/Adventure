@@ -11,9 +11,10 @@ public class HandleGeneralCommand {
 
     private void printRoomDetails(GameEngine engine){
         var description = engine.roomDescription();
+        var roomEnemies = engine.roomEnemies();
         var roomItems = engine.roomItems();
         var doorTitles = engine.doorNames();
-        _printRoomDetails.print(description,roomItems,doorTitles);
+        _printRoomDetails.print(description,roomEnemies,roomItems,doorTitles);
     }
 
     public void handle(String command, GameEngine engine){

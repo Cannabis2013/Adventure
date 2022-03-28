@@ -2,6 +2,7 @@ package GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects;
 
 import GameEngine.Contracts.IInflictable;
 import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.Weapon;
 import GameEngine.MapGeneration.SmallSquare.Models.MapObject;
 
@@ -28,14 +29,15 @@ public abstract class Demon extends MapObject implements IInflictable {
     public void takeHealth(int value) throws FatalBlowException {
         _health -= value;
         if(_health <= 0)
-            throw new FatalBlowException();
+            die();
     }
 
-    public void die(){
+    public void die() throws FatalBlowException {
         var weapon = _equippedWeapon;
         _equippedWeapon = null;
         _currentRoom.addItem(weapon);
+        throw new FatalBlowException();
     }
 
-    public abstract String attack(MapObject object);
+    public abstract String attack(MapObject object) throws InvalidObjectException, FatalBlowException;
 }

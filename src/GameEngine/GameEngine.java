@@ -78,4 +78,8 @@ public class GameEngine {
     public String attack() throws FatalBlowException, InvalidObjectException {
         return _player.attack(null);
     }
+
+    public List<String> roomEnemies() {
+        return _player.getCurrentRoom().demonsAsString();
+    }
 }
