@@ -1,6 +1,6 @@
 package GameEngine.Utils;
 
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Item;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Item;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,11 +15,15 @@ public class GetItemFromList {
         return optional.get();
     }
 
-    public Item findByID(List<Item> items, int id) throws ItemNotFoundException {
+    public Item takeByTitle(List<Item> items, String title) throws ItemNotFoundException {
         Optional<Item> optional = items.stream()
-                .filter(i -> i.id() == id).findFirst();
-        if(optional.isEmpty())
+                .filter(i -> i.itemType().equalsIgnoreCase(title) ||
+                        i.title().equalsIgnoreCase(title)).findFirst();
+        if(optional.isPresent()) {
             throw new ItemNotFoundException();
-        return optional.get();
+        }
+        var item = optional.get();
+        items.remove(item);
+        return item;
     }
 }

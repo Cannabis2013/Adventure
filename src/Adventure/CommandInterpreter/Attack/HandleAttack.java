@@ -1,7 +1,7 @@
 package Adventure.CommandInterpreter.Attack;
 
 import GameEngine.GameEngine;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
 
 public class HandleAttack {
     PrintAttackMessages _printer = new PrintAttackMessages();

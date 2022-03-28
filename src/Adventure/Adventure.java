@@ -9,7 +9,6 @@ import Adventure.CommandInterpreter.Travel.HandleTravel;
 import Adventure.ScreenMessages.PrintHelp;
 import Adventure.ScreenMessages.PrintMessages;
 import GameEngine.GameEngine;
-
 import java.util.Scanner;
 
 public class Adventure{

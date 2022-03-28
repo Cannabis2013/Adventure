@@ -2,9 +2,9 @@ package Adventure.CommandInterpreter.Travel;
 
 import Adventure.ScreenMessages.PrintRoomDetails;
 import GameEngine.GameEngine;
-import GameEngine.MapGeneration.MapBuilders.Map.DoorIsLockedException;
-import GameEngine.MapLogistics.BadDirectionException;
-import GameEngine.MapLogistics.NoDoorAtOrientationException;
+import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.Player.BadDirectionException;
+import GameEngine.Player.NoDoorAtOrientationException;
 
 public class HandleTravel {
     private PrintTravelMessages _printer = new PrintTravelMessages();
@@ -29,7 +29,7 @@ public class HandleTravel {
 
     private void travelTo(String orientation, GameEngine engine){
         try {
-            engine.traverseTo(translate(orientation));
+            engine.travel(translate(orientation));
             var description = engine.roomDescription();
             var doorTitles = engine.doorNames();
             var items = engine.roomItems();

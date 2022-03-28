@@ -1,12 +1,12 @@
 package GameEngine;
 
-import GameEngine.MapGeneration.MapBuilders.Map.DoorIsLockedException;
-import GameEngine.MapGeneration.MapBuilders.Map.IMap;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.Contracts.IMap;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.MapGeneration.MapGenerator;
-import GameEngine.MapLogistics.BadDirectionException;
-import GameEngine.MapLogistics.NoDoorAtOrientationException;
+import GameEngine.Player.BadDirectionException;
+import GameEngine.Player.NoDoorAtOrientationException;
 import GameEngine.Player.EquipWeaponFailedException;
 import GameEngine.Player.Player;
 import GameEngine.Utils.ItemNotFoundException;
@@ -23,7 +23,7 @@ public class GameEngine {
         _player.setCurrentRoom(_map.initialRoom());
     }
 
-    public void traverseTo(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
+    public void travel(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         _player.travelTo(orientation);
     }
 

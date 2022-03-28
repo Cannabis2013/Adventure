@@ -1,31 +1,26 @@
 package GameEngine.Player;
 
-import GameEngine.MapGeneration.MapBuilders.Map.DoorIsLockedException;
-import GameEngine.MapGeneration.MapBuilders.Map.IMap;
-import GameEngine.MapGeneration.MapBuilders.Map.MapObject;
-import GameEngine.MapGeneration.MapBuilders.Map.Room;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.LivingObjects.Human;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Consumable;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Item;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.Usable;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.Weapons.Weapon;
-import GameEngine.MapLogistics.BadDirectionException;
-import GameEngine.MapLogistics.MapTraverseTo;
-import GameEngine.MapLogistics.NoDoorAtOrientationException;
-import GameEngine.Utils.FindObjectByTitle;
+import GameEngine.Contracts.IMap;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.Human;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Consumable;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Item;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Usable;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.Weapon;
+import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.MapGeneration.SmallSquare.Models.MapObject;
+import GameEngine.Contracts.IRoom;
 import GameEngine.Utils.GetItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Human {
     private MapTraverseTo _traverseTo = new MapTraverseTo();
     private GetItemFromList _getItem = new GetItemFromList();
-    private Room currentRoom;
+    private IRoom currentRoom;
     private Weapon _weapon = new KnuckleBusterWithVolts();
     private final List<Item> _inventory = new ArrayList<>();
 
@@ -75,25 +70,25 @@ public class Player extends Human {
         return item.title();
     }
 
-    public Room getCurrentRoom() {return currentRoom;}
-    public void setCurrentRoom(Room room) {currentRoom = room;}
+    public IRoom getCurrentRoom() {return currentRoom;}
+    public void setCurrentRoom(IRoom room) {currentRoom = room;}
 
     public List<String> inventoryToString() {
         return _inventory.stream().map(i -> i.presentate()).toList();
     }
 
     public void travelTo(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
-        currentRoom = (Room) _traverseTo.traverse(orientation,currentRoom);
+        currentRoom = _traverseTo.traverse(orientation, currentRoom);
     }
 
     @Override
     public String consumeItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException {
-        Item item = _getItem.findByTitle(_inventory, itemTitle);
+        Item item = _getItem.takeByTitle(_inventory, itemTitle);
         if (item instanceof Consumable) {
             var food = (Consumable) item;
             return food.consume(this);
         }
-        throw new ItemNotFoundException();
+        throw new InvalidObjectException();
     }
 
     public String useItem(String itemTitle, String roomObject) throws ItemNotFoundException, InvalidObjectException, ObjectNotFoundException {
@@ -115,13 +110,5 @@ public class Player extends Human {
             return usable.useOn(this);
         }
         throw new ItemNotFoundException();
-    }
-
-    @Override
-    public int takeHealth(int dmg) throws FatalBlowException {
-        _health -= dmg;
-        if(_health < 0)
-            throw new FatalBlowException();
-        return dmg;
     }
 }

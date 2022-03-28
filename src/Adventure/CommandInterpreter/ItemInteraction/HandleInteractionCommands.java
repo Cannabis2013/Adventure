@@ -1,7 +1,7 @@
 package Adventure.CommandInterpreter.ItemInteraction;
 
 import GameEngine.GameEngine;
-import GameEngine.MapGeneration.MapBuilders.SmallSquared.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleInteractionCommands {
@@ -17,6 +17,10 @@ public class HandleInteractionCommands {
     }
 
     public void handleTake(String command, GameEngine engine){
+        if(!command.matches("take [A-z 0-9]*\\b$")){
+            _printer.printBadCommand();
+            return;
+        }
         String itemTitle = command.substring(5);
         if(itemTitle.equals("all"))
             engine.takeAll();
