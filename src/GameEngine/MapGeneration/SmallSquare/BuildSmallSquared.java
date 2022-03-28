@@ -1,18 +1,16 @@
 package GameEngine.MapGeneration.SmallSquare;
 
 import GameEngine.Contracts.IMap;
-import GameEngine.MapGeneration.SmallSquare.Models.Map;
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Room;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.InitializeMap;
 import GameEngine.MapGeneration.SmallSquare.Utils.AddBossRoom;
 import GameEngine.Contracts.IRoom;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class BuildSmallSquared {
-    private int _num = 1;
     private InitializeMap _initMap = new InitializeMap();
     private AddBossRoom _setBossRoom = new AddBossRoom();
 

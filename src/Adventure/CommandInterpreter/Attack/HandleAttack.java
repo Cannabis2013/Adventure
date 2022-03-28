@@ -1,16 +1,15 @@
 package Adventure.CommandInterpreter.Attack;
 
 import GameEngine.GameEngine;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.MapGeneration.SmallSquare.Models.DemonNotFoundException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 
 public class HandleAttack {
     PrintAttackMessages _printer = new PrintAttackMessages();
 
     private void attackNobody(GameEngine engine){
         try {
-            var damageDone = engine.attack();
+            var damageDone = engine.attack("");
             var sound = engine.attackSound();
             _printer.printResult(sound,damageDone,"");
         } catch (FatalBlowException e) {
@@ -30,8 +29,6 @@ public class HandleAttack {
             _printer.printFatalMessage();
         } catch (InvalidObjectException e) {
             // Print message
-        } catch (DemonNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

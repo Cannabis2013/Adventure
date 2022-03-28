@@ -1,10 +1,11 @@
 package GameEngine.Contracts;
 
-import GameEngine.MapGeneration.SmallSquare.Models.DemonNotFoundException;
-import GameEngine.MapGeneration.SmallSquare.Models.Node;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.Demon;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Item;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Demon;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
+import GameEngine.MapGeneration.SmallSquare.Map.Door;
+import GameEngine.MapGeneration.SmallSquare.Map.Node;
 import GameEngine.Utils.ItemNotFoundException;
+
 import java.util.List;
 
 public interface IRoom {
@@ -13,8 +14,8 @@ public interface IRoom {
 
     String description();
     void setDescription(String str);
-    public Demon demon();
-    public Demon demon(String title) throws DemonNotFoundException;
+    Demon demon();
+    Demon demon(String title);
 
     boolean isSealed();
     void setSealed(boolean sealed);
@@ -38,10 +39,10 @@ public interface IRoom {
 
     enum RoomType {NORMAL_ROOM, BOSS_ROOM, END_ROOM;}
 
-    IDoor getNorth();
-    IDoor getEast();
-    IDoor getWest();
-    IDoor getSouth();
+    Door getNorth();
+    Door getEast();
+    Door getWest();
+    Door getSouth();
 
     void setNorth(Node node);
     void setEast(Node node);

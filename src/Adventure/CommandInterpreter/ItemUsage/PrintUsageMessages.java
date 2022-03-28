@@ -10,13 +10,13 @@ public class PrintUsageMessages {
         System.out.println(formatted);
     }
 
-    public void printObjectNotFound(){
+    public void printTargetNotFound(){
         var msg = "Can't use item on something I can't see. Sorry.";
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
 
-    public void printItemNotInInventory(String itemTitle){
+    public void printUsableNotFound(String itemTitle){
         var msg = String.format("You don't have anything like %s in your inventory",itemTitle);
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
@@ -24,6 +24,12 @@ public class PrintUsageMessages {
 
     public void printBadCommand(){
         var msg = "!!!! Bad command. Please try again. !!!!";
+        var formatted = _formatter.formatNegativeResponse(msg);
+        System.out.println(formatted);
+    }
+
+    public void printNotUsable(String itemTitle){
+        var msg = itemTitle + " not usable";
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }

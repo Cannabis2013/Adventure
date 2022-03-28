@@ -3,8 +3,8 @@ package Adventure.CommandInterpreter.Travel;
 import Adventure.ScreenMessages.PrintRoomDetails;
 import GameEngine.GameEngine;
 import GameEngine.Contracts.DoorIsLockedException;
-import GameEngine.Player.BadDirectionException;
-import GameEngine.Player.NoDoorAtOrientationException;
+import GameEngine.Player.Exceptions.BadDirectionException;
+import GameEngine.Player.Exceptions.NoDoorAtOrientationException;
 
 public class HandleTravel {
     private PrintTravelMessages _printer = new PrintTravelMessages();

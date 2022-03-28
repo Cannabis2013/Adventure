@@ -1,11 +1,11 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies;
 
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.RandomRoomsPopulator;
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Room;
 
 import java.util.List;
 
-public class AddEnemies extends RandomRoomsPopulator {
+public class AddEnemies {
+
 
     private void populateRoom(Room room){
         var condition = true;
@@ -21,7 +21,6 @@ public class AddEnemies extends RandomRoomsPopulator {
         }
     }
 
-    @Override
     public void add(List<Room> rooms) {
         rooms.forEach(r -> populateRoom(r));
     }

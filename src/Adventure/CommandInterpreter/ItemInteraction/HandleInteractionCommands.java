@@ -1,7 +1,7 @@
 package Adventure.CommandInterpreter.ItemInteraction;
 
 import GameEngine.GameEngine;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.Player.Exceptions.ItemNotConsumableException;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleInteractionCommands {
@@ -40,12 +40,14 @@ public class HandleInteractionCommands {
     }
 
     public void handleEat(String command, GameEngine gameEngine) {
-        String args = command.substring(4);
+        String arg = command.substring(4);
         try {
-            String itemTitle = gameEngine.eatItem(args);
+            String itemTitle = gameEngine.eatItem(arg);
             _printer.printItemEaten(itemTitle);
-        } catch (ItemNotFoundException | InvalidObjectException e) {
-            _printer.printItemNotConsumable(args);
+        }  catch (ItemNotConsumableException e) {
+            _printer.printItemNotConsumable(arg);
+        } catch (ItemNotFoundException e) {
+            _printer.printItemNotInInventory(arg);
         }
     }
 }

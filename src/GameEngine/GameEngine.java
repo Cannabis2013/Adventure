@@ -2,21 +2,16 @@ package GameEngine;
 
 import GameEngine.Contracts.DoorIsLockedException;
 import GameEngine.Contracts.IMap;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.MapGenerator;
-import GameEngine.MapGeneration.SmallSquare.Models.DemonNotFoundException;
-import GameEngine.Player.BadDirectionException;
-import GameEngine.Player.NoDoorAtOrientationException;
-import GameEngine.Player.EquipWeaponFailedException;
-import GameEngine.Player.Player;
+import GameEngine.Player.*;
+import GameEngine.Player.Exceptions.*;
 import GameEngine.Utils.ItemNotFoundException;
-import GameEngine.Utils.ObjectNotFoundException;
-
 import java.util.List;
 
 public class GameEngine {
-    private Player _player = new Player("");
+    private Player _player = new Player();
     private IMap _map;
 
     public GameEngine(){
@@ -29,11 +24,11 @@ public class GameEngine {
     }
 
     public String roomDescription() {
-        return _player.getCurrentRoom().description();
+        return _player.currentRoom().description();
     }
 
     public String doorNames(){
-        return _player.getCurrentRoom().doorTitles();
+        return _player.currentRoom().doorTitles();
     }
 
     public String takeItem(String itemTitle) throws ItemNotFoundException {
@@ -48,12 +43,12 @@ public class GameEngine {
         return _player.dropItem(itemTitle);
     }
 
-    public String eatItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException {
+    public String eatItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException {
         return _player.consumeItem(itemTitle);
     }
 
     public List<String> roomItems(){
-        return _player.getCurrentRoom().itemsAsString();
+        return _player.currentRoom().itemsAsString();
     }
 
     public List<String> inventory(){
@@ -64,11 +59,11 @@ public class GameEngine {
         return _player.getHealth();
     }
 
-    public String useItem(String item, String target) throws ItemNotFoundException, ObjectNotFoundException, InvalidObjectException {
+    public String useItem(String item, String target) throws UsableNotFoundException, TargetNotFoundException, InvalidObjectException {
         return _player.useItem(item,target);
     }
 
-    public String useItem(String item) throws InvalidObjectException, ItemNotFoundException {
+    public String useItem(String item) throws ItemNotUsableException, InvalidObjectException, ItemNotFoundException {
         return _player.useItem(item);
     }
 
@@ -76,13 +71,8 @@ public class GameEngine {
         return _player.equip(weapon);
     }
 
-    public String attack() throws FatalBlowException, InvalidObjectException {
-        var demon = _player.getCurrentRoom().demon();
-        return _player.attack(demon);
-    }
-
-    public String attack(String target) throws DemonNotFoundException, InvalidObjectException, FatalBlowException {
-        var demon = _player.getCurrentRoom().demon(target);
+    public String attack(String target) throws InvalidObjectException, FatalBlowException {
+        var demon = _player.currentRoom().demon(target);
         return _player.attack(demon);
     }
 
@@ -91,7 +81,7 @@ public class GameEngine {
     }
 
     public List<String> roomEnemies() {
-        return _player.getCurrentRoom().demonsAsString();
+        return _player.currentRoom().demonsAsString();
     }
 
     public String attackSound(){

@@ -1,16 +1,12 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies;
 
-import GameEngine.Contracts.IInflictable;
 import GameEngine.Contracts.IRoom;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.Demon;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.BuildWeapons.Ranged.AK47;
-import GameEngine.MapGeneration.SmallSquare.Models.MapObject;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.AK47;
+import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 
 public class Imp extends Demon {
-
-
     public Imp(IRoom currentRoom) {
         super("Imp", currentRoom);
         _health = 50;

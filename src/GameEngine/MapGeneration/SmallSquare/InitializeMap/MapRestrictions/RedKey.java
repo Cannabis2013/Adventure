@@ -1,14 +1,14 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions;
 
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.MapGeneration.SmallSquare.Models.Door;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Usable;
+import GameEngine.MapGeneration.SmallSquare.Map.Door;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Usable;
 
 
 public class RedKey extends Usable {
     public RedKey(String title) {
-        super("key", title, true);
+        super(title, true);
     }
 
     @Override

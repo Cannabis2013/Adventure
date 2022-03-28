@@ -1,11 +1,10 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap;
 
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.AddEnemies;
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Room;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapDescriptions.AddMapDescriptions;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions.AddAccessRestrictions;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.Teleporter.AddTeleportDevice;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.AddWeapons;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.AddItemsToRooms;
 import java.util.List;
 
 /*
@@ -17,14 +16,12 @@ import java.util.List;
 public class InitializeMap {
     private AddMapDescriptions _addDescriptions = new AddMapDescriptions();
     private AddAccessRestrictions _addAccessRestrictions = new AddAccessRestrictions();
-    private AddTeleportDevice _addTeleport = new AddTeleportDevice();
-    private AddWeapons _addWeapons = new AddWeapons();
+    private AddItemsToRooms _populateRooms = new AddItemsToRooms();
     private AddEnemies _addEnemies = new AddEnemies();
     public void initialize(List<Room> rooms){
         _addDescriptions.add(rooms);
         _addAccessRestrictions.add(rooms);
-        _addTeleport.add(rooms);
-        _addWeapons.add(rooms);
+        _populateRooms.add(rooms);
         _addEnemies.add(rooms);
     }
 }
