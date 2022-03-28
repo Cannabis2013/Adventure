@@ -14,5 +14,7 @@ public abstract class Item extends MapObject {
         _itemType = typeDescription;
     }
 
-    public String presentate() {return _title;};
+    //public String presentate() {return _title;};
+    public String presentate() {return _title;}
+
 }
