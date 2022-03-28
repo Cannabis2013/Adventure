@@ -1,6 +1,6 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies;
 
-import GameEngine.MapGeneration.SmallSquare.Map.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.List;
 

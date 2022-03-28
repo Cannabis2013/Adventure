@@ -9,7 +9,7 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.Mag7;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Teleporter.TeleportDevice;
-import GameEngine.MapGeneration.SmallSquare.Map.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

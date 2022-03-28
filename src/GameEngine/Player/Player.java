@@ -10,12 +10,12 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons
 import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 import GameEngine.Player.Exceptions.*;
 import GameEngine.Player.InventoryBag.Bag;
-import GameEngine.Utils.FindObjectFromList;
+import GameEngine.Utils.TakeItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
 import java.util.List;
 
 public class Player extends PlayerObject {
-    private FindObjectFromList _findObject = new FindObjectFromList();
+    private TakeItemFromList _findObject = new TakeItemFromList();
     private IRoom _currentRoom;
     private Weapon _weapon = new KnuckleBusterWithVolts();
     private Bag _bag = new Bag();

@@ -1,6 +1,6 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions;
 
-import GameEngine.MapGeneration.SmallSquare.Map.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Contracts.IRoom;
 
 import java.util.List;

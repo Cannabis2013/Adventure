@@ -2,8 +2,8 @@ package GameEngine.Contracts;
 
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Demon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
-import GameEngine.MapGeneration.SmallSquare.Map.Door;
-import GameEngine.MapGeneration.SmallSquare.Map.Node;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Node;
 import GameEngine.Utils.ItemNotFoundException;
 
 import java.util.List;

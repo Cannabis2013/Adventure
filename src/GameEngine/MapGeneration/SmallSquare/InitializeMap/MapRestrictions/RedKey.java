@@ -1,7 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions;
 
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.MapGeneration.SmallSquare.Map.Door;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Usable;
 

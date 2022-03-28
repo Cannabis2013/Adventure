@@ -1,5 +1,6 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies;
 
+import GameEngine.Contracts.IObjectEntity;
 import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
@@ -20,7 +21,7 @@ public class Imp extends Demon {
     }
 
     @Override
-    public String attack(MapObject object) throws InvalidObjectException, FatalBlowException {
+    public String attack(IObjectEntity object) throws InvalidObjectException, FatalBlowException {
         return String.format("%d",_equippedWeapon.attack(object));
     }
 }

@@ -1,6 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies;
 
 import GameEngine.Contracts.IInflictable;
+import GameEngine.Contracts.IObjectEntity;
 import GameEngine.Contracts.IPresentable;
 import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
@@ -45,7 +46,7 @@ public abstract class Demon extends MapObject implements IInflictable, IPresenta
         throw new FatalBlowException();
     }
 
-    public abstract String attack(MapObject object) throws InvalidObjectException, FatalBlowException;
+    public abstract String attack(IObjectEntity object) throws InvalidObjectException, FatalBlowException;
 
     @Override
     public String presentate() {

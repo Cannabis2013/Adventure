@@ -1,13 +1,12 @@
-package GameEngine.MapGeneration.SmallSquare.Map;
+package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.IMap;
 import GameEngine.Contracts.IObjectEntity;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Demon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Utils.GetDoorNames;
-import GameEngine.Utils.FindObjectFromList;
+import GameEngine.Utils.TakeItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Room extends Node {
     private boolean _sealed;
     private List<Demon> _demons = new ArrayList<>();
     private String _description;
-    private FindObjectFromList _findObject = new FindObjectFromList();
+    private TakeItemFromList _findObject = new TakeItemFromList();
 
     public String description() {return _description;}
     public void setDescription(String description) {_description = description;}
@@ -55,14 +54,10 @@ public class Room extends Node {
     public void setSealed(boolean sealed) {_sealed = sealed;}
 
     @Override
-    public List<IObjectEntity> roomObjects() {
-        return _roomObjects;
-    }
+    public List<IObjectEntity> roomObjects() {return _roomObjects;}
 
     @Override
-    public void setRoomObjects(List<IObjectEntity> objects) {
-        _roomObjects = objects;
-    }
+    public void setRoomObjects(List<IObjectEntity> objects) {_roomObjects = objects;}
 
     public Room(RoomType type, IMap parentMap){
         super("room");
@@ -83,14 +78,11 @@ public class Room extends Node {
     public void promote(){_roomType = RoomType.BOSS_ROOM;}
 
     @Override
-    public void addItem(Item item){
-        _items.add(item);}
+    public void addItem(Item item){_items.add(item);}
 
     @Override
     public Item takeItem(String itemTitle) throws ItemNotFoundException {
-        var item = _findObject.findItemByTitle(_items,itemTitle);
-        _items.remove(item);
-        return item;
+        return _findObject.take(_items,itemTitle);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.Utils;
 
-import GameEngine.MapGeneration.SmallSquare.Map.Door;
-import GameEngine.MapGeneration.SmallSquare.Map.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 public class GetDoorNames {
     private String doorDetails(String orientation, Door door){

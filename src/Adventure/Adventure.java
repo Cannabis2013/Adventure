@@ -1,6 +1,7 @@
 package Adventure;
 
 import Adventure.CommandInterpreter.Attack.HandleAttack;
+import Adventure.CommandInterpreter.Attack.PlayerIsDeadException;
 import Adventure.CommandInterpreter.EquipWeapon.HandleEquipWeapon;
 import Adventure.CommandInterpreter.General.HandleGeneralCommand;
 import Adventure.CommandInterpreter.ItemInteraction.HandleInteractionCommands;
@@ -23,7 +24,7 @@ public class Adventure{
     private final HandleAttack _handleAttack = new HandleAttack();
     private final PrintHelp _printHelp = new PrintHelp();
 
-    public void interpretCommand(String command){
+    public void interpretCommand(String command) throws PlayerIsDeadException {
         if(command.startsWith("go"))
             _handleGo.handle(command, _engine);
         else if(command.startsWith("take"))
@@ -53,16 +54,26 @@ public class Adventure{
     }
 
     public void run(){
-        printer.printIntro();
-        pressButton();
-        _printHelp.print();
-        pressButton();
-        interpretCommand("look");
-        while (true)
-        {
-            printer.printCommandLine();
-            var command = readCommand();
-            interpretCommand(command);
+        int code = 1;
+        while (code != 0){
+            code = 2;
+            _engine.init();
+            printer.printIntro();
+            pressButton();
+            _printHelp.print();
+            pressButton();
+            _handleGeneral.handle("look",_engine);
+            while (code == 2)
+            {
+                printer.printCommandLine();
+                var command = readCommand();
+                try {
+                    interpretCommand(command);
+                } catch (PlayerIsDeadException e) {
+                    pressButton();
+                    code = 1;
+                }
+            }
         }
     }
 }

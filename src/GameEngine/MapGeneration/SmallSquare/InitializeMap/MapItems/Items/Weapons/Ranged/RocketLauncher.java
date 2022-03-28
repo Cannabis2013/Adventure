@@ -4,7 +4,7 @@ public class RocketLauncher extends RangeWeapon{
     public RocketLauncher() {
         super("Bazooka");
         _ammo = 50;
-        _damage = 10;
+        _damage = 35;
     }
 
     @Override

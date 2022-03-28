@@ -1,7 +1,8 @@
-package GameEngine.MapGeneration.SmallSquare.Map;
+package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.DoorIsLockedException;
 import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 
 public class Door extends MapObject {
     private int lockID;

@@ -10,11 +10,7 @@ import GameEngine.Player.Exceptions.TargetNotFoundException;
 import GameEngine.Player.Exceptions.UsableNotFoundException;
 import GameEngine.Player.InventoryBag.Bag;
 import GameEngine.Player.PlayerObject;
-import GameEngine.Utils.FindObjectFromList;
 import GameEngine.Utils.ItemNotFoundException;
-import GameEngine.Utils.ObjectNotFoundException;
-
-import java.util.List;
 
 public class UseItem {
     IObjectEntity findTarget(IRoom room, String title) throws TargetNotFoundException {

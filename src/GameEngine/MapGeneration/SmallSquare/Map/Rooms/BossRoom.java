@@ -1,4 +1,4 @@
-package GameEngine.MapGeneration.SmallSquare.Map;
+package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Cyberdemon;

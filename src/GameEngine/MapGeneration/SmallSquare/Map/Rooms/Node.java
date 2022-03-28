@@ -1,6 +1,7 @@
-package GameEngine.MapGeneration.SmallSquare.Map;
+package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 
 public abstract class Node extends MapObject implements IRoom {
     private Door north, east,south,west;

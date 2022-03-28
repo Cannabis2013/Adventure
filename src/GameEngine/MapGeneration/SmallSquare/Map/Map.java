@@ -2,6 +2,7 @@ package GameEngine.MapGeneration.SmallSquare.Map;
 
 import GameEngine.Contracts.IMap;
 import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.List;
 

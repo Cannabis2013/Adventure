@@ -5,7 +5,7 @@ public class AK47 extends RangeWeapon{
     public AK47() {
         super("AK47");
         _ammo = 30;
-        _damage = 5;
+        _damage = 15;
         _rate = 3;
     }
 

@@ -12,10 +12,11 @@ import java.util.List;
 
 public class GameEngine {
     private Player _player = new Player();
+    private MapGenerator _mapGenerator = new MapGenerator();
     private IMap _map;
 
-    public GameEngine(){
-        _map = new MapGenerator().build();
+    public void init(){
+        _map = _mapGenerator.build();
         _player.setCurrentRoom(_map.initialRoom());
     }
 
@@ -86,5 +87,10 @@ public class GameEngine {
 
     public String attackSound(){
         return _player.equipped().sound();
+    }
+
+    public String performEnemyAttack(String enemyTitle) throws InvalidObjectException, FatalBlowException {
+        var demon = _player.currentRoom().demon(enemyTitle);
+        return demon.attack(_player);
     }
 }

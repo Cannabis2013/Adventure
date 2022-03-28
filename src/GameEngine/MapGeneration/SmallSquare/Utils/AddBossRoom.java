@@ -1,8 +1,8 @@
 package GameEngine.MapGeneration.SmallSquare.Utils;
 
 import GameEngine.Contracts.IMap;
-import GameEngine.MapGeneration.SmallSquare.Map.BossRoom;
-import GameEngine.MapGeneration.SmallSquare.Map.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.BossRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.List;
 import java.util.Random;

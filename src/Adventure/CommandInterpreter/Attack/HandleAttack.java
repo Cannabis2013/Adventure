@@ -19,7 +19,7 @@ public class HandleAttack {
         }
     }
 
-    private void attackEnemy(String command, GameEngine engine){
+    private void attackEnemy(String command, GameEngine engine) throws PlayerIsDeadException {
         var target = command.substring(7);
         try {
             var damageDone = engine.attack(target);
@@ -27,14 +27,24 @@ public class HandleAttack {
             _printer.printResult(sound,damageDone,target);
         } catch (FatalBlowException e) {
             _printer.printFatalMessage();
+            return;
         } catch (InvalidObjectException e) {
-            // Print message
+            _printer.printInvalidTarget();
+            return;
+        }
+        // Enemy performs his move
+        try {
+            var dmg = engine.performEnemyAttack(target);
+            _printer.printEnemyResult(target,dmg);
+        } catch (InvalidObjectException e) {
+            e.printStackTrace();
+        } catch (FatalBlowException e) {
+            _printer.printDieMessage();
+            throw new PlayerIsDeadException();
         }
     }
 
-
-
-    public void handleAttack(String command, GameEngine engine){
+    public void handleAttack(String command, GameEngine engine) throws PlayerIsDeadException {
         if(command.matches("attack"))
             attackNobody(engine);
         else
