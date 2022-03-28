@@ -75,7 +75,7 @@ public class GameEngine {
         return _player.equip(weapon);
     }
 
-    public String attack() throws FatalBlowException {
+    public String attack() throws FatalBlowException, InvalidObjectException {
         return _player.attack(null);
     }
 }

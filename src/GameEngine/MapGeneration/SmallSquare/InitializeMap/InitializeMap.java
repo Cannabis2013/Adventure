@@ -2,7 +2,6 @@ package GameEngine.MapGeneration.SmallSquare.InitializeMap;
 
 import GameEngine.MapGeneration.SmallSquare.Models.Room;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapDescriptions.AddMapDescriptions;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.AddDemons;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions.AddAccessRestrictions;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.Teleporter.AddTeleportDevice;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.AddWeapons;
@@ -19,12 +18,10 @@ public class InitializeMap {
     private AddAccessRestrictions _addAccessRestrictions = new AddAccessRestrictions();
     private AddTeleportDevice _addTeleport = new AddTeleportDevice();
     private AddWeapons _addWeapons = new AddWeapons();
-    private AddDemons _addDemons = new AddDemons();
     public void initialize(List<Room> rooms){
         _addDescriptions.add(rooms);
         _addAccessRestrictions.add(rooms);
         _addTeleport.add(rooms);
         _addWeapons.add(rooms);
-        _addDemons.add(rooms);
     }
 }

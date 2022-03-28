@@ -41,7 +41,7 @@ public class Player extends Human {
 
 
     @Override
-    public String attack(MapObject object) throws FatalBlowException {
+    public String attack(MapObject object) throws FatalBlowException, InvalidObjectException {
         return _weapon.attack(object);
     }
 

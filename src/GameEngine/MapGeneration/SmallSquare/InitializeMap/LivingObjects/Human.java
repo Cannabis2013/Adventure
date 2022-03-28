@@ -42,7 +42,7 @@ public abstract class Human extends PlayerObject implements IInflictable {
     }
 
     abstract public String equip(String weapon) throws ItemNotFoundException, EquipWeaponFailedException;
-    public abstract String attack(MapObject object) throws FatalBlowException;
+    public abstract String attack(MapObject object) throws FatalBlowException, InvalidObjectException;
     public abstract String consumeItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException;
     public abstract String useItem(String itemTitle, String roomObject) throws ItemNotFoundException, InvalidObjectException, ObjectNotFoundException;
 }
