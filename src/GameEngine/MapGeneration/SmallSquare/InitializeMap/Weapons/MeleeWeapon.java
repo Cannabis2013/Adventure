@@ -17,6 +17,6 @@ public abstract class MeleeWeapon extends Weapon {
 
     @Override
     public String presentate() {
-        return String.format("%s (Damage: %s, Damage: %s)", _title, _damage);
+        return String.format("%s (Damage: %d)", _title, _damage);
     }
 }

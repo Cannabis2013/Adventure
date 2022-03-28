@@ -28,6 +28,8 @@ public class Player extends Human {
         super(name);
     }
 
+    public String weaponAsString() {return _weapon.presentate();}
+
     @Override
     public String equip(String weaponTitle) throws ItemNotFoundException, EquipWeaponFailedException {
         var weapon = _getItem.findByTitle(_inventory,weaponTitle);

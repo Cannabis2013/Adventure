@@ -79,6 +79,10 @@ public class GameEngine {
         return _player.attack(null);
     }
 
+    public String equippedWeapon(){
+        return _player.weaponAsString();
+    }
+
     public List<String> roomEnemies() {
         return _player.getCurrentRoom().demonsAsString();
     }

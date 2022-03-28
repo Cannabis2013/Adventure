@@ -8,6 +8,7 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.MeleeWeapon;
 public class KnuckleBusterWithVolts extends MeleeWeapon {
     public KnuckleBusterWithVolts() {
         super("knuckle buster", "electric knuckle buster");
+        _damage = 2;
     }
 
     @Override

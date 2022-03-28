@@ -34,7 +34,8 @@ public class HandleTravel {
             var doorTitles = engine.doorNames();
             var roomEnemies = engine.roomEnemies();
             var items = engine.roomItems();
-            _printRoomDetails.print(description,roomEnemies, items,doorTitles);
+            var equipped = engine.equippedWeapon();
+            _printRoomDetails.print(description,roomEnemies, items,doorTitles,equipped);
         } catch (IllegalArgumentException e){
             _printer.printBadCommand();
         } catch (BadDirectionException | NoDoorAtOrientationException e){
