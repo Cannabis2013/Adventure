@@ -58,9 +58,7 @@ public class Player extends PlayerObject {
     public IRoom currentRoom() {return _currentRoom;}
     public void setCurrentRoom(IRoom room) {_currentRoom = room;}
 
-    public List<String> inventoryToString() {
-        return _bag.itemTitles();
-    }
+    public List<String> inventoryToString() {return _bag.itemTitles();}
 
     public void travelTo(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         _currentRoom = _traverseTo.enterAtOrientation(orientation, _currentRoom);
