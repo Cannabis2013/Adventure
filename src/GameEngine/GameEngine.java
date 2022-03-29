@@ -1,13 +1,14 @@
 package GameEngine;
 
 import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.MapGeneration.MapGenerator;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
-import GameEngine.MapGeneration.MapGenerator;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
-import GameEngine.Player.*;
 import GameEngine.Player.Exceptions.*;
+import GameEngine.Player.Player;
 import GameEngine.Utils.ItemNotFoundException;
+
 import java.util.List;
 
 public class GameEngine {

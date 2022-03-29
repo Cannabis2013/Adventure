@@ -4,6 +4,7 @@ import GameEngine.Contracts.IObjectEntity;
 import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.BuildSmallSquared;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
+
 import java.util.ArrayList;
 import java.util.List;
 

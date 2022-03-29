@@ -1,9 +1,9 @@
 package GameEngine.Player.Actions;
 
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Consumables.IConsumable;
+import GameEngine.Player.Character;
 import GameEngine.Player.Exceptions.ItemNotConsumableException;
 import GameEngine.Player.InventoryBag.Bag;
-import GameEngine.Player.Character;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class ConsumeItem {

@@ -1,6 +1,7 @@
 package GameEngine.Utils;
 
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
+
 import java.util.List;
 
 public class TakeItemFromList {

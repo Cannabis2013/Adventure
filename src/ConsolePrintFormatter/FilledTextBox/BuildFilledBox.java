@@ -7,6 +7,7 @@ import ConsolePrintFormatter.Utils.LineTools.LineMerger;
 import ConsolePrintFormatter.Utils.LineTools.StringSplitter;
 import ConsolePrintFormatter.Utils.Normalize.NormalizeStringLines;
 import ConsolePrintFormatter.Utils.Padding.CreatePadding;
+
 import java.awt.*;
 
 public class BuildFilledBox {

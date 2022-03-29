@@ -3,14 +3,15 @@ package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems;
 import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Consumables.Food.Banana;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Teleporter.TeleportDevice;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Melee.Katana;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Melee.KnuckleBusterWithVolts;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.AK47;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.DesertEagle;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.Mag7;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Teleporter.TeleportDevice;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

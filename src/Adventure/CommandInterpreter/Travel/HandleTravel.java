@@ -1,8 +1,8 @@
 package Adventure.CommandInterpreter.Travel;
 
 import Adventure.ScreenMessages.PrintRoomDetails;
-import GameEngine.GameEngine;
 import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.GameEngine;
 import GameEngine.Player.Exceptions.BadDirectionException;
 import GameEngine.Player.Exceptions.NoDoorAtOrientationException;
 

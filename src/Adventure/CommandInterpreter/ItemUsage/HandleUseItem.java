@@ -5,7 +5,6 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons
 import GameEngine.Player.Exceptions.ItemNotUsableException;
 import GameEngine.Player.Exceptions.TargetNotFoundException;
 import GameEngine.Player.Exceptions.UsableNotFoundException;
-import GameEngine.Utils.ItemNotFoundException;
 
 import java.util.regex.Pattern;
 

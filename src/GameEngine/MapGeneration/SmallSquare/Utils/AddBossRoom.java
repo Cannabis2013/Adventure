@@ -1,6 +1,5 @@
 package GameEngine.MapGeneration.SmallSquare.Utils;
 
-import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.BossRoom;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;

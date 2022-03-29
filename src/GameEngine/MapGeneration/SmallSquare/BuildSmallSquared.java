@@ -1,11 +1,12 @@
 package GameEngine.MapGeneration.SmallSquare;
 
 import GameEngine.Contracts.IMap;
+import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.InitializeMap;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.InitializeMap;
 import GameEngine.MapGeneration.SmallSquare.Utils.AddBossRoom;
-import GameEngine.Contracts.IRoom;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

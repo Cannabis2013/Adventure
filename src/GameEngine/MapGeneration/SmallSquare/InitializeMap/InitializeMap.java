@@ -1,10 +1,11 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap;
 
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.AddEnemies;
-import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapDescriptions.AddMapDescriptions;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions.AddAccessRestrictions;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.AddEnemies;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.AddItemsToRooms;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions.AddAccessRestrictions;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
+
 import java.util.List;
 
 /*

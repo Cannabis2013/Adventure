@@ -1,7 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapDescriptions;
 
-import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
