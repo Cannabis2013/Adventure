@@ -1,13 +1,24 @@
 package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
+import GameEngine.Contracts.IObjectEntity;
 import GameEngine.Contracts.IRoom;
-import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 
-public abstract class Node extends MapObject implements IRoom {
+public abstract class Node implements IRoom, IObjectEntity {
     private Door north, east,south,west;
+    private static int _id = 0;
+    private final String _title;
+
+    @Override
+    public int id() {
+        return _id;
+    }
+
+    @Override
+    public String title(){return _title;}
 
     public Node(String title) {
-        super(title);
+        _id++;
+        _title = String.format("%s %d",title,_id);
     }
     public Door getNorth() {return north;}
     public Door getEast() {return east;}

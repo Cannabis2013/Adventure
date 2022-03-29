@@ -1,19 +1,19 @@
 package GameEngine;
 
 import GameEngine.Contracts.DoorIsLockedException;
-import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.MapGenerator;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.Player.*;
 import GameEngine.Player.Exceptions.*;
 import GameEngine.Utils.ItemNotFoundException;
 import java.util.List;
 
 public class GameEngine {
-    private Player _player = new Player();
     private MapGenerator _mapGenerator = new MapGenerator();
-    private IMap _map;
+    private Player _player = new Player();
+    private Map _map;
 
     public void init(){
         _map = _mapGenerator.build();
@@ -57,7 +57,7 @@ public class GameEngine {
     }
 
     public int health() {
-        return _player.getHealth();
+        return _player.health();
     }
 
     public String useItem(String item, String target) throws UsableNotFoundException, TargetNotFoundException, InvalidObjectException {
@@ -72,11 +72,11 @@ public class GameEngine {
         return _player.equip(weapon);
     }
 
-    public String attack(){
+    public String attack() throws WeaponNotEquippedException {
         return _player.attack();
     }
 
-    public String attack(String target) throws InvalidObjectException, FatalBlowException {
+    public String attack(String target) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException {
         var demon = _player.currentRoom().demon(target);
         return _player.attack(demon);
     }
@@ -93,7 +93,7 @@ public class GameEngine {
         return _player.equipped().sound();
     }
 
-    public String performEnemyAttack(String enemyTitle) throws InvalidObjectException, FatalBlowException {
+    public String performEnemyAttack(String enemyTitle) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException {
         var demon = _player.currentRoom().demon(enemyTitle);
         return demon.attack(_player);
     }

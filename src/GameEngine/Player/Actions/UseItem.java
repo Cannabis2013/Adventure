@@ -4,12 +4,12 @@ import GameEngine.Contracts.IObjectEntity;
 import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Usable;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.IUsable;
 import GameEngine.Player.Exceptions.ItemNotUsableException;
 import GameEngine.Player.Exceptions.TargetNotFoundException;
 import GameEngine.Player.Exceptions.UsableNotFoundException;
 import GameEngine.Player.InventoryBag.Bag;
-import GameEngine.Player.PlayerObject;
+import GameEngine.Player.Character;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class UseItem {
@@ -34,16 +34,16 @@ public class UseItem {
     public String use(String itemTitle, String targetObject, IRoom currentRoom, Bag bag) throws TargetNotFoundException, UsableNotFoundException, InvalidObjectException {
         IObjectEntity roomItem = findTarget(currentRoom,targetObject);
         var item = findItemFromBag(bag,itemTitle);
-        if(item instanceof Usable){
-            var usable = (Usable) item;
+        if(item instanceof IUsable){
+            var usable = (IUsable) item;
             return usable.useOn(roomItem);
         }
         throw new InvalidObjectException();
     }
-    public String use(String itemTitle, Bag bag, PlayerObject player) throws InvalidObjectException, ItemNotUsableException, UsableNotFoundException {
+    public String use(String itemTitle, Bag bag, Character player) throws InvalidObjectException, ItemNotUsableException, UsableNotFoundException {
         var item = findItemFromBag(bag,itemTitle);
-        if(item instanceof Usable){
-            var usable = (Usable) item;
+        if(item instanceof IUsable){
+            var usable = (IUsable) item;
             return usable.useOn(player);
         }
         throw new ItemNotUsableException();

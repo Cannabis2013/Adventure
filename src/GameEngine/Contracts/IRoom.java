@@ -1,22 +1,22 @@
 package GameEngine.Contracts;
 
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Demon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Node;
+import GameEngine.Player.Character;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
 
 import java.util.List;
 
 public interface IRoom {
-    List<Demon> demons();
+    List<Character> demons();
     List<String> demonsAsString();
 
     String description();
     void setDescription(String str);
-    Demon demon();
-    Demon demon(String title);
+    Character demon();
+    Character demon(String title);
 
     boolean isSealed();
     void setSealed(boolean sealed);

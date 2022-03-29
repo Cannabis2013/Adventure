@@ -8,8 +8,7 @@ public class GetDoorNames {
         if(door == null)
             return "";
         var msg = orientation + ": ";
-        msg += door.title();
-        msg += door.isLocked() ? " (locked)" : " (not locked)";
+        msg += door.presentate();
         msg += "\n";
         return msg;
     }

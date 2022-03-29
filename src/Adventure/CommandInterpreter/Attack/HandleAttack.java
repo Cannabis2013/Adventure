@@ -3,14 +3,19 @@ package Adventure.CommandInterpreter.Attack;
 import GameEngine.GameEngine;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.Player.Exceptions.WeaponNotEquippedException;
 
 public class HandleAttack {
     PrintAttackMessages _printer = new PrintAttackMessages();
 
     private void attackNobody(GameEngine engine){
-        var damageDone = engine.attack();
-        var sound = engine.attackSound();
-        _printer.printAttackNoBody(sound);
+        try {
+            var damageDone = engine.attack();
+            var sound = engine.attackSound();
+            _printer.printAttackNoBody(sound);
+        } catch (WeaponNotEquippedException e) {
+            _printer.printWeapNotEqupped();
+        }
     }
 
     private void attackEnemy(String command, GameEngine engine) throws PlayerIsDeadException {
@@ -25,6 +30,9 @@ public class HandleAttack {
         } catch (InvalidObjectException e) {
             _printer.printInvalidTarget();
             return;
+        } catch (WeaponNotEquippedException e) {
+            _printer.printWeapNotEqupped();
+            return;
         }
         // Enemy performs his move
         try {
@@ -35,6 +43,8 @@ public class HandleAttack {
         } catch (FatalBlowException e) {
             _printer.printDieMessage();
             throw new PlayerIsDeadException();
+        } catch (WeaponNotEquippedException e) {
+            // Ignored since enemies can't drop any items or weapons
         }
     }
 

@@ -1,17 +1,21 @@
 package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.Contracts.IObjectEntity;
+import GameEngine.Contracts.IPresentable;
 import GameEngine.Contracts.IRoom;
-import GameEngine.MapGeneration.SmallSquare.Map.MapObject;
 
-public class Door extends MapObject {
+public class Door implements IObjectEntity, IPresentable {
     private int lockID;
     private boolean locked = false;
+    private static int _id;
+    private String _title;
 
     private Node _node1, _node2;
 
     public Door(Node node1, Node Node2) {
-        super("door");
+        _id++;
+        _title = String.format("door %d",_id);
         this._node1 = node1;
         this._node2 = Node2;
     }
@@ -48,5 +52,20 @@ public class Door extends MapObject {
     public void unlock(int lockID) {
         if(this.lockID == lockID)
             locked = false;
+    }
+
+    @Override
+    public int id() {
+        return _id;
+    }
+
+    @Override
+    public String title() {
+        return _title;
+    }
+
+    @Override
+    public String presentate() {
+        return String.format("%s %s",_title,isLocked() ? "(locked)" : "(not locked)");
     }
 }

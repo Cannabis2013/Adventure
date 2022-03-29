@@ -1,15 +1,16 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Teleporter;
 
 import GameEngine.Contracts.IObjectEntity;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Usable;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.IUsable;
 import GameEngine.Contracts.IRoom;
 import GameEngine.Player.Player;
 
 import java.util.List;
 import java.util.Random;
 
-public class TeleportDevice extends Usable {
+public class TeleportDevice extends Item implements IUsable {
     private boolean _used = false;
 
     private String buildMessage(){
@@ -44,7 +45,7 @@ public class TeleportDevice extends Usable {
     }
 
     public TeleportDevice() {
-        super("teleporter", false);
+        super("teleporter");
     }
 
     @Override

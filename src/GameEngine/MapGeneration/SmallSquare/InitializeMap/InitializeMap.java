@@ -16,12 +16,12 @@ import java.util.List;
 public class InitializeMap {
     private AddMapDescriptions _addDescriptions = new AddMapDescriptions();
     private AddAccessRestrictions _addAccessRestrictions = new AddAccessRestrictions();
-    private AddItemsToRooms _populateRooms = new AddItemsToRooms();
+    private AddItemsToRooms _addItems = new AddItemsToRooms();
     private AddEnemies _addEnemies = new AddEnemies();
     public void initialize(List<Room> rooms){
         _addDescriptions.add(rooms);
         _addAccessRestrictions.add(rooms);
-        _populateRooms.add(rooms);
+        _addItems.add(rooms);
         _addEnemies.add(rooms);
     }
 }

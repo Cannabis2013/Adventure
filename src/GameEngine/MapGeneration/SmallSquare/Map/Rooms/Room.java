@@ -2,9 +2,9 @@ package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.IMap;
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Demon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Utils.GetDoorNames;
+import GameEngine.Player.Character;
 import GameEngine.Utils.ObjectNotFoundException;
 import GameEngine.Utils.TakeItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
@@ -18,7 +18,7 @@ public class Room extends Node {
     private IMap _parentMap;
     private List<IObjectEntity> _roomObjects = new ArrayList<>();
     private boolean _sealed;
-    private List<Demon> _demons = new ArrayList<>();
+    private List<Character> _demons = new ArrayList<>();
     private String _description;
     private TakeItemFromList _findObject = new TakeItemFromList();
 
@@ -26,7 +26,7 @@ public class Room extends Node {
     public void setDescription(String description) {_description = description;}
 
     @Override
-    public Demon demon() {
+    public Character demon() {
         if(_demons.isEmpty())
             return null;
         Collections.shuffle(_demons);
@@ -34,7 +34,7 @@ public class Room extends Node {
     }
 
     @Override
-    public Demon demon(String title) {
+    public Character demon(String title) {
         var demon =_demons.stream()
                 .filter(d -> d.title().equals(title)).findFirst();
         if(!demon.isPresent())
@@ -43,7 +43,7 @@ public class Room extends Node {
     }
 
     @Override
-    public List<Demon> demons() {return _demons;}
+    public List<Character> demons() {return _demons;}
     @Override
     public List<String> demonsAsString() {
         return _demons.stream().map(d -> d.presentate()).toList();

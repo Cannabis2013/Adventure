@@ -60,7 +60,7 @@ public class BuildSmallSquared {
         connectRooms(rooms,++index,++x,y);
     }
 
-    public IMap build() {
+    public Map build() {
         var map = new Map();
         var rooms = buildRooms(map);
         connectRooms(rooms,0,0,0);

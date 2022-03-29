@@ -48,4 +48,10 @@ public class PrintAttackMessages {
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
+
+    public void printWeapNotEqupped(){
+        var msg = "You have no weapon equipped";
+        var formatted = _formatter.formatNegativeResponse(msg);
+        System.out.println(formatted);
+    }
 }
