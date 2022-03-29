@@ -12,16 +12,6 @@ public class KnuckleBusterWithVolts extends MeleeWeapon {
     }
 
     @Override
-    public int attack(IObjectEntity targetObject) throws FatalBlowException, InvalidObjectException {
-        if(targetObject == null)
-            return 0;
-        if(targetObject instanceof IInflictable)
-            return ((IInflictable) targetObject).inflict(1);
-        else
-            throw new InvalidObjectException();
-    }
-
-    @Override
     public String sound() {
         return "klask";
     }

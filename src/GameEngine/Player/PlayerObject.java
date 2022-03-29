@@ -9,10 +9,7 @@ import GameEngine.Player.Actions.ConsumeItem;
 import GameEngine.Player.Actions.EnterDoorAtOrientation;
 import GameEngine.Player.Actions.EquipWeapon;
 import GameEngine.Player.Actions.UseItem;
-import GameEngine.Player.Exceptions.EquipWeaponFailedException;
-import GameEngine.Player.Exceptions.ItemNotConsumableException;
-import GameEngine.Player.Exceptions.TargetNotFoundException;
-import GameEngine.Player.Exceptions.UsableNotFoundException;
+import GameEngine.Player.Exceptions.*;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.ObjectNotFoundException;
 
@@ -47,7 +44,8 @@ public abstract class PlayerObject implements IObjectEntity, IInflictable {
     }
 
     abstract public String equip(String weapon) throws ItemNotFoundException, EquipWeaponFailedException, ObjectNotFoundException;
+    public abstract String attack();
     public abstract String attack(MapObject object) throws FatalBlowException, InvalidObjectException;
-    public abstract String consumeItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException, ObjectNotFoundException, ItemNotConsumableException;
+    public abstract String consumeItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException, ObjectNotFoundException, ItemNotConsumableException, PlayerHealthFullException;
     public abstract String useItem(String itemTitle, String roomObject) throws InvalidObjectException, UsableNotFoundException, TargetNotFoundException;
 }

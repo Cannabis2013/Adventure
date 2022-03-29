@@ -5,6 +5,7 @@ import GameEngine.Contracts.IObjectEntity;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Demon;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Utils.GetDoorNames;
+import GameEngine.Utils.ObjectNotFoundException;
 import GameEngine.Utils.TakeItemFromList;
 import GameEngine.Utils.ItemNotFoundException;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class Room extends Node {
         var demon =_demons.stream()
                 .filter(d -> d.title().equals(title)).findFirst();
         if(!demon.isPresent())
-            throw null;
+            return null;
         return demon.get();
     }
 
@@ -58,6 +59,14 @@ public class Room extends Node {
 
     @Override
     public void setRoomObjects(List<IObjectEntity> objects) {_roomObjects = objects;}
+
+    @Override
+    public IObjectEntity roomObject(String title) throws ObjectNotFoundException {
+        var obj = _roomObjects.stream().filter(o -> o.title().equals(title)).findFirst();
+        if(!obj.isPresent())
+            throw new ObjectNotFoundException();
+        return obj.get();
+    }
 
     public Room(RoomType type, IMap parentMap){
         super("room");

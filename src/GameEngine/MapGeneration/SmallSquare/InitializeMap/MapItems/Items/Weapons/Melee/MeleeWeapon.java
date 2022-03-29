@@ -20,10 +20,13 @@ public abstract class MeleeWeapon extends Weapon {
     }
 
     @Override
+    public int attack(){
+        return hit();
+    }
+
+    @Override
     public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
-        if(target == null)
-            return hit();
-        else if(!(target instanceof IInflictable))
+        if(!(target instanceof IInflictable))
             throw new InvalidObjectException();
         var inflictableTarget = (IInflictable) target;
         return hit(inflictableTarget);

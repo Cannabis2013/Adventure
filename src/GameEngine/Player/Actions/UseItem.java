@@ -32,7 +32,6 @@ public class UseItem {
     }
 
     public String use(String itemTitle, String targetObject, IRoom currentRoom, Bag bag) throws TargetNotFoundException, UsableNotFoundException, InvalidObjectException {
-        var roomObjects = currentRoom.roomObjects();
         IObjectEntity roomItem = findTarget(currentRoom,targetObject);
         var item = findItemFromBag(bag,itemTitle);
         if(item instanceof Usable){

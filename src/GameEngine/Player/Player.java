@@ -31,6 +31,11 @@ public class Player extends PlayerObject {
     }
 
     @Override
+    public String attack() {
+        return String.format("%d",_weapon.attack());
+    }
+
+    @Override
     public String attack(MapObject object) throws FatalBlowException, InvalidObjectException {
         return String.format("%d",_weapon.attack(object));
     }
@@ -65,7 +70,9 @@ public class Player extends PlayerObject {
     }
 
     @Override
-    public String consumeItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException {
+    public String consumeItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException, PlayerHealthFullException {
+        if(getHealth() >= 100)
+            throw new PlayerHealthFullException();
         return _consumeItem.consume(itemTitle,_bag,this);
     }
 

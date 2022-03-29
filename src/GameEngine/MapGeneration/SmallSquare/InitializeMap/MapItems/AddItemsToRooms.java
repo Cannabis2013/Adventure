@@ -1,6 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems;
 
 import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Consumables.Food.Banana;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Melee.Katana;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Melee.KnuckleBusterWithVolts;
@@ -66,6 +67,13 @@ public class AddItemsToRooms {
         return weapons;
     }
 
+    private List<Item> buildConsumables(int count){
+        var consumables = new ArrayList<Item>(count);
+        for (var i = 0; i < count;i++)
+            consumables.add(new Banana());
+        return consumables;
+    }
+
     private List<Room> getNonRestricted(List<Room> rooms){
         var nonRestricted = rooms.stream()
                 .filter(r -> r.getRoomType() == IRoom.RoomType.NORMAL_ROOM
@@ -73,11 +81,14 @@ public class AddItemsToRooms {
         return nonRestricted;
     }
 
+
     public void add(List<Room> rooms) {
         var weapons = buildWeapons(15);
         addItems(rooms,weapons);
         var nonRestricted = getNonRestricted(rooms);
         var teleporters = buildTeleporters(4);
         addItems(nonRestricted,teleporters);
+        var consumables = buildConsumables(18);
+        addItems(rooms,consumables);
     }
 }

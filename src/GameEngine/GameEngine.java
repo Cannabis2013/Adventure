@@ -44,7 +44,7 @@ public class GameEngine {
         return _player.dropItem(itemTitle);
     }
 
-    public String eatItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException {
+    public String eatItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException, PlayerHealthFullException {
         return _player.consumeItem(itemTitle);
     }
 
@@ -70,6 +70,10 @@ public class GameEngine {
 
     public String equipWeapon(String weapon) throws EquipWeaponFailedException, ItemNotFoundException {
         return _player.equip(weapon);
+    }
+
+    public String attack(){
+        return _player.attack();
     }
 
     public String attack(String target) throws InvalidObjectException, FatalBlowException {

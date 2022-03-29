@@ -5,6 +5,7 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Node;
 import GameEngine.Utils.ItemNotFoundException;
+import GameEngine.Utils.ObjectNotFoundException;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface IRoom {
 
     List<IObjectEntity> roomObjects();
     void setRoomObjects(List<IObjectEntity> objects);
+    IObjectEntity roomObject(String title) throws ObjectNotFoundException;
 
     RoomType getRoomType();
 

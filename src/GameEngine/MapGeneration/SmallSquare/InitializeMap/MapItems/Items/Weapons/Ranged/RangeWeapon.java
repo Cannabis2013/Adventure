@@ -33,10 +33,13 @@ public abstract class RangeWeapon extends Weapon {
     }
 
     @Override
+    public int attack(){
+        return shoot();
+    }
+
+    @Override
     public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
-        if(target == null)
-            return shoot();
-        else if(!(target instanceof IInflictable))
+        if(!(target instanceof IInflictable))
             throw new InvalidObjectException();
         var inflictableTarget = (IInflictable) target;
         return shoot(inflictableTarget);

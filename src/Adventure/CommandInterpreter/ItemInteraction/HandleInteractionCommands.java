@@ -2,6 +2,7 @@ package Adventure.CommandInterpreter.ItemInteraction;
 
 import GameEngine.GameEngine;
 import GameEngine.Player.Exceptions.ItemNotConsumableException;
+import GameEngine.Player.Exceptions.PlayerHealthFullException;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleInteractionCommands {
@@ -48,6 +49,8 @@ public class HandleInteractionCommands {
             _printer.printItemNotConsumable(arg);
         } catch (ItemNotFoundException e) {
             _printer.printItemNotInInventory(arg);
+        } catch (PlayerHealthFullException e) {
+            _printer.printPlayerNotHungry();
         }
     }
 }

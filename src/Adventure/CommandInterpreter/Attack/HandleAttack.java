@@ -8,15 +8,9 @@ public class HandleAttack {
     PrintAttackMessages _printer = new PrintAttackMessages();
 
     private void attackNobody(GameEngine engine){
-        try {
-            var damageDone = engine.attack("");
-            var sound = engine.attackSound();
-            _printer.printResult(sound,damageDone,"");
-        } catch (FatalBlowException e) {
-            _printer.printFatalMessage();
-        } catch (InvalidObjectException e) {
-            _printer.printDemonNotFound();
-        }
+        var damageDone = engine.attack();
+        var sound = engine.attackSound();
+        _printer.printAttackNoBody(sound);
     }
 
     private void attackEnemy(String command, GameEngine engine) throws PlayerIsDeadException {
@@ -24,7 +18,7 @@ public class HandleAttack {
         try {
             var damageDone = engine.attack(target);
             var sound = engine.attackSound();
-            _printer.printResult(sound,damageDone,target);
+            _printer.printAttackDemon(sound,damageDone,target);
         } catch (FatalBlowException e) {
             _printer.printFatalMessage();
             return;

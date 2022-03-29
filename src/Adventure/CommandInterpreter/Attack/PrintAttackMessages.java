@@ -11,7 +11,13 @@ public class PrintAttackMessages {
         System.out.println(formatted);
     }
 
-    public void printResult(String sound,String result, String target){
+    public void printAttackNoBody(String sound){
+        var msg = sound + "\n" + "You must be mad at the air surrounding you. It must be the bad smell.";
+        var formatted = _formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printAttackDemon(String sound, String result, String target){
         var msg = sound + "\n" + "You dealt " + result + " damage";
         if(!target.isEmpty())
             msg += " to " + target;

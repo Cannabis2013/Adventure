@@ -46,4 +46,10 @@ public class PrintInteractionMessages {
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
+
+    public void printPlayerNotHungry(){
+        var msg = "Player not hungry";
+        var formatted = _formatter.formatWhiteOnGreenTight(msg);
+        System.out.println(formatted);
+    }
 }
