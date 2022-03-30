@@ -4,7 +4,7 @@ import Adventure.ScreenMessages.PrintHelp;
 import Adventure.ScreenMessages.PrintRoomDetails;
 import GameEngine.GameEngine;
 
-public class HandleGeneralCommand {
+public class HandleGeneral {
     private PrintGeneralMessages _printer = new PrintGeneralMessages();
     private PrintRoomDetails _printRoomDetails = new PrintRoomDetails();
     private PrintHelp _printHelp = new PrintHelp();

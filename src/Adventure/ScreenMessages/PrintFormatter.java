@@ -4,7 +4,7 @@ import ConsolePrintFormatter.FilledTextBox.BuildFilledBox;
 
 import java.awt.*;
 
-public class FormatMessages {
+public class PrintFormatter {
 
     public String formatPressButton(String msg){
         var csiBuilder = new BuildFilledBox(msg);

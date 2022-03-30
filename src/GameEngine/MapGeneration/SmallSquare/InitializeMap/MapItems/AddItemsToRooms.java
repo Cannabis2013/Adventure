@@ -10,7 +10,6 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.Mag7;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -80,7 +79,6 @@ public class AddItemsToRooms {
                         && !r.isSealed()).toList();
         return nonRestricted;
     }
-
 
     public void add(List<Room> rooms) {
         var weapons = buildWeapons(15);

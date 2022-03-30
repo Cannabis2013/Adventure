@@ -1,9 +1,9 @@
 package Adventure.CommandInterpreter.Attack;
 
-import Adventure.ScreenMessages.FormatMessages;
+import Adventure.ScreenMessages.PrintFormatter;
 
 public class PrintAttackMessages {
-    private FormatMessages _formatter = new FormatMessages();
+    private PrintFormatter _formatter = new PrintFormatter();
 
     public void printFatalMessage(){
         var msg = "You dealt a fatal blow";

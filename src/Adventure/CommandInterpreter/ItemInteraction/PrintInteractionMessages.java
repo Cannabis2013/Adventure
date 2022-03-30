@@ -1,9 +1,9 @@
 package Adventure.CommandInterpreter.ItemInteraction;
 
-import Adventure.ScreenMessages.FormatMessages;
+import Adventure.ScreenMessages.PrintFormatter;
 
 public class PrintInteractionMessages {
-    private FormatMessages _formatter = new FormatMessages();
+    private PrintFormatter _formatter = new PrintFormatter();
 
     public void printItemNotInRoom(String itemTitle){
         var msg = String.format("There is nothing like %s to take around here",itemTitle);

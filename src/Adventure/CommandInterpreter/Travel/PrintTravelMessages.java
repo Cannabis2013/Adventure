@@ -1,9 +1,9 @@
 package Adventure.CommandInterpreter.Travel;
 
-import Adventure.ScreenMessages.FormatMessages;
+import Adventure.ScreenMessages.PrintFormatter;
 
 public class PrintTravelMessages {
-    private FormatMessages _formatter = new FormatMessages();
+    private PrintFormatter _formatter = new PrintFormatter();
 
     public void printBadCommand(){
         var msg = "!!!! Bad command. Please try again. !!!!";

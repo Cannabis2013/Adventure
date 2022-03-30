@@ -5,7 +5,7 @@ import GameEngine.Player.Exceptions.ItemNotConsumableException;
 import GameEngine.Player.Exceptions.PlayerHealthFullException;
 import GameEngine.Utils.ItemNotFoundException;
 
-public class HandleInteractionCommands {
+public class HandleInteraction {
     private PrintInteractionMessages _printer = new PrintInteractionMessages();
 
     private void takeOneItem(String itemTitle, GameEngine engine){

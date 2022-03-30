@@ -3,7 +3,7 @@ package Adventure.ScreenMessages;
 import java.util.List;
 
 public class PrintRoomDetails {
-    FormatMessages _formatter = new FormatMessages();
+    PrintFormatter _formatter = new PrintFormatter();
 
     private String addEquipped(String msg, String weapon){
         if(weapon.isBlank())

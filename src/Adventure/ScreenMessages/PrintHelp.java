@@ -2,7 +2,7 @@ package Adventure.ScreenMessages;
 
 public class PrintHelp {
 
-    FormatMessages _formatter = new FormatMessages();
+    PrintFormatter _formatter = new PrintFormatter();
 
     private String buildHelpMsg(){
         return """

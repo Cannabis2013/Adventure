@@ -6,7 +6,6 @@ import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.MapGeneration.SmallSquare.Utils.GetDoorNames;
 import GameEngine.Player.Character;
 import GameEngine.Utils.ItemNotFoundException;
-import GameEngine.Utils.ObjectNotFoundException;
 import GameEngine.Utils.TakeItemFromList;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,13 +52,6 @@ public class Room extends Node {
     public List<IObjectEntity> roomObjects() {return _roomObjects;}
 
     public void setRoomObjects(List<IObjectEntity> objects) {_roomObjects = objects;}
-
-    public IObjectEntity roomObject(String title) throws ObjectNotFoundException {
-        var obj = _roomObjects.stream().filter(o -> o.title().equals(title)).findFirst();
-        if(!obj.isPresent())
-            throw new ObjectNotFoundException();
-        return obj.get();
-    }
 
     public Room(RoomType type, Map parentMap){
         super("room");

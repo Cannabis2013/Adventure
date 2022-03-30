@@ -72,6 +72,7 @@ public class Character implements IObjectEntity, IInflictable, IPresentable {
         var weapon = _weapon;
         _weapon = null;
         _currentRoom.addItem(weapon);
+        _currentRoom.demons().remove(this);
         _state = State.DEAD;
         throw new FatalBlowException();
     }
