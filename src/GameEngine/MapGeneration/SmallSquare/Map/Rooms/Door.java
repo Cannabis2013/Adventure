@@ -1,9 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
-import GameEngine.Contracts.DoorIsLockedException;
 import GameEngine.Contracts.IObjectEntity;
 import GameEngine.Contracts.IPresentable;
-import GameEngine.Contracts.IRoom;
 
 public class Door implements IObjectEntity, IPresentable {
     private int lockID;
@@ -29,7 +27,7 @@ public class Door implements IObjectEntity, IPresentable {
             return null;
     }
 
-    public IRoom getOther(IRoom thisRoom) throws DoorIsLockedException {
+    public Node getOther(Node thisRoom) throws DoorIsLockedException {
         if(locked)
             throw new DoorIsLockedException();
         if(_node1.equals(thisRoom))

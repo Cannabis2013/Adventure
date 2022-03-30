@@ -1,4 +1,4 @@
-package GameEngine.Contracts;
+package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 public class DoorIsLockedException extends Exception{
     @Override

@@ -1,10 +1,10 @@
 package GameEngine.Player.Actions;
 
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.IUsable;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Player.Character;
 import GameEngine.Player.Exceptions.ItemNotUsableException;
 import GameEngine.Player.Exceptions.TargetNotFoundException;
@@ -13,7 +13,7 @@ import GameEngine.Player.InventoryBag.Bag;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class UseItem {
-    IObjectEntity findTarget(IRoom room, String title) throws TargetNotFoundException {
+    IObjectEntity findTarget(Room room, String title) throws TargetNotFoundException {
         var obj = room.roomObjects().stream()
                 .filter(o -> o.title().equals(title))
                 .findFirst();
@@ -31,7 +31,7 @@ public class UseItem {
         }
     }
 
-    public String use(String itemTitle, String targetObject, IRoom currentRoom, Bag bag) throws TargetNotFoundException, UsableNotFoundException, InvalidObjectException {
+    public String use(String itemTitle, String targetObject, Room currentRoom, Bag bag) throws TargetNotFoundException, UsableNotFoundException, InvalidObjectException {
         IObjectEntity roomItem = findTarget(currentRoom,targetObject);
         var item = findItemFromBag(bag,itemTitle);
         if(item instanceof IUsable){

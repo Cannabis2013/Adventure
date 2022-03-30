@@ -47,6 +47,6 @@ public abstract class RangeWeapon extends Weapon {
 
     @Override
     public String presentate() {
-        return String.format("%s (Damage: %d, Ammo: %d, Rate: %d)", _title, _damage, _ammo, _rate);
+        return String.format("%s (Damage: %d, Ammo: %d, Rate: %d)", title(), _damage, _ammo, _rate);
     }
 }

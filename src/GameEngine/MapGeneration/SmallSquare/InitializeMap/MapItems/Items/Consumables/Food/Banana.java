@@ -18,6 +18,6 @@ public class Banana extends Item implements IConsumable {
 
     @Override
     public String presentate() {
-        return String.format("%s (+%d hp)",_title, _hpChange);
+        return String.format("%s (+%d hp)",title(), _hpChange);
     }
 }

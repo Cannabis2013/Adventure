@@ -1,25 +1,16 @@
 package GameEngine.MapGeneration.SmallSquare.Map;
 
-import GameEngine.Contracts.IMap;
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
-
 import java.util.List;
 
-public class Map implements IMap {
+public class Map {
     private List<Room> _rooms;
-    private IRoom _initialRoom;
+    private Room _initialRoom;
 
-    @Override
-    public List<IRoom> rooms() {
-        return _rooms.stream().map(r -> (IRoom)r).toList();
-    }
+    public List<Room> rooms() {return _rooms;}
     public void setRooms(List<Room> rooms) {_rooms = rooms;}
 
-    @Override
-    public IRoom initialRoom() {
-        return _initialRoom;
-    }
-    public void setInitialRoom(IRoom room) {_initialRoom = room;}
+    public Room initialRoom() {return _initialRoom;}
 
+    public void setInitialRoom(Room room) {_initialRoom = room;}
 }

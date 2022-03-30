@@ -1,20 +1,20 @@
 package GameEngine.Player.Actions;
 
-import GameEngine.Contracts.DoorIsLockedException;
-import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Node;
 import GameEngine.Player.Exceptions.BadDirectionException;
 import GameEngine.Player.Exceptions.NoDoorAtOrientationException;
 
 public class EnterDoorAtOrientation {
 
-    private IRoom tryGoNorth(IRoom currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
+    private Node tryGoNorth(Node currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getNorth() != null)
             return currentRoom.getNorth().getOther(currentRoom);
         else
             throw new NoDoorAtOrientationException();
     }
 
-    private IRoom tryGoEast(IRoom currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
+    private Node tryGoEast(Node currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getEast() != null)
             return currentRoom.getEast().getOther(currentRoom);
         else
@@ -22,7 +22,7 @@ public class EnterDoorAtOrientation {
 
     }
 
-    private IRoom tryGoSouth(IRoom currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
+    private Node tryGoSouth(Node currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getSouth() != null)
             return currentRoom.getSouth().getOther(currentRoom);
         else
@@ -30,7 +30,7 @@ public class EnterDoorAtOrientation {
 
     }
 
-    private IRoom tryGoWest(IRoom currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
+    private Node tryGoWest(Node currentRoom) throws DoorIsLockedException, NoDoorAtOrientationException {
         if(currentRoom.getWest() != null)
             return currentRoom.getWest().getOther(currentRoom);
         else
@@ -38,7 +38,7 @@ public class EnterDoorAtOrientation {
 
     }
 
-    public IRoom enterAtOrientation(String orientation, IRoom currentRoom) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
+    public Node enterAtOrientation(String orientation, Node currentRoom) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
         switch (orientation){
             case "north" -> {return tryGoNorth(currentRoom);}
             case "east" -> {return tryGoEast(currentRoom);}

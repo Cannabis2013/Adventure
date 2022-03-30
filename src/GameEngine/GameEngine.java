@@ -1,6 +1,6 @@
 package GameEngine;
 
-import GameEngine.Contracts.DoorIsLockedException;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
 import GameEngine.MapGeneration.MapGenerator;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
@@ -87,7 +87,7 @@ public class GameEngine {
     }
 
     public List<String> roomEnemies() {
-        return _player.currentRoom().demonsAsString();
+        return _player.currentRoom().demonsAsStrings();
     }
 
     public String attackSound(){

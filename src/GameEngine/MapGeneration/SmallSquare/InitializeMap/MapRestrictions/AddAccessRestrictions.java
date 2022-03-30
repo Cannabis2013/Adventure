@@ -1,6 +1,5 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions;
 
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
@@ -38,7 +37,7 @@ public class AddAccessRestrictions {
         var keys = _restrictMap.restrict(rooms)
                 .stream().map(k -> (Item) k).toList();
         var normals = rooms.stream()
-                .filter(r -> r.getRoomType() == IRoom.RoomType.NORMAL_ROOM).toList();
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM).toList();
         addItems(normals,keys);
     }
 }

@@ -1,10 +1,10 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Teleporter;
 
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.IUsable;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Player.Player;
 
 import java.util.List;
@@ -20,12 +20,12 @@ public class TeleportDevice extends Item implements IUsable {
     @Override
     public String presentate() {
         if(_used)
-            return String.format("%s (broken)",_title);
+            return String.format("%s (broken)",title());
         else
-            return _title;
+            return title();
     }
 
-    private IRoom getRandomRoom(List<IRoom> rooms){
+    private Room getRandomRoom(List<Room> rooms){
         var rand = new Random();
         var randIndex = rand.nextInt(rooms.size());
         return rooms.get(randIndex);
@@ -36,7 +36,7 @@ public class TeleportDevice extends Item implements IUsable {
         var currentRoom = obj.currentRoom();
         var rooms = map.rooms();
         var normals = rooms.stream()
-                .filter(r -> r.getRoomType() == IRoom.RoomType.NORMAL_ROOM)
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM)
                 .filter(r ->r != currentRoom).toList();
         var randomRoom = getRandomRoom(normals);
         obj.setCurrentRoom(randomRoom);

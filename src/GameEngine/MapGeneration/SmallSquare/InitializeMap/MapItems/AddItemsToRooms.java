@@ -1,6 +1,5 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems;
 
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Consumables.Food.Banana;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables.Teleporter.TeleportDevice;
@@ -77,7 +76,7 @@ public class AddItemsToRooms {
 
     private List<Room> getNonRestricted(List<Room> rooms){
         var nonRestricted = rooms.stream()
-                .filter(r -> r.getRoomType() == IRoom.RoomType.NORMAL_ROOM
+                .filter(r -> r.getRoomType() == Room.RoomType.NORMAL_ROOM
                         && !r.isSealed()).toList();
         return nonRestricted;
     }

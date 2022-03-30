@@ -1,10 +1,10 @@
 package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
-import GameEngine.Contracts.IMap;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Cyberdemon;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
 
 public class BossRoom extends Room{
-    public BossRoom(IMap parentMap) {
+    public BossRoom(Map parentMap) {
         super(RoomType.BOSS_ROOM, parentMap);
         demons().add(new Cyberdemon(this));
 

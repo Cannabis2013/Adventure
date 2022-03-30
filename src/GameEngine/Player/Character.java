@@ -1,9 +1,13 @@
 package GameEngine.Player;
 
-import GameEngine.Contracts.*;
+import GameEngine.Contracts.IInflictable;
+import GameEngine.Contracts.IObjectEntity;
+import GameEngine.Contracts.IPresentable;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Player.Actions.ConsumeItem;
 import GameEngine.Player.Actions.EnterDoorAtOrientation;
 import GameEngine.Player.Actions.EquipWeapon;
@@ -11,14 +15,14 @@ import GameEngine.Player.Actions.UseItem;
 import GameEngine.Player.Exceptions.WeaponNotEquippedException;
 import GameEngine.Player.InventoryBag.Bag;
 
-public abstract class Character implements IObjectEntity, IInflictable, IPresentable {
+public class Character implements IObjectEntity, IInflictable, IPresentable {
     private String _title;
     private static int _id;
     protected EnterDoorAtOrientation _traverseTo = new EnterDoorAtOrientation();
     protected EquipWeapon _equipWeapon = new EquipWeapon();
     protected UseItem _useItem = new UseItem();
     protected ConsumeItem _consumeItem = new ConsumeItem();
-    protected IRoom _currentRoom;
+    protected Room _currentRoom;
     protected Weapon _weapon;
     protected Bag _bag = new Bag();
     protected int _health = 100;
@@ -62,7 +66,7 @@ public abstract class Character implements IObjectEntity, IInflictable, IPresent
 
     public Weapon equipped(){return _weapon;}
 
-    public IMap getCurrentMap(){return _currentRoom.map();}
+    public Map getCurrentMap(){return _currentRoom.map();}
 
     public void die() throws FatalBlowException {
         var weapon = _weapon;

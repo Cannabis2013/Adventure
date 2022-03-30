@@ -31,12 +31,6 @@ public class PrintAttackMessages {
         System.out.println(formatted);
     }
 
-    public void printDemonNotFound(){
-        var msg = "Demon not found";
-        var formatted = _formatter.formatNegativeResponse(msg);
-        System.out.println(formatted);
-    }
-
     public void printInvalidTarget(){
         var msg = "You can't attack this!";
         var formatted = _formatter.formatNegativeResponse(msg);

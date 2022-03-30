@@ -1,9 +1,9 @@
 package GameEngine.MapGeneration;
 
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.BuildSmallSquared;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class MapGenerator {
     private BuildSmallSquared _mapBuilder = new BuildSmallSquared();
 
-    private List<IObjectEntity> getDoors(IRoom room){
+    private List<IObjectEntity> getDoors(Node room){
         var doors = new ArrayList<IObjectEntity>();
         if(room.getNorth() != null)
             doors.add(room.getNorth());

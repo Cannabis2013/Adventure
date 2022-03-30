@@ -6,7 +6,6 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Usables
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
 
-
 public class RedKey extends Item implements IUsable {
     public RedKey(String title) {
         super(title);
