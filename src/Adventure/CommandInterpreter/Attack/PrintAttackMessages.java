@@ -48,4 +48,28 @@ public class PrintAttackMessages {
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
+
+    public void printPlayerDodgedAttack(){
+        var msg = "You dodged";
+        var formatted = _formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printEnemyDodgedAttack(String enemyTitle){
+        var msg = String.format("%s dodged your attack",enemyTitle);
+        var formatted = _formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printPlayerMissedTarget(){
+        var msg = "You missed";
+        var formatted = _formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
+
+    public void printEnemyMissedTarget(String enemyTitle){
+        var msg = String.format("%s missed",enemyTitle);
+        var formatted = _formatter.formatWhiteOnRedTight(msg);
+        System.out.println(formatted);
+    }
 }

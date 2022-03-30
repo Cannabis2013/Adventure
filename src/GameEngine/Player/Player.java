@@ -7,13 +7,14 @@ import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Player.Exceptions.*;
 import GameEngine.Utils.ItemNotFoundException;
-
 import java.util.List;
 
 public class Player extends Character {
 
     public Player() {
         super("Player");
+        _dodgeChange = 0.25;
+        _hitChance = 0.8;
     }
 
     public String weaponAsString(){

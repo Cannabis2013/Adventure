@@ -12,6 +12,8 @@ import GameEngine.Player.Actions.ConsumeItem;
 import GameEngine.Player.Actions.EnterDoorAtOrientation;
 import GameEngine.Player.Actions.EquipWeapon;
 import GameEngine.Player.Actions.UseItem;
+import GameEngine.Player.Exceptions.DodgedAttackException;
+import GameEngine.Player.Exceptions.MissedTargetException;
 import GameEngine.Player.Exceptions.WeaponNotEquippedException;
 import GameEngine.Player.InventoryBag.Bag;
 
@@ -26,9 +28,9 @@ public class Character implements IObjectEntity, IInflictable, IPresentable {
     protected Weapon _weapon;
     protected Bag _bag = new Bag();
     protected int _health = 100;
+    protected double _dodgeChange = .1;
+    protected double _hitChance = 0.7;
     private final int _maxHealth = 100;
-    private enum State {ALIVE, DEAD}
-    private State _state = State.ALIVE;
 
     protected Character(String title) {
         _id++;
@@ -47,7 +49,10 @@ public class Character implements IObjectEntity, IInflictable, IPresentable {
     }
 
     @Override
-    public int inflict(int damage) throws FatalBlowException {
+    public int inflict(int damage) throws FatalBlowException, DodgedAttackException {
+        var r = Math.random();
+        if(r <= _dodgeChange)
+            throw new DodgedAttackException();
         _health -= damage;
         if(_health <= 0)
             die();
@@ -56,7 +61,7 @@ public class Character implements IObjectEntity, IInflictable, IPresentable {
 
     @Override
     public String presentate() {
-        return String.format("%s (HP: %d, weapon: %s) [%s]",_title,_health,_weapon.type(),_state);
+        return String.format("%s (HP: %d, weapon: %s)",_title,_health,_weapon.type());
     }
 
     @Override
@@ -73,13 +78,14 @@ public class Character implements IObjectEntity, IInflictable, IPresentable {
         _weapon = null;
         _currentRoom.addItem(weapon);
         _currentRoom.demons().remove(this);
-        _state = State.DEAD;
         throw new FatalBlowException();
     }
 
-    public String attack(IObjectEntity object) throws FatalBlowException, InvalidObjectException, WeaponNotEquippedException {
+    public String attack(IObjectEntity object) throws FatalBlowException, InvalidObjectException, WeaponNotEquippedException, DodgedAttackException, MissedTargetException {
         if(_weapon == null)
             throw new WeaponNotEquippedException();
+        if(Math.random() >= _hitChance)
+            throw new MissedTargetException();
         return String.format("%d",_weapon.attack(object));
     }
 }

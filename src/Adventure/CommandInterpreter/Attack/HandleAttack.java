@@ -3,6 +3,8 @@ package Adventure.CommandInterpreter.Attack;
 import GameEngine.GameEngine;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.Player.Exceptions.DodgedAttackException;
+import GameEngine.Player.Exceptions.MissedTargetException;
 import GameEngine.Player.Exceptions.WeaponNotEquippedException;
 
 public class HandleAttack {
@@ -15,6 +17,24 @@ public class HandleAttack {
             _printer.printAttackNoBody(sound);
         } catch (WeaponNotEquippedException e) {
             _printer.printWeapNotEqupped();
+        }
+    }
+
+    private void performEnemyAttack(String enemyTitle ,GameEngine engine) throws PlayerIsDeadException {
+        try {
+            var dmg = engine.performEnemyAttack(enemyTitle);
+            _printer.printEnemyResult(enemyTitle,dmg);
+        } catch (InvalidObjectException e) {
+            e.printStackTrace();
+        } catch (FatalBlowException e) {
+            _printer.printDieMessage();
+            throw new PlayerIsDeadException();
+        } catch (WeaponNotEquippedException e) {
+            // Ignored since enemies can't drop any items or weapons unless dealt a fatal blow
+        } catch (DodgedAttackException e) {
+            _printer.printPlayerDodgedAttack();
+        } catch (MissedTargetException e) {
+            _printer.printEnemyMissedTarget(enemyTitle);
         }
     }
 
@@ -33,19 +53,12 @@ public class HandleAttack {
         } catch (WeaponNotEquippedException e) {
             _printer.printWeapNotEqupped();
             return;
+        } catch (DodgedAttackException e) {
+            _printer.printEnemyDodgedAttack(target);
+        } catch (MissedTargetException e) {
+            _printer.printPlayerMissedTarget();
         }
-        // Enemy performs his move
-        try {
-            var dmg = engine.performEnemyAttack(target);
-            _printer.printEnemyResult(target,dmg);
-        } catch (InvalidObjectException e) {
-            e.printStackTrace();
-        } catch (FatalBlowException e) {
-            _printer.printDieMessage();
-            throw new PlayerIsDeadException();
-        } catch (WeaponNotEquippedException e) {
-            // Ignored since enemies can't drop any items or weapons
-        }
+        performEnemyAttack(target,engine);
     }
 
     public void handleAttack(String command, GameEngine engine) throws PlayerIsDeadException {

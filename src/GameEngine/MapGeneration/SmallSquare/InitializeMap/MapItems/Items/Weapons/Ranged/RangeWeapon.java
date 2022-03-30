@@ -5,6 +5,7 @@ import GameEngine.Contracts.IObjectEntity;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
+import GameEngine.Player.Exceptions.DodgedAttackException;
 
 public abstract class RangeWeapon extends Weapon {
     protected int _ammo;
@@ -24,7 +25,7 @@ public abstract class RangeWeapon extends Weapon {
         return 0;
     }
 
-    private int shoot(IInflictable target) throws FatalBlowException {
+    private int shoot(IInflictable target) throws FatalBlowException, DodgedAttackException {
         if(ammo() <= 0)
             return 0;
         useAmmo();
@@ -38,7 +39,7 @@ public abstract class RangeWeapon extends Weapon {
     }
 
     @Override
-    public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
+    public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException, DodgedAttackException {
         if(!(target instanceof IInflictable))
             throw new InvalidObjectException();
         var inflictableTarget = (IInflictable) target;

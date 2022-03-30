@@ -7,8 +7,9 @@ import GameEngine.Player.Character;
 public class Imp extends Character {
     public Imp(Room currentRoom) {
         super("imp");
-        _health = 10;
+        _health = 100;
         _weapon = new AK47();
         _currentRoom = currentRoom;
+        _hitChance = 0.5;
     }
 }

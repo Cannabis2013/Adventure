@@ -5,6 +5,7 @@ import GameEngine.Contracts.IObjectEntity;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
+import GameEngine.Player.Exceptions.DodgedAttackException;
 
 public abstract class MeleeWeapon extends Weapon {
     public MeleeWeapon(String title) {
@@ -15,7 +16,7 @@ public abstract class MeleeWeapon extends Weapon {
         return 0;
     }
 
-    private int hit(IInflictable target) throws FatalBlowException {
+    private int hit(IInflictable target) throws FatalBlowException, DodgedAttackException {
         return target.inflict(_damage);
     }
 
@@ -25,7 +26,7 @@ public abstract class MeleeWeapon extends Weapon {
     }
 
     @Override
-    public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException {
+    public int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException, DodgedAttackException {
         if(!(target instanceof IInflictable))
             throw new InvalidObjectException();
         var inflictableTarget = (IInflictable) target;

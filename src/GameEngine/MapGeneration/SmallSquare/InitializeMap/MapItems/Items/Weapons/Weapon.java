@@ -2,6 +2,7 @@ package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapon
 
 import GameEngine.Contracts.IObjectEntity;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
+import GameEngine.Player.Exceptions.DodgedAttackException;
 
 public abstract class Weapon extends Item {
     public Weapon(String title) {
@@ -15,7 +16,7 @@ public abstract class Weapon extends Item {
 
     public int ammo(){return 0;}
     public abstract int attack();
-    public abstract int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException;
+    public abstract int attack(IObjectEntity target) throws FatalBlowException, InvalidObjectException, DodgedAttackException;
 
     public abstract String sound();
 

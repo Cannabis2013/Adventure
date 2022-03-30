@@ -77,7 +77,7 @@ public class GameEngine {
         return _player.attack();
     }
 
-    public String attack(String target) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException {
+    public String attack(String target) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException, DodgedAttackException, MissedTargetException {
         var demon = _player.currentRoom().demon(target);
         return _player.attack(demon);
     }
@@ -94,7 +94,7 @@ public class GameEngine {
         return _player.equipped().sound();
     }
 
-    public String performEnemyAttack(String enemyTitle) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException {
+    public String performEnemyAttack(String enemyTitle) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException, DodgedAttackException, MissedTargetException {
         var demon = _player.currentRoom().demon(enemyTitle);
         return demon.attack(_player);
     }

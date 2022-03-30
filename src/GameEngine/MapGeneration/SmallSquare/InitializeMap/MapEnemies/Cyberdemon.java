@@ -10,5 +10,6 @@ public class Cyberdemon extends Character {
         _weapon = new RocketLauncher();
         _health = 30;
         _currentRoom = currentRoom;
+        _hitChance = 0.6;
     }
 }
