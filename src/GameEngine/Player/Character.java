@@ -17,7 +17,7 @@ import GameEngine.Player.Exceptions.MissedTargetException;
 import GameEngine.Player.Exceptions.WeaponNotEquippedException;
 import GameEngine.Player.InventoryBag.Bag;
 
-public class Character implements IObjectEntity, IInflictable, IPresentable {
+public abstract class Character implements IObjectEntity, IInflictable, IPresentable {
     private String _title;
     private static int _id;
     protected EnterDoorAtOrientation _traverseTo = new EnterDoorAtOrientation();
@@ -73,13 +73,7 @@ public class Character implements IObjectEntity, IInflictable, IPresentable {
 
     public Map getCurrentMap(){return _currentRoom.map();}
 
-    public void die() throws FatalBlowException {
-        var weapon = _weapon;
-        _weapon = null;
-        _currentRoom.addItem(weapon);
-        _currentRoom.demons().remove(this);
-        throw new FatalBlowException();
-    }
+    public abstract void die() throws FatalBlowException;
 
     public String attack(IObjectEntity object) throws FatalBlowException, InvalidObjectException, WeaponNotEquippedException, DodgedAttackException, MissedTargetException {
         if(_weapon == null)

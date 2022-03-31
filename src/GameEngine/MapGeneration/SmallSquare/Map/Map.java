@@ -1,6 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.Map;
 
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
+
 import java.util.List;
 
 public class Map {

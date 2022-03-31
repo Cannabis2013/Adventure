@@ -1,10 +1,10 @@
 package GameEngine;
 
-import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
 import GameEngine.MapGeneration.MapGenerator;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
 import GameEngine.Player.Exceptions.*;
 import GameEngine.Player.Player;
 import GameEngine.Utils.ItemNotFoundException;
@@ -13,12 +13,14 @@ import java.util.List;
 
 public class GameEngine {
     private MapGenerator _mapGenerator = new MapGenerator();
-    private Player _player = new Player();
+    private Player _player;
     private Map _map;
 
     public void init(){
         _map = _mapGenerator.build();
+        _player = new Player();
         _player.setCurrentRoom(_map.initialRoom());
+
     }
 
     public void travel(String orientation) throws IllegalArgumentException, IllegalStateException, DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
@@ -78,7 +80,7 @@ public class GameEngine {
     }
 
     public String attack(String target) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException, DodgedAttackException, MissedTargetException {
-        var demon = _player.currentRoom().demon(target);
+        var demon = _player.currentRoom().enemy(target);
         return _player.attack(demon);
     }
 
@@ -95,7 +97,7 @@ public class GameEngine {
     }
 
     public String performEnemyAttack(String enemyTitle) throws InvalidObjectException, FatalBlowException, WeaponNotEquippedException, DodgedAttackException, MissedTargetException {
-        var demon = _player.currentRoom().demon(enemyTitle);
-        return demon.attack(_player);
+        var enemy = _player.currentRoom().enemy(enemyTitle);
+        return enemy.attack(_player);
     }
 }

@@ -1,12 +1,14 @@
 package GameEngine.Player;
 
-import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.Player.Exceptions.*;
 import GameEngine.Utils.ItemNotFoundException;
+
 import java.util.List;
 
 public class Player extends Character {
@@ -15,6 +17,7 @@ public class Player extends Character {
         super("Player");
         _dodgeChange = 0.25;
         _hitChance = 0.8;
+        _health = 1;
     }
 
     public String weaponAsString(){
@@ -37,6 +40,11 @@ public class Player extends Character {
     }
 
     public Map getCurrentMap(){return _currentRoom.map();}
+
+    @Override
+    public void die() throws FatalBlowException {
+        throw new FatalBlowException();
+    }
 
     public String takeItem(String itemTitle) throws ItemNotFoundException {
         var item = _currentRoom.takeItem(itemTitle);

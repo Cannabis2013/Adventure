@@ -7,6 +7,7 @@ import GameEngine.MapGeneration.SmallSquare.Utils.GetDoorNames;
 import GameEngine.Player.Character;
 import GameEngine.Utils.ItemNotFoundException;
 import GameEngine.Utils.TakeItemFromList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,14 +26,14 @@ public class Room extends Node {
     public String description() {return _description;}
     public void setDescription(String description) {_description = description;}
 
-    public Character demon() {
+    public Character enemy() {
         if(_demons.isEmpty())
             return null;
         Collections.shuffle(_demons);
         return _demons.get(0);
     }
 
-    public Character demon(String title) {
+    public Character enemy(String title) {
         var demon =_demons.stream()
                 .filter(d -> d.title().equals(title)).findFirst();
         if(!demon.isPresent())
