@@ -1,29 +1,29 @@
 package Adventure.CommandInterpreter.ItemUsage;
 
-import Adventure.ScreenMessages.FormatMessages;
+import Adventure.ScreenMessages.PrintFormatter;
 
 public class PrintUsageMessages {
-    private FormatMessages _formatter = new FormatMessages();
+    private PrintFormatter _formatter = new PrintFormatter();
     public void printInvalidObject(){
         var msg = "Can't use this item on that";
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
 
-    public void printObjectNotFound(){
+    public void printTargetNotFound(){
         var msg = "Can't use item on something I can't see. Sorry.";
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
 
-    public void printItemNotInInventory(String itemTitle){
+    public void printUsableNotFound(String itemTitle){
         var msg = String.format("You don't have anything like %s in your inventory",itemTitle);
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }
 
-    public void printBadCommand(){
-        var msg = "!!!! Bad command. Please try again. !!!!";
+    public void printNotUsable(String itemTitle){
+        var msg = itemTitle + " not usable";
         var formatted = _formatter.formatNegativeResponse(msg);
         System.out.println(formatted);
     }

@@ -1,7 +1,7 @@
 package Adventure.ScreenMessages;
 
 public class PrintMessages {
-    public String buildIntroMsg(){
+    private String buildIntroMsg(){
         return """
                 Welcome to Doom V - A new adventure through hell
                 
@@ -20,7 +20,7 @@ public class PrintMessages {
                 Copyright: Nope, but we sure damn gets pissed if someone dares to steal our product.""";
     }
 
-    FormatMessages formatter = new FormatMessages();
+    PrintFormatter formatter = new PrintFormatter();
 
     public void printIntro(){
         var msg = buildIntroMsg();

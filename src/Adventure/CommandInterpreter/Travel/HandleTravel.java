@@ -2,9 +2,9 @@ package Adventure.CommandInterpreter.Travel;
 
 import Adventure.ScreenMessages.PrintRoomDetails;
 import GameEngine.GameEngine;
-import GameEngine.Contracts.DoorIsLockedException;
-import GameEngine.Player.BadDirectionException;
-import GameEngine.Player.NoDoorAtOrientationException;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
+import GameEngine.Player.Exceptions.BadDirectionException;
+import GameEngine.Player.Exceptions.NoDoorAtOrientationException;
 
 public class HandleTravel {
     private PrintTravelMessages _printer = new PrintTravelMessages();
@@ -34,7 +34,8 @@ public class HandleTravel {
             var doorTitles = engine.doorNames();
             var roomEnemies = engine.roomEnemies();
             var items = engine.roomItems();
-            _printRoomDetails.print(description,roomEnemies, items,doorTitles);
+            var equipped = engine.equippedWeapon();
+            _printRoomDetails.print(description,roomEnemies, items,doorTitles,equipped);
         } catch (IllegalArgumentException e){
             _printer.printBadCommand();
         } catch (BadDirectionException | NoDoorAtOrientationException e){

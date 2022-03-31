@@ -1,7 +1,7 @@
 package Adventure.CommandInterpreter.EquipWeapon;
 
 import GameEngine.GameEngine;
-import GameEngine.Player.EquipWeaponFailedException;
+import GameEngine.Player.Exceptions.EquipWeaponFailedException;
 import GameEngine.Utils.ItemNotFoundException;
 
 public class HandleEquipWeapon {

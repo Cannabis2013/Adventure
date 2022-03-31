@@ -1,7 +1,6 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapRestrictions;
 
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
-import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class MapAccessRestrictions {
 
     public List<RedKey> restrict(List<Room> rooms){
         var specials = rooms.stream()
-                .filter(r -> r.getRoomType() == IRoom.RoomType.BOSS_ROOM)
+                .filter(r -> r.getRoomType() == Room.RoomType.BOSS_ROOM)
                 .toList();
         var keys = lockSpecialRooms(specials);
         return keys;

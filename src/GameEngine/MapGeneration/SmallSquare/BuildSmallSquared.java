@@ -1,25 +1,22 @@
 package GameEngine.MapGeneration.SmallSquare;
 
-import GameEngine.Contracts.IMap;
-import GameEngine.MapGeneration.SmallSquare.Models.Map;
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.InitializeMap;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 import GameEngine.MapGeneration.SmallSquare.Utils.AddBossRoom;
-import GameEngine.Contracts.IRoom;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class BuildSmallSquared {
-    private int _num = 1;
     private InitializeMap _initMap = new InitializeMap();
     private AddBossRoom _setBossRoom = new AddBossRoom();
 
-    private List<Room> buildRooms(IMap map){
+    private List<Room> buildRooms(Map map){
         var rooms = new ArrayList<Room>(9);
         for (var i = 0;i < 9;i++)
-            rooms.add(new Room(IRoom.RoomType.NORMAL_ROOM, map));
+            rooms.add(new Room(Room.RoomType.NORMAL_ROOM, map));
         return rooms;
     }
 
@@ -62,7 +59,7 @@ public class BuildSmallSquared {
         connectRooms(rooms,++index,++x,y);
     }
 
-    public IMap build() {
+    public Map build() {
         var map = new Map();
         var rooms = buildRooms(map);
         connectRooms(rooms,0,0,0);

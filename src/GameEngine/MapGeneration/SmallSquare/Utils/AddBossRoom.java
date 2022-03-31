@@ -1,8 +1,8 @@
 package GameEngine.MapGeneration.SmallSquare.Utils;
 
-import GameEngine.Contracts.IMap;
-import GameEngine.MapGeneration.SmallSquare.Models.BossRoom;
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.BossRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.List;
 import java.util.Random;
@@ -24,7 +24,7 @@ public class AddBossRoom {
         }
     }
 
-    public void set(IMap map, List<Room> rooms, int bound){
+    public void set(Map map, List<Room> rooms, int bound){
         var median = (rooms.size() / 2);
         var medianRoom = rooms.get(median);
         medianRoom.disconnect();

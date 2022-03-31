@@ -1,7 +1,6 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapDescriptions;
 
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
-import GameEngine.Contracts.IRoom;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +32,7 @@ public class AddMapDescriptions {
 
     private void setRoomsDescriptions(List<Room> rooms){
         rooms.forEach(r -> {
-            if(r.getRoomType() == IRoom.RoomType.NORMAL_ROOM){
+            if(r.getRoomType() == Room.RoomType.NORMAL_ROOM){
                 var description = "No description available";
                 description = _normalDescriptions.get(getNormalIndex());
                 r.setDescription(description);

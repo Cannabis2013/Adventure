@@ -1,9 +1,9 @@
 package Adventure.CommandInterpreter.ItemInteraction;
 
-import Adventure.ScreenMessages.FormatMessages;
+import Adventure.ScreenMessages.PrintFormatter;
 
 public class PrintInteractionMessages {
-    private FormatMessages _formatter = new FormatMessages();
+    private PrintFormatter _formatter = new PrintFormatter();
 
     public void printItemNotInRoom(String itemTitle){
         var msg = String.format("There is nothing like %s to take around here",itemTitle);
@@ -44,6 +44,12 @@ public class PrintInteractionMessages {
     public void printBadCommand(){
         var msg = "!!!! Bad command. Please try again. !!!!";
         var formatted = _formatter.formatNegativeResponse(msg);
+        System.out.println(formatted);
+    }
+
+    public void printPlayerNotHungry(){
+        var msg = "Player not hungry";
+        var formatted = _formatter.formatWhiteOnGreenTight(msg);
         System.out.println(formatted);
     }
 }

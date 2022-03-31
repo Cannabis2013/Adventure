@@ -1,114 +1,89 @@
 package GameEngine.Player;
 
-import GameEngine.Contracts.IMap;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.Human;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Consumable;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Item;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Usable;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.Weapon;
-import GameEngine.Contracts.DoorIsLockedException;
-import GameEngine.MapGeneration.SmallSquare.Models.MapObject;
-import GameEngine.Contracts.IRoom;
-import GameEngine.Utils.GetItemFromList;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Weapon;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
+import GameEngine.Player.Exceptions.*;
 import GameEngine.Utils.ItemNotFoundException;
-import GameEngine.Utils.ObjectNotFoundException;
-import java.util.ArrayList;
+
 import java.util.List;
 
-public class Player extends Human {
-    private MapTraverseTo _traverseTo = new MapTraverseTo();
-    private GetItemFromList _getItem = new GetItemFromList();
-    private IRoom currentRoom;
-    private Weapon _weapon = new KnuckleBusterWithVolts();
-    private final List<Item> _inventory = new ArrayList<>();
+public class Player extends Character {
 
-    public Player(String name) {
-        super(name);
+    public Player() {
+        super("Player");
+        _dodgeChange = 0.25;
+        _hitChance = 0.8;
+        _health = 1;
     }
+
+    public String weaponAsString(){
+        if(_weapon == null)
+            return "No weapons equipped";
+        return _weapon.presentate();
+    }
+
+    public Weapon equipped(){return _weapon;}
+
+    public String equip(String weaponTitle) throws EquipWeaponFailedException, ItemNotFoundException {
+        _weapon = _equipWeapon.equip(weaponTitle,_weapon,_bag);
+        return _weapon.title();
+    }
+
+    public String attack() throws WeaponNotEquippedException {
+        if(_weapon == null)
+            throw new WeaponNotEquippedException();
+        return String.format("%d",_weapon.attack());
+    }
+
+    public Map getCurrentMap(){return _currentRoom.map();}
 
     @Override
-    public String equip(String weaponTitle) throws ItemNotFoundException, EquipWeaponFailedException {
-        var weapon = _getItem.findByTitle(_inventory,weaponTitle);
-        if(!(weapon instanceof Weapon))
-            throw new EquipWeaponFailedException();
-        if(_weapon != null)
-            _inventory.add(_weapon);
-        _weapon = (Weapon) weapon;
-        return weaponTitle;
-    }
-
-
-    @Override
-    public String attack(MapObject object) throws FatalBlowException, InvalidObjectException {
-        return _weapon.attack(object);
-    }
-
-    public List<Item> inventory() {return _inventory;}
-
-    public IMap getCurrentMap(){
-        return currentRoom.map();
+    public void die() throws FatalBlowException {
+        throw new FatalBlowException();
     }
 
     public String takeItem(String itemTitle) throws ItemNotFoundException {
-        var item = currentRoom.takeItem(itemTitle);
-        _inventory.add(item);
+        var item = _currentRoom.takeItem(itemTitle);
+        _bag.add(item);
         return item.title();
     }
 
     public void takeAll(){
-        var items = currentRoom.items();
-        _inventory.addAll(items);
-        currentRoom.items().clear();
+        var items = _currentRoom.items();
+        _bag.add(items);
+        _currentRoom.items().clear();
     }
 
     public String dropItem(String itemTitle) throws ItemNotFoundException {
-        var item = _getItem.findByTitle(_inventory,itemTitle);
-        _inventory.remove(item);
-        currentRoom.addItem(item);
+        var item = _bag.take(itemTitle);
+        _currentRoom.addItem(item);
         return item.title();
     }
 
-    public IRoom getCurrentRoom() {return currentRoom;}
-    public void setCurrentRoom(IRoom room) {currentRoom = room;}
+    public Room currentRoom() {return _currentRoom;}
+    public void setCurrentRoom(Room room) {_currentRoom = room;}
 
-    public List<String> inventoryToString() {
-        return _inventory.stream().map(i -> i.presentate()).toList();
-    }
+    public List<String> inventoryToString() {return _bag.itemTitles();}
 
     public void travelTo(String orientation) throws DoorIsLockedException, BadDirectionException, NoDoorAtOrientationException {
-        currentRoom = _traverseTo.traverse(orientation, currentRoom);
+        _currentRoom = (Room) _traverseTo.enterAtOrientation(orientation, _currentRoom);
     }
 
-    @Override
-    public String consumeItem(String itemTitle) throws ItemNotFoundException, InvalidObjectException {
-        Item item = _getItem.takeByTitle(_inventory, itemTitle);
-        if (item instanceof Consumable) {
-            var food = (Consumable) item;
-            return food.consume(this);
-        }
-        throw new InvalidObjectException();
+    public String consumeItem(String itemTitle) throws ItemNotFoundException, ItemNotConsumableException, PlayerHealthFullException {
+        if(health() >= 100)
+            throw new PlayerHealthFullException();
+        return _consumeItem.consume(itemTitle,_bag,this);
     }
 
-    public String useItem(String itemTitle, String roomObject) throws ItemNotFoundException, InvalidObjectException, ObjectNotFoundException {
-        var roomObjects = currentRoom.roomObjects();
-        var findObject = new FindObjectByTitle();
-        var roomItem = findObject.find(roomObjects, roomObject);
-        var item = _getItem.findByTitle(_inventory,itemTitle);
-        if(item instanceof Usable){
-            var usable = (Usable) item;
-            return usable.useOn(roomItem);
-        }
-        throw new ItemNotFoundException();
+    public String useItem(String itemTitle, String roomObject) throws UsableNotFoundException, TargetNotFoundException, InvalidObjectException {
+        return _useItem.use(itemTitle,roomObject, _currentRoom,_bag);
     }
 
-    public String useItem(String itemTitle) throws InvalidObjectException, ItemNotFoundException {
-        var item = _getItem.findByTitle(_inventory,itemTitle);
-        if(item instanceof Usable){
-            var usable = (Usable) item;
-            return usable.useOn(this);
-        }
-        throw new ItemNotFoundException();
+    public String useItem(String itemTitle) throws InvalidObjectException, ItemNotUsableException, UsableNotFoundException {
+        return _useItem.use(itemTitle,_bag,this);
     }
 }

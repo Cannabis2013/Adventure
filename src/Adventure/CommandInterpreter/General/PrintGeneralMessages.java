@@ -1,11 +1,11 @@
 package Adventure.CommandInterpreter.General;
 
-import Adventure.ScreenMessages.FormatMessages;
+import Adventure.ScreenMessages.PrintFormatter;
 
 import java.util.List;
 
 public class PrintGeneralMessages {
-    FormatMessages _formatter = new FormatMessages();
+    PrintFormatter _formatter = new PrintFormatter();
 
     public void printInventory(List<String> inventory){
         var msg = "";

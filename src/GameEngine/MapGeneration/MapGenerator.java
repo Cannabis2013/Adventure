@@ -1,30 +1,30 @@
 package GameEngine.MapGeneration;
 
-import GameEngine.Contracts.IMap;
 import GameEngine.Contracts.IObjectEntity;
-import GameEngine.Contracts.IRoom;
 import GameEngine.MapGeneration.SmallSquare.BuildSmallSquared;
-import GameEngine.MapGeneration.SmallSquare.Models.MapObject;
+import GameEngine.MapGeneration.SmallSquare.Map.Map;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Node;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MapGenerator {
     private BuildSmallSquared _mapBuilder = new BuildSmallSquared();
 
-    private List<MapObject> getDoors(IRoom room){
-        var doors = new ArrayList<MapObject>();
+    private List<IObjectEntity> getDoors(Node room){
+        var doors = new ArrayList<IObjectEntity>();
         if(room.getNorth() != null)
-            doors.add((MapObject) room.getNorth());
+            doors.add(room.getNorth());
         if(room.getEast() != null)
-            doors.add((MapObject)room.getEast());
+            doors.add(room.getEast());
         if(room.getSouth() != null)
-            doors.add((MapObject)room.getSouth());
+            doors.add(room.getSouth());
         if(room.getWest() != null)
-            doors.add((MapObject) room.getWest());
+            doors.add(room.getWest());
         return doors;
     }
 
-    private void populateRoomObjects(IMap map){
+    private void populateRoomObjects(Map map){
         var rooms = map.rooms();
         rooms.forEach(r -> {
             var roomObjects = new ArrayList<IObjectEntity>();
@@ -36,7 +36,7 @@ public class MapGenerator {
         });
     }
 
-    public IMap build(){
+    public Map build(){
         var map = _mapBuilder.build();
         populateRoomObjects(map);
         return map;

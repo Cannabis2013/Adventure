@@ -1,26 +1,14 @@
 package GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies;
 
-import GameEngine.Contracts.IRoom;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.Weapons.BuildWeapons.Ranged.RocketLauncher;
-import GameEngine.MapGeneration.SmallSquare.Models.MapObject;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.Demon;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.LivingObjects.FatalBlowException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.Ranged.RocketLauncher;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
-public class Cyberdemon extends Demon {
-    public Cyberdemon(IRoom currentRoom) {
-        super("Cyberdemon",currentRoom);
-        _equippedWeapon = new RocketLauncher();
-    }
-
-
-    @Override
-    public String attack(MapObject object) {
-        return null;
-    }
-
-    @Override
-    public int inflict(int damage) throws FatalBlowException {
-        takeHealth(damage);
-        return damage;
+public class Cyberdemon extends Enemy {
+    public Cyberdemon(Room currentRoom) {
+        super("Cyberdemon");
+        _weapon = new RocketLauncher();
+        _health = 30;
+        _currentRoom = currentRoom;
+        _hitChance = 0.6;
     }
 }

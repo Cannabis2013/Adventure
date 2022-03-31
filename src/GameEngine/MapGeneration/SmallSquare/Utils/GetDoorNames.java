@@ -1,15 +1,14 @@
 package GameEngine.MapGeneration.SmallSquare.Utils;
 
-import GameEngine.MapGeneration.SmallSquare.Models.Door;
-import GameEngine.MapGeneration.SmallSquare.Models.Room;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Door;
+import GameEngine.MapGeneration.SmallSquare.Map.Rooms.Room;
 
 public class GetDoorNames {
     private String doorDetails(String orientation, Door door){
         if(door == null)
             return "";
         var msg = orientation + ": ";
-        msg += door.title();
-        msg += door.isLocked() ? " (locked)" : " (not locked)";
+        msg += door.presentate();
         msg += "\n";
         return msg;
     }

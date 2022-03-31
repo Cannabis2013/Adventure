@@ -1,9 +1,10 @@
 package Adventure.CommandInterpreter.ItemUsage;
 
 import GameEngine.GameEngine;
-import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.InvalidObjectException;
-import GameEngine.Utils.ItemNotFoundException;
-import GameEngine.Utils.ObjectNotFoundException;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
+import GameEngine.Player.Exceptions.ItemNotUsableException;
+import GameEngine.Player.Exceptions.TargetNotFoundException;
+import GameEngine.Player.Exceptions.UsableNotFoundException;
 
 import java.util.regex.Pattern;
 
@@ -23,10 +24,10 @@ public class HandleUseItem {
             _printer.printResult(result);
         } catch (InvalidObjectException e) {
             _printer.printInvalidObject();
-        } catch (ItemNotFoundException e) {
-            _printer.printItemNotInInventory(item);
-        } catch (ObjectNotFoundException e) {
-            _printer.printObjectNotFound();
+        } catch (UsableNotFoundException e) {
+            _printer.printUsableNotFound(item);
+        } catch (TargetNotFoundException e) {
+            _printer.printTargetNotFound();
         }
     }
 
@@ -37,8 +38,10 @@ public class HandleUseItem {
             _printer.printResult(result);
         } catch (InvalidObjectException e) {
             _printer.printInvalidObject();
-        } catch (ItemNotFoundException e) {
-            _printer.printItemNotInInventory(item);
+        }  catch (ItemNotUsableException e) {
+            _printer.printNotUsable(item);
+        } catch (UsableNotFoundException e) {
+            _printer.printUsableNotFound(item);
         }
     }
 

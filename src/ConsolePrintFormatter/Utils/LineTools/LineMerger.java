@@ -1,6 +1,5 @@
 package ConsolePrintFormatter.Utils.LineTools;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LineMerger {
