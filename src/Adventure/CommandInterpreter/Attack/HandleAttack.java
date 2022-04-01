@@ -61,8 +61,34 @@ public class HandleAttack {
         performEnemyAttack(target,engine);
     }
 
+    public void attackRandomEnemy(GameEngine engine) throws PlayerIsDeadException {
+        String target = engine.getRandomEnemy().title();
+        try {
+            var dmgDone = engine.attack(target);
+            var sound = engine.attackSound();
+            _printer.printAttackDemon(sound, dmgDone, target);
+        } catch (MissedTargetException e) {
+            _printer.printPlayerMissedTarget();
+        } catch (InvalidObjectException e) {
+            _printer.printInvalidTarget();
+            return;
+        } catch (FatalBlowException e) {
+            _printer.printFatalMessage();
+            return;
+        } catch (WeaponNotEquippedException e) {
+            _printer.printWeapNotEqupped();
+            return;
+        } catch (DodgedAttackException e) {
+            _printer.printEnemyDodgedAttack(target);
+        }
+        if (!target.isBlank())
+            performEnemyAttack(target, engine);
+    }
+
     public void handleAttack(String command, GameEngine engine) throws PlayerIsDeadException {
-        if(command.matches("attack"))
+        if (command.matches("attack") && !engine.roomEnemies().isEmpty())
+            attackRandomEnemy(engine);
+        else if(command.matches("attack"))
             attackNobody(engine);
         else
             attackEnemy(command,engine);

@@ -1,6 +1,7 @@
 package GameEngine.MapGeneration.SmallSquare.Map.Rooms;
 
 import GameEngine.Contracts.IObjectEntity;
+import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapEnemies.Enemy;
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Item;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.MapGeneration.SmallSquare.Utils.GetDoorNames;
@@ -11,6 +12,7 @@ import GameEngine.Utils.TakeItemFromList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Room extends Node {
     public enum RoomType {NORMAL_ROOM, BOSS_ROOM, END_ROOM;}
@@ -59,6 +61,7 @@ public class Room extends Node {
         _roomType = type;
         _parentMap = parentMap;
     }
+
 
     public RoomType getRoomType() {return _roomType;}
 

@@ -5,10 +5,12 @@ import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons
 import GameEngine.MapGeneration.SmallSquare.InitializeMap.MapItems.Items.Weapons.InvalidObjectException;
 import GameEngine.MapGeneration.SmallSquare.Map.Map;
 import GameEngine.MapGeneration.SmallSquare.Map.Rooms.DoorIsLockedException;
+import GameEngine.Player.Character;
 import GameEngine.Player.Exceptions.*;
 import GameEngine.Player.Player;
 import GameEngine.Utils.ItemNotFoundException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameEngine {
@@ -84,12 +86,22 @@ public class GameEngine {
         return _player.attack(demon);
     }
 
+    public String[] attackRandom() throws MissedTargetException, InvalidObjectException, FatalBlowException, WeaponNotEquippedException, DodgedAttackException {
+        var demon = _player.currentRoom().enemy();
+        var dmg = _player.attack(demon);
+        return new String[]{demon.title(), dmg};
+    }
+
     public String equippedWeapon(){
         return _player.weaponAsString();
     }
 
     public List<String> roomEnemies() {
         return _player.currentRoom().demonsAsStrings();
+    }
+
+    public Character getRandomEnemy() {
+        return _player.currentRoom().enemy();
     }
 
     public String attackSound(){

@@ -17,7 +17,7 @@ public class Player extends Character {
         super("Player");
         _dodgeChange = 0.25;
         _hitChance = 0.8;
-        _health = 1;
+        _health = 100;
     }
 
     public String weaponAsString(){
